@@ -1,112 +1,121 @@
-import { useGLTF, Environment, ScrollControls, useScroll, Html } from "@react-three/drei";
+import { useGLTF, Environment, ScrollControls, useScroll } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import { useState } from "react";
 
-// --- YOUR SCENES (Update labels with your full paragraphs!) ---
-const scenes = [
-  { 
-    label: "Welcome to My Room\nThis is where I spend most of my time working on engineering projects and relaxing.", 
-    position: new THREE.Vector3(1.86, -0.34, 4.91), 
-    target:   new THREE.Vector3(0.24, -1.02, 1.27) 
+// --- SCENE DATA ---
+export const scenes = [
+  { // 1. Wide
+    label: "Welcome To My Room\nThis is where I spend most of my time working on engineering projects and relaxing. When I moved here, I immediately saw inconveniences and potential improvements. Over time, I have designed many different things to make my desk a better place. Just scroll to view them all!",
+    position: new THREE.Vector3(1.86, -0.34, 4.91),
+    target:   new THREE.Vector3(0.24, -1.02, 1.27)
   },
-  { 
-    label: "Storage & Organization\nI keep all my 3D printing filaments and prototyping tools organized in these bins for easy access.", 
-    position: new THREE.Vector3(-0.33, -0.19, 0.77), 
-    target:   new THREE.Vector3(-0.45, -1.32, 0.24) 
+  { // 2. Storage (UPDATED COORDINATES)
+    label: "Desk Extension\nWith a large outlet box sticking out from the wall, my desk had a large gap behind it which led to things falling and a waste of space. To fix this I 3D printed a series of mounts and spacers, as well as cutting out custom planks from wood.",
+    position: new THREE.Vector3(-0.22, 0.21, 0.85),
+    target:   new THREE.Vector3(-0.22, -1.44, -0.07)
   },
-  { 
-    label: "Bedside Setup\nA simple setup for charging devices and keeping essentials close at hand during the night.", 
-    position: new THREE.Vector3(-0.32, -0.89, 0.53), 
-    target:   new THREE.Vector3(-0.70, -1.30, 0.04) 
+  { // 3. Bed Side Stand
+    label: "Bedside Mount\nTo get a rigid left anchor point, I created a mount that perfectly wraps around my bed frame printed in PETG for higher part strength, as well as printed in the plane of the hook for the most optimal layer orientation for the loads it will experience.",
+    position: new THREE.Vector3(-0.32, -0.89, 0.53),
+    target:   new THREE.Vector3(-0.70, -1.30, 0.04)
   },
-  { 
-    label: "Power & Access\nManaged cable routing ensures that all my devices stay charged without creating a mess of wires.", 
-    position: new THREE.Vector3(-0.23, -0.97, 0.30), 
-    target:   new THREE.Vector3(-0.24, -1.25, 0.06) 
+  { // 4. Outlet Stand
+    label: "Outlet Mount\nFor my central anchor point, I decided to wrap around the outlet box for a connection that was friction fit with no screwing into the wall required. Having the room modeled in CAD allowed me to verify the heights of the mounts relative to eachother to get a level plank.",
+    position: new THREE.Vector3(-0.23, -0.97, 0.30),
+    target:   new THREE.Vector3(-0.24, -1.25, 0.06)
   },
-  { 
-    label: "Structural Design\nThese planks were custom cut to fit the specific dimensions of the corner, maximizing vertical storage.", 
-    position: new THREE.Vector3(-0.18, -0.03, 0.19), 
-    target:   new THREE.Vector3(-0.18, -0.98, 0.10) 
+  { // 5. Both Planks
+    label: "Extension Planks\nI cut Custom planks to fit the specific dimensions of my room using measurements, including the cutout required for the Lamp to mount.",
+    position: new THREE.Vector3(-0.18, -0.03, 0.19),
+    target:   new THREE.Vector3(-0.18, -0.98, 0.10)
   },
-  { 
-    label: "Lighting Detail\nSoft ambient lighting helps reduce eye strain during late-night study sessions.", 
-    position: new THREE.Vector3(-0.07, -1.13, 0.19), 
-    target:   new THREE.Vector3(-0.07, -1.32, 0.07) 
+  { // 6. Lamp Base
+    label: "Custom Lamp Base\nMy desk lamp's remote was inline on its power cable which would dangle and be inconvenient, so I created a custom base that routes the cables neatly while holding the switch in a convenient place. While printing, I gave it an Archimedean Chord bottom surface pattern to give it a brushed metal appearance. ",
+    position: new THREE.Vector3(-0.07, -1.13, 0.19),
+    target:   new THREE.Vector3(-0.07, -1.32, 0.07)
   },
-  { 
-    label: "Personal Care\nA dedicated spot for daily essentials keeps the workspace clutter-free.", 
-    position: new THREE.Vector3(0.12, -0.74, 0.50), 
-    target:   new THREE.Vector3(0.63, -1.14, 0.17) 
+  { // 7. Cologne Cubby
+    label: "Cologne Cubby\nI wanted easy access to my colognes but could not keep them in the open as they would degrade in the direct sunlight from the window, so I created a custom wooden cubby to fit neatly in my space.",
+    position: new THREE.Vector3(0.12, -0.74, 0.50),
+    target:   new THREE.Vector3(0.63, -1.14, 0.17)
   },
-  { 
-    label: "Single Shelf\nDisplaying some of my favorite small builds and keepsakes.", 
-    position: new THREE.Vector3(0.18, -0.48, 0.23), 
-    target:   new THREE.Vector3(0.47, -0.42, -0.00) 
+  { // 8. Shelf Individual
+    label: "Wall Mounted Shelf\nI wanted to display some keepsakes and small creations, so I created a shelf system that did not require any screws into the wall. Two 3D printed brackets are attached to a custom wooden shelf with epoxy, and then held onto the wall with command strips for easy removal.",
+    position: new THREE.Vector3(0.18, -0.48, 0.23),
+    target:   new THREE.Vector3(0.47, -0.42, -0.00)
   },
-  { 
-    label: "Triple Shelves\nThe main display area for larger projects and reference books.", 
-    position: new THREE.Vector3(0.91, -0.29, 1.14), 
-    target:   new THREE.Vector3(0.49, -0.58, 0.00) 
+  { // 9. Shelves Together
+    label: "Triple Shelves\nI added 3 of these shelves to display more items as well as fill up space on my wall.",
+    position: new THREE.Vector3(0.91, -0.29, 1.14),
+    target:   new THREE.Vector3(0.49, -0.58, 0.00)
   },
-  { 
-    label: "Shelf Support\nReinforced brackets ensure stability for heavier equipment.", 
-    position: new THREE.Vector3(1.23, -0.81, 0.94), 
-    target:   new THREE.Vector3(0.59, -0.86, 0.01) 
+  { // 10. Shelf Stand
+    label: "Shelf Support\nWhen I placed heavier items on the shelves like picture frames, the interface between the command strip and the wall would fail, risking the items on the shelf. I designed a modular tree-like support system that is supported by the cubby to prevent any shelf from falling in the future.",
+    position: new THREE.Vector3(1.23, -0.81, 0.94),
+    target:   new THREE.Vector3(0.59, -0.86, 0.01)
   },
-  { 
-    label: "Utility Tray\nCatches loose screws, SD cards, and other small parts while I'm working.", 
-    position: new THREE.Vector3(0.59, -1.10, 0.51), 
-    target:   new THREE.Vector3(0.70, -1.32, 0.28) 
+  { // 11. Sponge Tray
+    label: "Sponge Tray\nAfter washing my dishes, I needed a place to keep my sponge, ideally in the open to prevent mold growth and expedite drying. I created a tray with ribs to allow airflow underneath while doubling as a reservoir for excess water.",
+    position: new THREE.Vector3(0.59, -1.10, 0.51),
+    target:   new THREE.Vector3(0.70, -1.32, 0.28)
   },
-  { 
-    label: "My Workstation\nThe heart of the operation. This is where the coding and CAD happens.", 
-    position: new THREE.Vector3(-0.24, -0.82, 1.87), 
-    target:   new THREE.Vector3(-0.21, -1.16, 0.36) 
+  { // 12. Laptop Screen
+    label: "My Laptop\nThe heart of the operation. This is where the coding and CAD happens. I am able to create all of these things because of my experience in CAD.",
+    position: new THREE.Vector3(-0.24, -0.82, 1.87),
+    target:   new THREE.Vector3(-0.21, -1.16, 0.36)
   },
-  { 
-    label: "The Laptop\nMy main machine, capable of handling heavy rendering and simulation tasks.", 
-    position: new THREE.Vector3(-0.23, -1.14, 0.74), 
-    target:   new THREE.Vector3(-0.24, -1.21, 0.37) 
+  { // 13. Laptop Zoom
+    label: "Parts List\nHere are each of the different components I designed on this desk.",
+    position: new THREE.Vector3(-0.23, -1.14, 0.74),
+    target:   new THREE.Vector3(-0.24, -1.21, 0.37)
   }
 ];
 
-const CameraHandler = ({ setStep }) => {
+// --- SCROLL TRACKER ---
+const ScrollTracker = ({ onScrollUpdate }) => {
+  const scroll = useScroll();
+
+  useFrame(() => {
+    if (!scroll) return;
+    
+    const offset = scroll.offset;
+    const total = scenes.length - 1;
+    const currentIdx = Math.round(offset * total);
+
+    onScrollUpdate(currentIdx);
+  });
+
+  return null;
+};
+
+// --- CAMERA HANDLER ---
+const CameraHandler = () => {
   const scroll = useScroll();
   const { camera } = useThree();
 
   useFrame(() => {
-    if (!scenes || scenes.length === 0 || !scroll) return;
+    if (!scenes || scenes.length < 2 || !scroll) return;
 
     const totalTransitions = scenes.length - 1; 
     const currentScroll = scroll.offset * totalTransitions; 
     const index = Math.floor(currentScroll); 
     
+    if (index >= totalTransitions) {
+      const lastScene = scenes[totalTransitions];
+      camera.position.copy(lastScene.position);
+      camera.lookAt(lastScene.target);
+      return;
+    }
+
     let progress = currentScroll - index;
     const hold = 0.20; 
 
-    // --- VISIBILITY LOGIC ---
-    let activeIndex = -1;
-
     if (progress < hold) {
       progress = 0;
-      activeIndex = index;
     } else if (progress > 1 - hold) {
       progress = 1;
-      activeIndex = index + 1;
     } else {
       progress = (progress - hold) / (1 - (hold * 2));
-      activeIndex = -1; 
-    }
-
-    setStep(activeIndex);
-
-    if (index >= totalTransitions) {
-      const last = scenes[totalTransitions];
-      camera.position.copy(last.position);
-      camera.lookAt(last.target);
-      return;
     }
 
     const start = scenes[index];
@@ -121,57 +130,18 @@ const CameraHandler = ({ setStep }) => {
   return null;
 };
 
-export const Experience = () => {
+// --- MAIN EXPERIENCE ---
+export const Experience = ({ onScrollUpdate }) => {
   const { scene } = useGLTF("/Room3D.gltf");
-  const [activeStep, setActiveStep] = useState(0);
 
   return (
     <>
       <Environment preset="studio" intensity={0.5} />
-      
-      <ScrollControls pages={scenes.length} damping={0.2}>
-        <CameraHandler setStep={setActiveStep} />
-        
-        {scenes.map((sceneData, i) => (
-          <Html
-            key={i}
-            position={sceneData.target}
-            center
-            distanceFactor={3} // <--- CHANGED FROM 10 TO 3 (Fixes the size issue)
-            style={{
-              opacity: activeStep === i ? 1 : 0,
-              pointerEvents: 'none',
-              transition: 'opacity 0.4s ease-in-out',
-            }}
-          >
-            <div style={{
-              background: 'rgba(0, 0, 0, 0.85)',
-              color: 'white',
-              padding: '15px 20px',
-              borderRadius: '12px',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              
-              // --- COMPACT SIZING ---
-              width: '220px',       // Slightly narrower for better fit
-              maxWidth: '80vw',     // Never wider than 80% of the screen
-              textAlign: 'left',    
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '14px',
-              lineHeight: '1.4',
-              boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-              backdropFilter: 'blur(4px)' // Adds a nice glass effect
-            }}>
-              {sceneData.label.split('\n').map((line, idx) => (
-                <p key={idx} style={{ margin: idx === 0 ? '0 0 6px 0' : '0' }}>
-                  {idx === 0 ? <strong style={{fontSize: '1.1em', color: '#ffb703'}}>{line}</strong> : line}
-                </p>
-              ))}
-            </div>
-          </Html>
-        ))}
 
+      <ScrollControls pages={scenes.length} damping={0.25}>
+        <CameraHandler />
+        <ScrollTracker onScrollUpdate={onScrollUpdate} />
         <primitive object={scene} scale={1} position={[0, -1, 0]} />
-        
       </ScrollControls>
     </>
   );
