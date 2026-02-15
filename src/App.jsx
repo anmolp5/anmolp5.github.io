@@ -101,7 +101,7 @@ function App() {
         <h1
           style={{
             margin: "0 0 16px 0",
-            fontSize: "40px",
+            fontSize: "28px",
             fontWeight: "700",
             color: "#ffb703",
             lineHeight: "1.3",
@@ -113,7 +113,7 @@ function App() {
         <p
           style={{
             margin: "0 0 24px 0",
-            fontSize: "30px",
+            fontSize: "18px",
             lineHeight: "1.7",
             color: "#e0e0e0",
           }}
