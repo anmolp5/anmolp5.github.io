@@ -5,4 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/', // This is the correct base for username.github.io repos
+  server: {
+    host: '0.0.0.0', // Allow access from network
+    port: 5173
+  }
 })
