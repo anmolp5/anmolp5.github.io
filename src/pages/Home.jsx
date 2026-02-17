@@ -33,10 +33,19 @@ const Home = () => {
             fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
             fontWeight: '500',
             color: '#555',
-            marginBottom: '20px',
+            marginBottom: '10px',
             letterSpacing: '0.5px'
           }}>
             Systems Engineering and Design
+          </p>
+          <p style={{
+            fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
+            fontWeight: '400',
+            color: '#666',
+            marginBottom: '20px',
+            letterSpacing: '0.5px'
+          }}>
+            Minor in Electrical Engineering
           </p>
           <div style={{
             width: '60px',

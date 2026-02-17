@@ -1,4 +1,5 @@
 import React, { useState, Suspense, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Canvas } from "@react-three/fiber";
 import { Experience, scenes } from "../Experience";
 import * as THREE from "three";
@@ -229,8 +230,8 @@ const Room3D = () => {
 
       {/* BACK BUTTON (Always show) */}
       {!isLoading && (
-        <a
-          href="/projects"
+        <Link
+          to="/projects"
           className="back-btn"
           style={{
             position: 'fixed',
@@ -265,7 +266,7 @@ const Room3D = () => {
           }}
         >
           <span>←</span> Back to Projects
-        </a>
+        </Link>
       )}
 
       {/* LOADING OVERLAY */}
