@@ -2,8 +2,8 @@
 import React from 'react';
 
 const LaptopInterface = ({ onClose, scenes }) => {
-    // Filter scenes for parts (indices 1-10)
-    const partScenes = scenes.slice(1, 11);
+    // Filter scenes for parts (indices 1-11)
+    const partScenes = scenes.slice(1, 12);
 
     return (
         <div style={{
@@ -106,7 +106,60 @@ const LaptopInterface = ({ onClose, scenes }) => {
                 flexDirection: 'column',
                 gap: '80px', // Spacing between sections
             }}>
-                {partScenes.map((scene, index) => {
+                {/* Real Room Feature Card */}
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: '60px',
+                    width: '100%',
+                    paddingBottom: '80px', // Spacing before the first part
+                    borderBottom: '1px solid rgba(0,0,0,0.05)'
+                }}>
+                    <div style={{
+                        flex: 1,
+                        aspectRatio: '4/3', // Taller aspect ratio for the room photo
+                        background: 'rgba(0,0,0,0.05)',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+                        border: '1px solid rgba(0,0,0,0.05)'
+                    }}>
+                        <img
+                            src="/images/room-real-life.jpg"
+                            alt="My Real Room"
+                            style={{ width: '100%', height: '100%', objectFit: 'contain', background: 'white' }}
+                        />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                        <h3 style={{
+                            margin: '0 0 20px 0',
+                            fontSize: '36px',
+                            fontWeight: '700',
+                            color: '#8B5CF6',
+                            letterSpacing: '-0.5px'
+                        }}>Real Life Execution</h3>
+                        <p style={{
+                            margin: 0,
+                            fontSize: '20px',
+                            color: '#444',
+                            lineHeight: '1.8',
+                            fontWeight: '300'
+                        }}>
+                            This is a picture of my room in real life. You can see everything I designed present here, seamlessly integrated into my daily space. The 3D experience you are exploring is a digital twin of this exact setup.
+                        </p>
+                    </div>
+                </div>
+
+                {partScenes.filter((scene, i) => {
+                    const originalIndex = scenes.indexOf(scene);
+                    // Keep only if it has an image in our map
+                    const imageMap = {
+                        2: true, 3: true, 4: true, 5: true,
+                        6: true, 7: true, 9: true, 10: true
+                    };
+                    return imageMap[originalIndex];
+                }).map((scene, index) => {
                     const [title, desc] = scene.label.split('\n');
                     const isEven = index % 2 === 0;
 
@@ -129,9 +182,35 @@ const LaptopInterface = ({ onClose, scenes }) => {
                                 justifyContent: 'center',
                                 fontSize: '48px',
                                 border: '1px solid rgba(0,0,0,0.05)',
-                                boxShadow: '0 8px 32px rgba(0,0,0,0.05)'
+                                boxShadow: '0 8px 32px rgba(0,0,0,0.05)',
+                                overflow: 'hidden'
                             }}>
-                                📷
+                                {(() => {
+                                    // Map scene index (from original scenes array) to image
+                                    // partScenes starts at index 1 of scenes array.
+                                    // So loop index 0 = scenes[1], index 1 = scenes[2], etc.
+                                    const originalIndex = scenes.indexOf(scene);
+
+                                    const imageMap = {
+                                        2: '/images/parts/bed-side-stand.png',   // Bed Side Stand
+                                        3: '/images/parts/outlet-stand.png',     // Outlet Stand
+                                        4: '/images/parts/extension-planks.png', // Extension Planks (New)
+                                        5: '/images/parts/lamp-base.png',        // Lamp Base
+                                        6: '/images/parts/cologne-cubby.png',    // Cologne Cubby
+                                        7: '/images/parts/wall-shelf.png',       // Wall Shelf
+                                        // 8: Shelf Individual (no image)
+                                        // 9: Shelves Together (no image)
+                                        9: '/images/parts/shelf-stand.png',      // Shelf Support (Index 9)
+                                        10: '/images/parts/sponge-tray.png'      // Sponge Tray (Index 10)
+                                    };
+
+                                    const imgSrc = imageMap[originalIndex];
+
+                                    if (imgSrc) {
+                                        return <img src={imgSrc} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', background: 'white' }} />;
+                                    }
+                                    return '📷';
+                                })()}
                             </div>
 
                             {/* Text Content */}

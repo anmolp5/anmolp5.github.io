@@ -53,27 +53,47 @@ const projectData = {
     subtitle: 'Pneumatic golf ball launching system',
     date: 'Spring 2024',
     tags: ['Mechanical Design', 'Pneumatics'],
-    hero: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&q=80',
+    hero: '/images/projects/golf-ball-launcher/hero.png',
     description: 'Designed and built a pneumatic device capable of launching golf balls at varying distances and angles. This project involved calculating pressure requirements, designing the release mechanism, and safety testing.',
-    sections: [],
-    images: []
+    sections: [
+      {
+        heading: 'Design & Fabrication',
+        content: 'I designed the launcher in CAD, printed custom mounts and fixtures, and assembled the pneumatic system using high-pressure tubing and valves. The frame was built for stability and recoil management.'
+      }
+    ],
+    images: [
+      '/images/projects/golf-ball-launcher/1.jpg',
+      '/images/projects/golf-ball-launcher/2.jpg',
+      '/images/projects/golf-ball-launcher/3.jpg',
+      '/images/projects/golf-ball-launcher/4.jpg',
+      '/images/projects/golf-ball-launcher/5.png',
+      '/images/projects/golf-ball-launcher/6.png'
+    ]
   },
   'sitting-table': {
     title: 'Sitting Table',
     subtitle: 'Ergonomic furniture design project',
     date: 'Fall 2023',
     tags: ['Furniture Design', 'Ergonomics'],
-    hero: 'https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80',
+    hero: '/images/projects/sitting-table/hero.jpg',
     description: 'A custom-designed sitting table focused on ergonomics and minimalist aesthetics. The project explored joinery techniques and material selection to create a durable and stylish piece of furniture.',
-    sections: [],
-    images: []
+    sections: [
+      {
+        heading: 'Craftsmanship',
+        content: 'Built from solid wood with precision joinery, this table features a seamless finish and a sturdy construction designed to last for generations.'
+      }
+    ],
+    images: [
+      '/images/projects/sitting-table/1.jpg',
+      '/images/projects/sitting-table/2.jpg'
+    ]
   },
   'ftc-robotics': {
     title: 'FTC Robotics',
     subtitle: 'Biobots #14318 - 6 seasons of competitive robotics',
     date: 'August 2019 - February 2025',
     tags: ['Robotics', 'CAD', 'Team Leadership'],
-    hero: 'https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?auto=format&fit=crop&q=80',
+    hero: '/images/projects/ftc-robotics/hero.jpg',
     description: `Led a cross-functional team of 7 in design, fabrication, and strategy for 6 consecutive robotics competition seasons. Designed all major robot subsystems in CAD and executed fabrication via 3D printing and CNC machining. Won Motivate, Think, Design, Connect (x2), Inspire Awards; Regional Championship Division Finalist (2024).`,
     sections: [
       {
@@ -89,7 +109,14 @@ const projectData = {
         content: 'We consistently reached regional championships and won multiple awards for our engineering documentation and community outreach efforts.'
       }
     ],
-    images: []
+    images: [
+      '/images/projects/ftc-robotics/7.png',
+      '/images/projects/ftc-robotics/2.jpg',
+      '/images/projects/ftc-robotics/3.jpg',
+      '/images/projects/ftc-robotics/4.jpg',
+      '/images/projects/ftc-robotics/5.jpg',
+      '/images/projects/ftc-robotics/6.jpg'
+    ]
   }
 };
 
@@ -115,9 +142,8 @@ const ProjectDetail = () => {
       {/* Hero Section */}
       <section style={{
         height: '50vh',
-        background: `linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.8)), url('${project.hero}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        position: 'relative',
+        overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -126,7 +152,32 @@ const ProjectDetail = () => {
         padding: '0 20px',
         marginBottom: '60px'
       }}>
-        <div style={{ maxWidth: '900px' }}>
+        {/* Blurred Background */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `url('${project.hero}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'blur(12px)',
+          transform: 'scale(1.1)',
+          zIndex: 0
+        }} />
+        {/* Overlay */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: `linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.6))`,
+          zIndex: 1
+        }} />
+
+        <div style={{ maxWidth: '900px', position: 'relative', zIndex: 2 }}>
           <Link
             to="/projects"
             style={{
@@ -241,7 +292,7 @@ const ProjectDetail = () => {
             marginBottom: '20px',
             fontFamily: 'system-ui, -apple-system, sans-serif',
             fontWeight: '700',
-            borderLeft: '4px solid #8B5CF6',
+            borderLeft: '4px solid #C4B5FD',
             paddingLeft: '15px'
           }}>
             {section.heading}
@@ -295,7 +346,15 @@ const ProjectDetail = () => {
                 fontWeight: '500'
               }}
             >
-              [Image Placeholder {index + 1}]
+              {typeof img === 'string' ? (
+                <img
+                  src={img}
+                  alt={`Gallery ${index + 1}`}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                `[Image Placeholder ${index + 1}]`
+              )}
             </div>
           ))}
         </div>

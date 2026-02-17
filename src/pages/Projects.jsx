@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom';
 const projects = [
   {
     id: 'room-improvement',
-    title: 'Personal Design Projects',
+    title: 'Room Improvement',
     subtitle: 'Bedroom Improvement (3D Experience)',
     color: '#6b8e23',
-    link: '/projects/room-improvement'
+    link: '/projects/room-improvement',
+    image: '/images/projects/room-improvement/hero.png'
   },
   {
-    id: 'small-business-tools',
-    title: 'Small Business Tools',
-    subtitle: 'Kanyalndya',
-    color: '#cd5c5c',
-    link: '/projects/small-business-tools'
+    id: 'ftc-robotics',
+    title: 'FTC Robotics',
+    subtitle: 'Biobots #14318',
+    color: '#9370db',
+    link: '/projects/ftc-robotics',
+    image: '/images/projects/ftc-robotics/card.jpg'
   },
   {
     id: 'orthotic-repair',
@@ -26,20 +28,23 @@ const projects = [
     id: 'golf-ball-launcher',
     title: 'Golf Ball Launcher',
     color: '#8fbc8f',
-    link: '/projects/golf-ball-launcher'
+    link: '/projects/golf-ball-launcher',
+    image: '/images/projects/golf-ball-launcher/hero.png',
+    backgroundPosition: 'center 25%'
+  },
+  {
+    id: 'small-business-tools',
+    title: 'Small Business Tools',
+    subtitle: 'Kanyalndya',
+    color: '#cd5c5c',
+    link: '/projects/small-business-tools'
   },
   {
     id: 'sitting-table',
     title: 'Sitting Table',
     color: '#bc8f8f',
-    link: '/projects/sitting-table'
-  },
-  {
-    id: 'ftc-robotics',
-    title: 'FTC Robotics',
-    subtitle: 'Biobots #14318',
-    color: '#9370db',
-    link: '/projects/ftc-robotics'
+    link: '/projects/sitting-table',
+    image: '/images/projects/sitting-table/hero.jpg'
   }
 ];
 
@@ -140,16 +145,18 @@ const Projects = () => {
                   width: '100%',
                   height: '240px',
                   backgroundColor: project.color,
-                  backgroundImage: `linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.1) 100%)`,
+                  backgroundImage: project.image ? `url('${project.image}')` : `linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.1) 100%)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: project.backgroundPosition || 'center',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: 'white',
                   fontSize: '1.2rem',
                   fontWeight: '600',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                  textShadow: '0 2px 4px rgba(0,0,0,0.5)'
                 }}>
-                  {project.title} Preview
+                  {!project.image && `${project.title} Preview`}
                 </div>
 
                 {/* Project Details */}

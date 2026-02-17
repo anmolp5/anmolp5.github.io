@@ -32,6 +32,7 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "gh-pages": "^6.3.0",
     "globals": "^16.5.0",
+    "text-loader": "^0.0.1",
     "vite": "^8.0.0-beta.13"
   },
   "overrides": {

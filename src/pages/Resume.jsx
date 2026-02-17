@@ -41,19 +41,22 @@ const Resume = () => {
             aspectRatio: '1/1.414',
             background: 'white',
             border: '1px solid #ddd',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#888',
-            fontSize: '1rem',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
             marginBottom: '20px',
-            borderRadius: '4px'
+            borderRadius: '4px',
+            overflow: 'hidden',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.08)'
           }}>
-            [Resume PDF Preview]
+            <iframe
+              src="/images/resume/Anmol_Prabhakar___Resume-2.pdf"
+              style={{ width: '100%', height: '100%', border: 'none' }}
+              title="Resume PDF"
+            />
           </div>
-          <button
+          <a
+            href="/images/resume/Anmol_Prabhakar___Resume-2.pdf"
+            download="Anmol_Prabhakar_Resume.pdf"
             style={{
+              display: 'block',
               width: '100%',
               padding: '16px',
               backgroundColor: '#0a0a0a',
@@ -65,7 +68,9 @@ const Resume = () => {
               transition: 'all 0.2s',
               borderRadius: '4px',
               textTransform: 'uppercase',
-              letterSpacing: '1px'
+              letterSpacing: '1px',
+              textAlign: 'center',
+              textDecoration: 'none'
             }}
             onMouseEnter={(e) => {
               e.target.style.backgroundColor = '#8B5CF6';
@@ -77,7 +82,7 @@ const Resume = () => {
             }}
           >
             Download Resume
-          </button>
+          </a>
         </div>
 
         {/* Right Column - Photo Grid */}
@@ -96,7 +101,7 @@ const Resume = () => {
             gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
             gap: '20px'
           }}>
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {['/images/resume/1.jpg', '/images/resume/2.jpg', '/images/resume/3.jpg'].map((img, i) => (
               <div
                 key={i}
                 style={{
@@ -104,6 +109,7 @@ const Resume = () => {
                   aspectRatio: '1',
                   backgroundColor: '#e0e0e0',
                   borderRadius: '8px',
+                  overflow: 'hidden', // Ensure image stays inside
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -113,10 +119,14 @@ const Resume = () => {
                   transition: 'transform 0.2s',
                   cursor: 'pointer'
                 }}
-                onMouseEnter={(e) => e.target.style.transform = 'scale(1.02)'}
-                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
-                Photo Placeholder {i}
+                <img
+                  src={img}
+                  alt={`Life at Illinois ${i + 1}`}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
               </div>
             ))}
           </div>

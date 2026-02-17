@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
-import ProjectDetail from './pages/ProjectDetail';
+import ProjectDetail from './pages/Projectdetail';
 import Room3D from './pages/Room3D';
 import Resume from './pages/Resume';
 import Contact from './pages/Contact';
