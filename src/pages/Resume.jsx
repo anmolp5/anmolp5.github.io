@@ -94,7 +94,7 @@ const Resume = () => {
             borderLeft: '4px solid #8B5CF6',
             paddingLeft: '15px'
           }}>
-            Life at Illinois
+            Life In Engineering
           </h2>
           <div style={{
             display: 'grid',
@@ -124,7 +124,7 @@ const Resume = () => {
               >
                 <img
                   src={img}
-                  alt={`Life at Illinois ${i + 1}`}
+                  alt={`Life in Engineering ${i + 1}`}
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
@@ -136,7 +136,7 @@ const Resume = () => {
             lineHeight: '1.8',
             color: '#444'
           }}>
-            Beyond the coursework and projects, my time at UIUC has been defined by the hands-on experiences in the labs, the collaborative sessions in the maker spaces, and the community of engineers I've had the privilege to work with. These photos capture some of those moments in the shop, at competitions, and during late-night build sessions.
+            Pictures of me engineering throughout the years.
           </p>
         </div>
       </section>

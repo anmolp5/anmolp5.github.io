@@ -158,7 +158,11 @@ const Contact = () => {
               * INDICATES REQUIRED FIELD
             </p>
 
-            <form onSubmit={handleSubmit}>
+            <form action="https://formsubmit.co/anmolp5@illinois.edu" method="POST">
+              {/* Optional: FormSubmit Configuration */}
+              <input type="hidden" name="_subject" value="New message from Portfolio Contact Form" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value={window.location.href} />
               {/* Name Fields */}
               <div style={{ marginBottom: '20px' }}>
                 <label style={{

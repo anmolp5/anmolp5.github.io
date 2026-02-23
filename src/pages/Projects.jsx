@@ -22,11 +22,13 @@ const projects = [
     id: 'orthotic-repair',
     title: 'Orthotic Repair',
     color: '#4682b4',
-    link: '/projects/orthotic-repair'
+    link: '/projects/orthotic-repair',
+    image: '/images/projects/orthotic-repair/1.jpg'
   },
   {
     id: 'golf-ball-launcher',
     title: 'Golf Ball Launcher',
+    subtitle: 'Precision Flywheel System',
     color: '#8fbc8f',
     link: '/projects/golf-ball-launcher',
     image: '/images/projects/golf-ball-launcher/hero.png',
@@ -37,7 +39,8 @@ const projects = [
     title: 'Small Business Tools',
     subtitle: 'Kanyalndya',
     color: '#cd5c5c',
-    link: '/projects/small-business-tools'
+    link: '/projects/small-business-tools',
+    image: '/images/projects/small-business-tools/1.png'
   },
   {
     id: 'sitting-table',
