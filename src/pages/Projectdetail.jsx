@@ -38,6 +38,7 @@ const projectData = {
       {
         type: 'image-left',
         src: '/images/projects/small-business-tools/2.png',
+        caption: '[Insert placeholder caption here]',
         text: `To construct a holistic business transformation, the physical tools were augmented by digital automation. I implemented AI-driven workflows by personally training the business owner on leveraging several Large Language Models (LLMs) to automate their repetitive administrative tasks. 
         
         This digital overhaul included systems for generating standardized barcodes on the fly and creating automated, professional phrasing for client invoicing and communications. By seamlessly combining physical manufacturing solutions with cutting-edge digital AI optimizations, this small business was empowered to substantially scale their throughput and professional appearance without the need to increase their headcount.`
@@ -45,6 +46,7 @@ const projectData = {
       {
         type: 'image-right',
         src: '/images/projects/small-business-tools/3.png',
+        caption: '[Insert placeholder caption here]',
         text: `The magnetic photobox system proved to be an invaluable asset for consistent branding. Prior to its implementation, lighting setups were ad-hoc, leading to varying shadow lengths and color temperatures that degraded the professional appearance of the online storefront.`
       }
     ],
@@ -91,11 +93,13 @@ const projectData = {
       {
         type: 'image-left',
         src: '/images/projects/orthotic-repair/2.jpg',
+        caption: '[Insert placeholder caption here]',
         text: `The physical translation of the digital design involved the fabrication of 4 distinct, iterative working prototypes using advanced 3D printing techniques. Following the fabrication of each iteration, the user actively tested the orthotic device on a treadmill under controlled conditions, providing detailed subjective comfort scores and mapping areas of kinetic fatigue.`
       },
       {
         type: 'image-right',
         src: '/images/projects/orthotic-repair/3.jpg',
+        caption: '[Insert placeholder caption here]',
         text: `By systematically and analytically adjusting the geometric parameters based on this feedback—specifically dialing in the exact flare angle of the calf band and tuning the flexural rigidity of the ankle joint module—we successfully achieved a biomechanically optimal fit. This final, refined prototype completely eliminated the acute shin pain points, remarkably allowing the user to wear the KAFO device for a full, active workday entirely free from the debilitating fatigue they had previously experienced.`
       }
     ],
@@ -125,6 +129,7 @@ const projectData = {
       {
         type: 'image-left',
         src: '/images/projects/golf-ball-launcher/1.jpg',
+        caption: '[Insert placeholder caption here]',
         text: `Achieving the desired velocity was only half the equation; angular precision was paramount. We integrated an Inertial Measurement Unit (IMU) deeply into our custom motor controller architecture. This allowed us to actively monitor and strictly dial in the exact pitch angle of the launcher barrel before every single shot, eliminating human error in setup. 
         
         Furthermore, we designed and 3D-printed a specialized mounting bracket to securely attach a continuous laser sight strictly parallel to the launch vector. This allowed us to visually calibrate and anchor our mathematical trajectory models against the physical target in real-world space. Ultimately, this combination of mechanical stability and intelligent mechatronic control resulted in our system hitting the 8-inch target an incredible 25 times in a row, making us the only team in the entire class to achieve such a flawless performance record.`
@@ -160,6 +165,7 @@ const projectData = {
       {
         type: 'image-left',
         src: '/images/projects/sitting-table/1.jpg',
+        caption: '[Insert placeholder caption here]',
         text: `The structural integrity of the table relies entirely on the precision of the interlocking geometric joints, utilizing only tight mechanical friction and high-strength wood glue to create a monolithic, incredibly sturdy form. The material selection process was subsequently exhaustive, requiring numerous tests of different wood species. We ultimately landed on a highly specific hardwood species globally renowned for its exceptional dimensional stability, sheer density, and profound resistance to seasonal warping over decades of use. 
         
         The final finishing process involved meticulous hand-sanding followed by the application of a bespoke, hand-rubbed natural oil blend. This painstaking finish deeply penetrates and protects the surface from daily wear and spills while beautifully maintaining the tactile warmth, matte texture, and intricate visual character of the natural wood grain. The final result is a highly durable, functionally optimal piece of architectural furniture that naturally and elegantly integrates into a modern, conscious living space.`
@@ -183,23 +189,32 @@ const projectData = {
     ],
     contentBlocks: [
       {
-        type: 'text',
-        content: `For six consecutive, highly intensive academic seasons, I proudly served as a core mechanical design engineer and ultimately rose to the position of Team Captain for FIRST Tech Challenge (FTC) Team #14318, the Biobots. In this leadership role, I was directly responsible for leading a cross-functional, highly motivated team of seven high school students through the entirety of the grueling, professional-grade engineering design process. 
-        
-        This extensive process ranged from the initial, critical analysis of the complex yearly game strategy to the creation of highly detailed full-robot CAD assemblies, and finally culminating in the precise physical manufacturing and assembly of the competition hardware. Due to the nature of FIRST competitions, every single season mandated the conceptualization and execution of a completely novel robotic architecture in order to successfully solve the unique physical hurdles and scoring mechanisms presented that year.`
+        type: 'image-left',
+        src: '/images/projects/ftc-robotics/cropped_2_zoomed.jpg',
+        caption: 'Our 2025 Competition Robot',
+        width: '25%',
+        maxWidth: '300px',
+        text: `For six consecutive, highly intensive academic seasons, I proudly served as a core mechanical design engineer and ultimately rose to the position of Hardware Captain and Lead Strategist for FIRST Tech Challenge (FTC) Team #14318, the Biobots.
+
+Our team won the Motivate, Think, Design, Connect (x2), Inspire Awards. We were also NorCal Regional Championship Division Finalists in (2024).
+
+In this leadership role, I was directly responsible for leading a cross-functional, highly motivated team of seven high school students through the entirety of the grueling, professional-grade engineering design process. This extensive process ranged from the initial, critical analysis of the complex yearly game strategy to the creation of highly detailed full-robot CAD assemblies, and finally culminating in the precise physical manufacturing and assembly of the competition hardware. Due to the nature of FIRST competitions, every single season mandated the conceptualization and execution of a completely new robotic architecture in order to successfully solve the unique physical hurdles and scoring mechanisms presented that year.`
       },
       {
-        type: 'text',
-        content: `As Team Captain, I was primarily responsible for dictating the overall technical direction and systems architecture. Each competitive season inevitably involved navigating multiple, highly stressful full-system redesigns under extremely tight deadlines. Rather than relying on mere intuition or trial-and-error, I implemented a rigorous, data-driven approach to our engineering. We actively utilized structured, weighted decision matrices to carefully and objectively evaluate the inherent trade-offs between dynamic speed, operational consistency, mechanical complexity, and maximum theoretical scoring potential. 
-        
-        This disciplined approach allowed the team to strongly prioritize absolute hardware reliability under the intense, physical constraints of a chaotic 2.5-minute competition match, directly leading to our sustained success on the field.`
+        type: 'image-right',
+        src: '/images/projects/ftc-robotics/7.png',
+        caption: 'Our Full Robot in CAD',
+        align: 'flex-end',
+        text: `As Hardware Captain, I was primarily responsible for dictating the overall technical direction and systems architecture. Each competitive season inevitably involved navigating multiple, highly stressful full-system redesigns under extremely tight deadlines. Rather than relying on mere intuition or trial-and-error, I implemented a rigorous, iterative approach to our engineering. This disciplined approach allowed the team to strongly prioritize absolute hardware reliability under the intense, physical constraints of a chaotic 2.5-minute competition match, directly leading to our sustained success on the field.`
       },
       {
         type: 'image-left',
-        src: '/images/projects/ftc-robotics/2.jpg',
-        text: `Through my extensive tenure in competitive robotics, I rapidly developed a remarkably robust foundation in advanced 3D CAD modeling (utilizing both SolidWorks and Fusion360), rapid physical prototyping methodologies, and the crucial principles of Design for Manufacturability (DFM). I heavily utilized and managed modern manufacturing techniques, specifically operating 3D printers and CNC routers for the rapid production of highly customized, lightweight structural components. 
-        
-        Furthermore, beyond the strictly technical engineering skills acquired, this experience was instrumental in honing my leadership capabilities. I expertly managed complex team coordination, strategically delegated nuanced tasks across the distinct software and hardware sub-teams, and rigorously ensured that our completed physical robotic hardware flawlessly and reliably integrated with the advanced autonomous control algorithms written by our programming division.`
+        src: '/images/projects/ftc-robotics/cropped_5_25.jpg',
+        caption: 'Me acting as a driver coach in a regional match',
+        align: 'flex-start',
+        text: `During competitions, I played the role of Player Coach. I was familiar with every detail of the rule book and our driver strategies. I kept a clip board with a blank map of the season’s mat and a dry erase marker to be able to work with our alliance members to create efficient pathing in order to maximize scoring output.
+
+Through my extensive tenure in competitive robotics, I rapidly developed a remarkably robust foundation in advanced 3D CAD modeling (utilizing both Onshape and Fusion360), rapid physical prototyping methodologies, and the crucial principles of Design for Manufacturability (DFM). I heavily utilized and managed modern manufacturing techniques, specifically operating 3D printers and CNC routers for the rapid production of highly customized, lightweight structural components. Furthermore, beyond the strictly technical engineering skills acquired, this experience was instrumental in honing my leadership capabilities. I expertly managed complex team coordination, strategically delegated nuanced tasks across the distinct software and hardware sub-teams, and rigorously ensured that our completed physical robotic hardware flawlessly and reliably integrated with the advanced autonomous control algorithms written by our programming division.`
       }
     ],
     images: [
@@ -470,16 +485,19 @@ const ProjectDetail = () => {
             switch (block.type) {
               case 'text':
                 return (
-                  <p key={index} style={{
-                    fontSize: '1.25rem',
-                    lineHeight: '2',
-                    color: '#333',
-                    textAlign: 'left',
-                    margin: 0,
-                    whiteSpace: 'pre-line'
-                  }}>
-                    {block.content}
-                  </p>
+                  <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                    {block.content.split('\n\n').map((para, i) => (
+                      <p key={i} style={{
+                        fontSize: '1.25rem',
+                        lineHeight: '1.8',
+                        color: '#333',
+                        textAlign: 'left',
+                        margin: 0
+                      }}>
+                        {para.trim()}
+                      </p>
+                    ))}
+                  </div>
                 );
               case 'image-left':
               case 'image-right':
@@ -487,31 +505,49 @@ const ProjectDetail = () => {
                 return (
                   <div key={index} className="flexible-image-wrap" style={{
                     display: 'block',
-                    margin: '30px 0'
+                    margin: '0'
                   }}>
-                    <img src={block.src} alt="Project context" style={{
+                    <div className="flexible-img-container" style={{
                       float: isLeft ? 'left' : 'right',
-                      width: '25%', // Kept smaller
+                      width: block.width || '30%',
                       minWidth: '200px',
-                      maxWidth: '300px',
+                      maxWidth: block.maxWidth || '350px',
                       marginRight: isLeft ? '40px' : '0',
                       marginLeft: isLeft ? '0' : '40px',
-                      marginBottom: '20px',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-                      display: 'block'
-                    }} />
-                    <p style={{
-                      fontSize: '1.25rem',
-                      lineHeight: '2',
-                      color: '#333',
-                      textAlign: 'left',
-                      margin: 0,
-                      whiteSpace: 'pre-line'
+                      marginBottom: '20px'
                     }}>
-                      {block.text}
-                    </p>
-                    <div style={{ clear: 'both' }}></div>
+                      <img src={block.src} alt="Project context" style={{
+                        width: '100%',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                        display: 'block'
+                      }} />
+                      {block.caption && (
+                        <p style={{
+                          fontSize: '0.8rem',
+                          color: '#666',
+                          textAlign: 'center',
+                          marginTop: '12px',
+                          fontStyle: 'italic',
+                          lineHeight: '1.4'
+                        }}>
+                          {block.caption}
+                        </p>
+                      )}
+                    </div>
+                    <div style={{ display: 'block' }}>
+                      {block.text.split('\n\n').map((para, i) => (
+                        <p key={i} style={{
+                          fontSize: '1.25rem',
+                          lineHeight: '1.8',
+                          color: '#333',
+                          textAlign: 'left',
+                          margin: '0 0 16px 0'
+                        }}>
+                          {para.trim()}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 );
               case 'image-row':
@@ -775,15 +811,13 @@ const ProjectDetail = () => {
         }
         @media (max-width: 768px) {
           .flexible-image-wrap {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
+            display: block !important;
           }
-          .flexible-image-wrap img {
+          .flexible-img-container {
             float: none !important;
             width: 80% !important;
             max-width: 400px !important;
-            margin: 0 0 20px 0 !important;
+            margin: 0 auto 20px auto !important;
           }
           .flexible-image-wrap p {
             width: 100% !important;
