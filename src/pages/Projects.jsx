@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const projects = [
   {
@@ -52,12 +52,30 @@ const projects = [
 ];
 
 const Projects = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if we arrived returning from a specific project
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        // slight timeout ensures DOM is fully painted dynamically
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
+    } else {
+      // otherwise, normal top-of-page behavior
+      window.scrollTo(0, 0);
+    }
+  }, [location.state]);
+
   return (
     <div style={{ paddingBottom: '100px' }}>
       {/* Hero Section */}
       <section style={{
         height: '40vh',
-        background: 'linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.8)), url("https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80")',
+        background: 'linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.8)), url("/images/projects-hero.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display: 'flex',
@@ -116,6 +134,7 @@ const Projects = () => {
           {projects.map((project) => (
             <Link
               key={project.id}
+              id={project.id}
               to={project.link}
               style={{
                 textDecoration: 'none',

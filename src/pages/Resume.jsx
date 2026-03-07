@@ -47,13 +47,13 @@ const Resume = () => {
             boxShadow: '0 10px 30px rgba(0,0,0,0.08)'
           }}>
             <iframe
-              src="/images/resume/Anmol_Prabhakar___Resume-2.pdf"
+              src="/images/resume/Anmol_Prabhakar_Resume.pdf"
               style={{ width: '100%', height: '100%', border: 'none' }}
               title="Resume PDF"
             />
           </div>
           <a
-            href="/images/resume/Anmol_Prabhakar___Resume-2.pdf"
+            href="/images/resume/Anmol_Prabhakar_Resume.pdf"
             download="Anmol_Prabhakar_Resume.pdf"
             style={{
               display: 'block',

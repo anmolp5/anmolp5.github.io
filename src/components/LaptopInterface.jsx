@@ -1,53 +1,58 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LaptopInterface = ({ onClose, scenes }) => {
     // Filter scenes for parts (indices 1-11)
     const partScenes = scenes.slice(1, 12);
 
     return (
-        <div style={{
-            position: 'absolute',
-            // Center the interface over the laptop screen area
-            top: '50%',
-            left: '52.7%', // Slight left shift
-            transform: 'translate(-50%, -50%)',
-            // Adjusted size to fill laptop screen
-            width: '70vw',
-            maxWidth: '1400px',
-            height: '83vh', // Explicit height to be "taller"
-            maxHeight: '95vh',
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(0, 0, 0, 0.1)',
-            borderRadius: '25px',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.2)',
-            zIndex: 1000,
-            display: 'flex',
-            flexDirection: 'column',
-            // overflow: 'hidden', // Allow notch to overlap
-            color: '#1a1a1a',
-            fontFamily: 'system-ui, sans-serif'
-        }}>
+        <div
+            className="laptop-interface-modal"
+            style={{
+                position: 'absolute',
+                // Center the interface over the laptop screen area
+                top: '50%',
+                left: '52.7%', // Slight left shift
+                transform: 'translate(-50%, -50%)',
+                // Adjusted size to fill laptop screen
+                width: '70vw',
+                maxWidth: '1400px',
+                height: '83vh', // Explicit height to be "taller"
+                maxHeight: '95vh',
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(0, 0, 0, 0.1)',
+                borderRadius: '25px',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.2)',
+                zIndex: 1000,
+                display: 'flex',
+                flexDirection: 'column',
+                // overflow: 'hidden', // Allow notch to overlap
+                color: '#1a1a1a',
+                fontFamily: 'system-ui, sans-serif'
+            }}>
 
             {/* NOTCH */}
-            <div style={{
-                position: 'absolute',
-                top: '-1px', // Overlap the container border
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '200px', // Bigger notch
-                height: '36px',
-                background: '#0a0a0a', // Matches typical bezel
-                borderBottomLeftRadius: '16px',
-                borderBottomRightRadius: '16px',
-                // Border only on bottom and sides to trace the shape
-                borderBottom: '1px solid rgba(0, 0, 0, 0.1)', // Matches container border
-                borderLeft: '1px solid rgba(0, 0, 0, 0.1)',
-                borderRight: '1px solid rgba(0, 0, 0, 0.1)',
-                zIndex: 2000, // On top of everything
-                // No shadow
-            }}></div>
+            <div
+                className="laptop-interface-notch"
+                style={{
+                    position: 'absolute',
+                    top: '-1px', // Overlap the container border
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '200px', // Bigger notch
+                    height: '36px',
+                    background: '#0a0a0a', // Matches typical bezel
+                    borderBottomLeftRadius: '16px',
+                    borderBottomRightRadius: '16px',
+                    // Border only on bottom and sides to trace the shape
+                    borderBottom: '1px solid rgba(0, 0, 0, 0.1)', // Matches container border
+                    borderLeft: '1px solid rgba(0, 0, 0, 0.1)',
+                    borderRight: '1px solid rgba(0, 0, 0, 0.1)',
+                    zIndex: 2000, // On top of everything
+                    // No shadow
+                }}></div>
 
             {/* Header */}
             <div style={{
@@ -58,64 +63,111 @@ const LaptopInterface = ({ onClose, scenes }) => {
                 alignItems: 'center',
                 background: 'rgba(0,0,0,0.02)'
             }}>
+                {/* Left Side Title Container */}
                 <div>
-                    <h2 style={{ margin: 0, fontSize: '24px', fontWeight: '600', color: '#8B5CF6' }}>Parts Catalog</h2>
-                    <p style={{ margin: '5px 0 0', fontSize: '14px', color: '#666' }}>Scroll to view all custom components</p>
+                    <h2 style={{ margin: 0, fontSize: '20px', fontWeight: '600', color: '#8B5CF6' }}>Parts Catalog</h2>
+                    <p style={{ margin: '5px 0 0', fontSize: '13px', color: '#666' }}>Scroll to view all custom components</p>
                 </div>
 
-                {/* Back Navigation Button (Arrow Style) */}
-                <button
-                    onClick={onClose}
-                    className="nav-btn-interface"
-                    aria-label="Back"
-                    style={{
-                        background: 'rgba(0, 0, 0, 0.05)',
-                        border: '1px solid rgba(0, 0, 0, 0.1)',
-                        color: '#1a1a1a',
-                        width: '36px', // Matched to .nav-btn
-                        height: '36px',
-                        borderRadius: '50%',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        transition: 'all 0.2s ease',
-                        padding: 0 // Remove button padding
-                    }}
-                    onMouseOver={(e) => {
-                        e.currentTarget.style.background = '#8B5CF6';
-                        e.currentTarget.style.color = 'white';
-                        e.currentTarget.style.borderColor = '#8B5CF6';
-                    }}
-                    onMouseOut={(e) => {
-                        e.currentTarget.style.background = 'rgba(0, 0, 0, 0.05)';
-                        e.currentTarget.style.color = '#1a1a1a';
-                        e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
-                    }}
-                >
-                    <span style={{ fontSize: "18px", lineHeight: "1", paddingBottom: "3px", marginRight: "3px" }}>❮</span>
-                </button>
+                {/* Right Side Navigation Stack */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+                    {/* Persistent Back to Projects Button */}
+                    <Link
+                        to="/projects"
+                        state={{ scrollTo: 'room-improvement' }}
+                        style={{
+                            textDecoration: 'none',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            color: '#1a1a1a',
+                            background: 'rgba(255, 255, 255, 0.9)',
+                            padding: '12px 24px',
+                            borderRadius: '30px',
+                            border: '1px solid rgba(0, 0, 0, 0.05)',
+                            backdropFilter: 'blur(10px)',
+                            transition: 'all 0.3s ease',
+                            fontFamily: 'system-ui, -apple-system, sans-serif',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            letterSpacing: '0.5px',
+                            width: 'max-content'
+                        }}
+                        onMouseOver={(e) => {
+                            e.currentTarget.style.background = '#8B5CF6'; // Lavender
+                            e.currentTarget.style.color = 'white';
+                            e.currentTarget.style.borderColor = '#8B5CF6';
+                        }}
+                        onMouseOut={(e) => {
+                            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                            e.currentTarget.style.color = '#1a1a1a';
+                            e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.05)';
+                        }}
+                    >
+                        <span>←</span> Back to Projects
+                    </Link>
+
+                    {/* Back to 3D View Button */}
+                    <button
+                        onClick={onClose}
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            color: '#1a1a1a',
+                            background: 'rgba(255, 255, 255, 0.9)',
+                            padding: '12px 24px',
+                            borderRadius: '30px',
+                            border: '1px solid rgba(0, 0, 0, 0.05)',
+                            backdropFilter: 'blur(10px)',
+                            transition: 'all 0.3s ease',
+                            fontFamily: 'system-ui, -apple-system, sans-serif',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            letterSpacing: '0.5px',
+                            textTransform: 'none',
+                            cursor: 'pointer',
+                            width: 'max-content'
+                        }}
+                        onMouseOver={(e) => {
+                            e.currentTarget.style.background = '#8B5CF6'; // Lavender
+                            e.currentTarget.style.color = 'white';
+                            e.currentTarget.style.borderColor = '#8B5CF6';
+                        }}
+                        onMouseOut={(e) => {
+                            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                            e.currentTarget.style.color = '#1a1a1a';
+                            e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.05)';
+                        }}
+                    >
+                        <span>←</span> Back to 3D View
+                    </button>
+                </div>
             </div>
 
             {/* Content */}
-            <div style={{
-                flex: 1,
-                overflowY: 'auto',
-                padding: '40px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '80px', // Spacing between sections
-            }}>
-                {/* Real Room Feature Card */}
-                <div style={{
+            <div
+                className="laptop-interface-content"
+                style={{
+                    flex: 1,
+                    overflowY: 'auto',
+                    padding: '40px',
                     display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: '60px',
-                    width: '100%',
-                    paddingBottom: '80px', // Spacing before the first part
-                    borderBottom: '1px solid rgba(0,0,0,0.05)'
+                    flexDirection: 'column',
+                    gap: '80px', // Spacing between sections
                 }}>
+                {/* Real Room Feature Card */}
+                <div
+                    className="part-item-real"
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: '60px',
+                        width: '100%',
+                        paddingBottom: '80px', // Spacing before the first part
+                        borderBottom: '1px solid rgba(0,0,0,0.05)'
+                    }}>
                     <div style={{
                         flex: 1,
                         aspectRatio: '4/3', // Taller aspect ratio for the room photo
@@ -132,20 +184,24 @@ const LaptopInterface = ({ onClose, scenes }) => {
                         />
                     </div>
                     <div style={{ flex: 1 }}>
-                        <h3 style={{
-                            margin: '0 0 20px 0',
-                            fontSize: '36px',
-                            fontWeight: '700',
-                            color: '#8B5CF6',
-                            letterSpacing: '-0.5px'
-                        }}>Real Life Execution</h3>
-                        <p style={{
-                            margin: 0,
-                            fontSize: '20px',
-                            color: '#444',
-                            lineHeight: '1.8',
-                            fontWeight: '300'
-                        }}>
+                        <h3
+                            className="part-title-hero"
+                            style={{
+                                margin: '0 0 20px 0',
+                                fontSize: '36px',
+                                fontWeight: '700',
+                                color: '#8B5CF6',
+                                letterSpacing: '-0.5px'
+                            }}>Real Life Execution</h3>
+                        <p
+                            className="part-desc"
+                            style={{
+                                margin: 0,
+                                fontSize: '20px',
+                                color: '#444',
+                                lineHeight: '1.8',
+                                fontWeight: '300'
+                            }}>
                             This is a picture of my room in real life. You can see everything I designed present here, seamlessly integrated into my daily space. The 3D experience you are exploring is a digital twin of this exact setup.
                         </p>
                     </div>
@@ -164,13 +220,16 @@ const LaptopInterface = ({ onClose, scenes }) => {
                     const isEven = index % 2 === 0;
 
                     return (
-                        <div key={index} style={{
-                            display: 'flex',
-                            flexDirection: isEven ? 'row' : 'row-reverse',
-                            alignItems: 'center',
-                            gap: '60px',
-                            width: '100%'
-                        }}>
+                        <div
+                            key={index}
+                            className={`part-item ${isEven ? 'part-item-even' : 'part-item-odd'}`}
+                            style={{
+                                display: 'flex',
+                                flexDirection: isEven ? 'row' : 'row-reverse',
+                                alignItems: 'center',
+                                gap: '60px',
+                                width: '100%'
+                            }}>
                             {/* Image Placeholder */}
                             <div style={{
                                 flex: 1,
@@ -214,27 +273,72 @@ const LaptopInterface = ({ onClose, scenes }) => {
                             </div>
 
                             {/* Text Content */}
-                            <div style={{ flex: 1, textAlign: isEven ? 'left' : 'right' }}>
-                                <h3 style={{
-                                    margin: '0 0 20px 0',
-                                    fontSize: '32px',
-                                    fontWeight: '700',
-                                    color: '#8B5CF6',
-                                    letterSpacing: '-0.5px'
-                                }}>{title}</h3>
-                                <p style={{
-                                    margin: 0,
-                                    fontSize: '18px',
-                                    color: '#444',
-                                    lineHeight: '1.8',
-                                    fontWeight: '300'
-                                }}>{desc}</p>
+                            <div
+                                className="part-text-container"
+                                style={{ flex: 1, textAlign: isEven ? 'left' : 'right' }}
+                            >
+                                <h3
+                                    className="part-title"
+                                    style={{
+                                        margin: '0 0 20px 0',
+                                        fontSize: '32px',
+                                        fontWeight: '700',
+                                        color: '#8B5CF6',
+                                        letterSpacing: '-0.5px'
+                                    }}>{title}</h3>
+                                <p
+                                    className="part-desc"
+                                    style={{
+                                        margin: 0,
+                                        fontSize: '18px',
+                                        color: '#444',
+                                        lineHeight: '1.8',
+                                        fontWeight: '300'
+                                    }}>{desc}</p>
                             </div>
                         </div>
                     );
                 })}
             </div>
 
+            <style>{`
+              @media (max-width: 768px) {
+                .laptop-interface-modal {
+                  width: 100vw !important;
+                  height: 100vh !important;
+                  max-height: 100vh !important;
+                  max-width: 100vw !important;
+                  border-radius: 0 !important;
+                  top: 0 !important;
+                  left: 0 !important;
+                  transform: none !important;
+                }
+                /* Stacking the header correctly on mobile */
+                .laptop-interface-notch {
+                  display: none !important;
+                }
+                .laptop-interface-content {
+                  padding: 20px !important;
+                  gap: 40px !important;
+                }
+                .part-item-real, .part-item {
+                  flex-direction: column !important;
+                  gap: 20px !important;
+                }
+                .part-title-hero {
+                  fontSize: 28px !important;
+                }
+                .part-title {
+                  fontSize: 24px !important;
+                }
+                .part-desc {
+                  fontSize: 16px !important;
+                }
+                .part-text-container {
+                  text-align: left !important;
+                }
+              }
+            `}</style>
         </div>
     );
 };

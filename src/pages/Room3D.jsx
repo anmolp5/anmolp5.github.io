@@ -228,10 +228,11 @@ const Room3D = () => {
         </div>
       )}
 
-      {/* BACK BUTTON (Always show) */}
-      {!isLoading && (
+      {/* BACK BUTTON (Show unless we are in the Parts Catalog) */}
+      {!isLoading && activeIndex !== 12 && (
         <Link
           to="/projects"
+          state={{ scrollTo: 'room-improvement' }}
           className="back-btn"
           style={{
             position: 'fixed',

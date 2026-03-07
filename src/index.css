@@ -108,3 +108,31 @@ button:focus-visible {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Mobile Optimizations for Project Detail Pages */
+@media (max-width: 768px) {
+  .process-cards-grid {
+    flex-direction: column !important;
+  }
+
+  .process-arrow {
+    display: none !important;
+  }
+
+  .process-card {
+    padding: 24px 20px !important;
+  }
+
+  /* Target the Challenge/Solution/Results heading pill */
+  .process-card>div:first-child {
+    font-size: 0.75rem !important;
+    padding: 4px 10px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Target the text content inside the card */
+  .process-card>p {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+}
