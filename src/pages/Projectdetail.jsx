@@ -24,8 +24,10 @@ const projectData = {
     ],
     contentBlocks: [
       {
-        type: 'text',
-        content: `I designed and manufactured a comprehensive suite of custom inventory management tools, specifically tailored for the unique challenges faced by the Kanyalndya jewelry business. The primary objective was to drastically streamline day-to-day operations, moving away from inefficient manual processes. Previously, sorting and sizing involved a chaotic, unstructured pile of products, which consistently caused significant delays in order fulfillment and inventory tracking.
+        type: 'image-right',
+        src: '/images/projects/small-business-tools/2.png',
+        caption: 'Bangle sizing tool',
+        text: `I designed and manufactured a comprehensive suite of custom inventory management tools, specifically tailored for the unique challenges faced by the Kanyalndya jewelry business. The primary objective was to drastically streamline day-to-day operations, moving away from inefficient manual processes. Previously, sorting and sizing involved a chaotic, unstructured pile of products, which consistently caused significant delays in order fulfillment and inventory tracking.
         
         By fabricating specialized 3D-printed tools custom-fitted to their exact product dimensions—including precision sizing gauges and slotted organizational display units—we successfully established a rigid system. This physical infrastructure minimized human error and cognitive load, ultimately speeding up the sizing and sorting workflow by over 40%, directly impacting the business's bottom line.`
       },
@@ -37,24 +39,24 @@ const projectData = {
       },
       {
         type: 'image-left',
-        src: '/images/projects/small-business-tools/2.png',
-        caption: '[Insert placeholder caption here]',
+        src: '/images/projects/small-business-tools/1.png',
+        caption: 'CAD design of the photobox stand',
         text: `To construct a holistic business transformation, the physical tools were augmented by digital automation. I implemented AI-driven workflows by personally training the business owner on leveraging several Large Language Models (LLMs) to automate their repetitive administrative tasks. 
         
         This digital overhaul included systems for generating standardized barcodes on the fly and creating automated, professional phrasing for client invoicing and communications. By seamlessly combining physical manufacturing solutions with cutting-edge digital AI optimizations, this small business was empowered to substantially scale their throughput and professional appearance without the need to increase their headcount.`
       },
       {
-        type: 'image-right',
-        src: '/images/projects/small-business-tools/3.png',
-        caption: '[Insert placeholder caption here]',
-        text: `The magnetic photobox system proved to be an invaluable asset for consistent branding. Prior to its implementation, lighting setups were ad-hoc, leading to varying shadow lengths and color temperatures that degraded the professional appearance of the online storefront.`
+        type: 'text',
+        content: `The magnetic photobox system proved to be an invaluable asset for consistent branding. Prior to its implementation, lighting setups were ad-hoc, leading to varying shadow lengths and color temperatures that degraded the professional appearance of the online storefront.`
       }
     ],
     images: [
-      { src: '/images/projects/small-business-tools/1.png', caption: 'Custom 3D printed business measurement and sizing tools' },
-      { src: '/images/projects/small-business-tools/5.jpg', caption: 'Organized tool display unit' },
-      { src: '/images/projects/small-business-tools/6.jpg', caption: 'Modular magnetic photobox in action' },
-      { src: '/images/projects/small-business-tools/7.jpg', caption: 'Consistent lighting setup for catalog photography' }
+      { src: '/images/projects/small-business-tools/1.png', caption: 'CAD design of the photobox stand' },
+      { src: '/images/projects/small-business-tools/2.png', caption: 'Bangle sizing tool' },
+      { src: '/images/projects/small-business-tools/3.png', caption: 'Earing sizing tool' },
+      { src: '/images/projects/small-business-tools/5.jpg', caption: 'Modular photobox without backgrounds' },
+      { src: '/images/projects/small-business-tools/6.jpg', caption: 'One example of background without base' },
+      { src: '/images/projects/small-business-tools/7.jpg', caption: 'Photobox with background and base' }
     ]
   },
   'orthotic-repair': {
@@ -110,11 +112,11 @@ const projectData = {
       }
     ],
     images: [
-      { src: '/images/projects/orthotic-repair/1.jpg', caption: 'Custom CAD-modeled spacer attachment' },
-      { src: '/images/projects/orthotic-repair/2.jpg', caption: 'TPU insole riser for exact leg leveling' },
+      { src: '/images/projects/orthotic-repair/1.jpg', caption: 'TPU insole riser for exact leg leveling' },
+      { src: '/images/projects/orthotic-repair/2.jpg', caption: 'Custom CAD-modeled spacer attachment' },
       { src: '/images/projects/orthotic-repair/3.jpg', caption: 'Testing the 3D printed components inside the actual brace' },
-      { src: '/images/projects/orthotic-repair/4.jpg', caption: 'Detailed side profile of the final assembly' },
-      { src: '/images/projects/orthotic-repair/5.jpg', caption: 'Completed KAFO setup providing comfortable, all-day relief' }
+      { src: '/images/projects/orthotic-repair/4.jpg', caption: "Thigh band for a child's cerebral palsy brace during my internship in India" },
+      { src: '/images/projects/orthotic-repair/5.jpg', caption: 'A set of prosthetic legs I assembled during my internship in Montebello, CA' }
     ]
   },
   'golf-ball-launcher': {
@@ -148,43 +150,54 @@ const projectData = {
     ],
     images: [
       { src: '/images/projects/golf-ball-launcher/1.jpg', caption: 'REV Control hub used to control' },
-      { src: '/images/projects/golf-ball-launcher/2.jpg', caption: 'Laser sight calibration module' },
-      { src: '/images/projects/golf-ball-launcher/3.jpg', caption: 'Detailed view of the dual-flywheel launching mechanism' },
-      { src: '/images/projects/golf-ball-launcher/4.mov', caption: 'Targeting structure with embedded IMU control logic' },
+      { src: '/images/projects/golf-ball-launcher/2.jpg', caption: 'Foam feet to improve grip and dampen vibrations' },
+      { src: '/images/projects/golf-ball-launcher/3.jpg', caption: 'Fully assembled launcher' },
+      { src: '/images/projects/golf-ball-launcher/4.mov', caption: 'An example of our launcher hitting the target' },
       { src: '/images/projects/golf-ball-launcher/5.png', caption: 'CAD of launcher' },
-      { src: '/images/projects/golf-ball-launcher/6.png', caption: 'CAD close-up on the motor bracket and feeding tube' }
+      { src: '/images/projects/golf-ball-launcher/6.png', caption: 'Lazer sight attachment module' }
     ]
   },
-  'sitting-table': {
-    title: 'Sitting Table',
-    subtitle: 'Ergonomic furniture design project',
-    date: 'Fall 2023',
-    tags: ['Furniture Design', 'Ergonomics'],
-    hero: '/images/projects/sitting-table/hero.jpg',
+  'mechathon': {
+    title: 'Mechathon at HackIllinois',
+    subtitle: '1st Place Medium Track John Deere Mechathon',
+    date: 'February 2026',
+    tags: ['Arduino', 'CuraSlicer', 'LightBurn', 'Onshape'],
+    hero: '/images/projects/mechathon/4.jpg',
     processCards: [
-      { heading: 'Challenge', content: 'Create a highly durable, low-profile table suitable for floor-sitting that matches modern minimalist aesthetics.' },
-      { heading: 'Solution', content: 'Built from solid wood with precision joinery, this table features a seamless finish and a sturdy construction designed to last for generations.' },
-      { heading: 'Results', content: 'A strong, dimensionally stable sitting table that supports ergonomic posture.' }
+      { heading: 'Challenge', content: 'Design, fabricate, and program a robot to autonomously traverse and perfectly level a rugged pit of sand within a strict 48-hour deadline for John Deere at HackIllinois.' },
+      { heading: 'Solution', content: 'We built a custom servo-actuated four-bar linkage system with laser-cut rakes, paired with a drag-spinning front sweeper to achieve optimal multi-pass leveling.' },
+      { heading: 'Results', content: 'Our robot achieved the 3rd most level sand overall across all participants, securing us 1st place in the Medium Track.' }
     ],
     contentBlocks: [
       {
         type: 'text',
-        content: `This project represents a deep exploration into custom-designed functional furniture, specifically focused on the intersection of human ergonomics, long-term posture correction, and serene, minimalist aesthetics. Working primarily from a floor-seated position requires a highly specific interplay between surface height and knee clearance to naturally maintain a neutral spine and prevent long-term musculoskeletal fatigue. 
+        content: `During the HackIllinois Mechathon, our team was presented with a unique hardware challenge by John Deere: engineer a robot capable of traversing and perfectly leveling a rugged, uneven pit of sand. Given the intense 48-hour time constraint, we had to heavily prioritize rapid ideation and minimum viable product (MVP) design over extensive prototyping. 
         
-        To achieve both structural integrity and a clean, uninterrupted visual flow, this project deliberately eschewed modern hardware. Instead, it involved rigorous research and practical application of complex traditional Japanese joinery techniques, aiming to completely eliminate the need for metal fasteners, screws, or nails.`
+        Drawing inspiration from industrial concrete leveling machinery and Zen sand gardens, we immediately broke down the mechanical requirements. By dividing sub-systems based on our respective strengths, we jumped into CAD (Onshape) and utilized laser cutters and 3D printers to fabricate custom mechanisms, ensuring we could swiftly iterate on our initial paper models.`
       },
       {
         type: 'image-left',
-        src: '/images/projects/sitting-table/1.jpg',
-        caption: '[Insert placeholder caption here]',
-        text: `The structural integrity of the table relies entirely on the precision of the interlocking geometric joints, utilizing only tight mechanical friction and high-strength wood glue to create a monolithic, incredibly sturdy form. The material selection process was subsequently exhaustive, requiring numerous tests of different wood species. We ultimately landed on a highly specific hardwood species globally renowned for its exceptional dimensional stability, sheer density, and profound resistance to seasonal warping over decades of use. 
+        src: '/images/projects/mechathon/2.jpg',
+        caption: 'Speaking to the judges during our demo',
+        text: `Our final mechanical architecture featured two primary active systems. On the front, we implemented a custom spinning sweeper designed to clear large mounds of sand directly in the path of the treads. On the rear, we engineered a parallelogram four-bar linkage actuated by a precise servo motor. 
         
-        The final finishing process involved meticulous hand-sanding followed by the application of a bespoke, hand-rubbed natural oil blend. This painstaking finish deeply penetrates and protects the surface from daily wear and spills while beautifully maintaining the tactile warmth, matte texture, and intricate visual character of the natural wood grain. The final result is a highly durable, functionally optimal piece of architectural furniture that naturally and elegantly integrates into a modern, conscious living space.`
+        This linkage held two laser-cut rakes and allowed us to dynamically control the height of the toolpath. This critical feature enabled the robot to perform alternating high-pass and low-pass sweeps across the terrain, gradually and evenly flattening the sand with each pass rather than getting stuck in deep dunes.`
+      },
+      {
+        type: 'image-right',
+        src: '/images/projects/mechathon/3.jpg',
+        caption: 'Testing the four-bar linkage capabilities in the sand pit',
+        text: `The rapid development cycle was fraught with physical challenges. Initially, we discovered that our custom front spinner mechanism was visually interfering with the ultrasonic sensor, leading to erratic pathfinding logic. We quickly pivoted by removing a problematic front roller and upsizing the sweeper to compensate. 
+        
+        Additionally, the fine sand presented environmental hazards; it began trapping the treads, prompting us to continuously design and implement custom side-guards. Finally, when the Arduino struggled to adequately distribute power to the sweeping motors, we had to breadboard custom circuitry on the fly to bypass the limitations.\n\nThis incredibly grueling, sleepless weekend was a masterclass in working under intense pressure. It exposed inefficiencies in our standard workflows but ultimately taught us how to optimally delegate complex engineering tasks in a high-stakes environment. Through rigorous mechanical design, we successfully achieved the third most level sand overall among all participants, securing us 1st Place in the Medium Track.`
       }
     ],
     images: [
-      { src: '/images/projects/sitting-table/1.jpg', caption: 'Minimalist sitting table displaying seamless Japanese joinery' },
-      { src: '/images/projects/sitting-table/2.jpg', caption: 'Hand-rubbed natural oil finish highlighting the wood grain' }
+      { src: '/images/projects/mechathon/1.jpg', caption: 'Our completed John Deere Sand Leveling Robot' },
+      { src: '/images/projects/mechathon/2.jpg', caption: 'Speaking to the judges during our demo' },
+      { src: '/images/projects/mechathon/3.jpg', caption: 'Testing the leveling capabilities in the sand pit' },
+      { src: '/images/projects/mechathon/4.jpg', caption: 'Presenting our final product to the judges' },
+      { src: '/images/projects/mechathon/5.jpg', caption: '1st Place Team in the Medium Track!' }
     ]
   },
   'ftc-robotics': {
@@ -230,11 +243,11 @@ Through my extensive tenure in competitive robotics, I rapidly developed a remar
     ],
     images: [
       { src: '/images/projects/ftc-robotics/7.png', caption: 'Full CAD assembly of the custom 2025 competition robot' },
-      { src: '/images/projects/ftc-robotics/2.jpg', caption: 'Custom engineered drivetrain and intake mechanisms' },
-      { src: '/images/projects/ftc-robotics/3.jpg', caption: 'Field testing physical hardware under competitive conditions' },
-      { src: '/images/projects/ftc-robotics/4.jpg', caption: 'Rapid prototyping components prior to final CNC manufacturing' },
-      { src: '/images/projects/ftc-robotics/5.jpg', caption: 'Strategic field pathing and driver coaching' },
-      { src: '/images/projects/ftc-robotics/6.jpg', caption: 'Team celebration and regional finalist recognition' }
+      { src: '/images/projects/ftc-robotics/2.jpg', caption: '2025 Competition robot built in real life' },
+      { src: '/images/projects/ftc-robotics/3.jpg', caption: 'Early prototype of a 2022 robot' },
+      { src: '/images/projects/ftc-robotics/4.jpg', caption: 'Drivetrain of our 2021 robot' },
+      { src: '/images/projects/ftc-robotics/5.jpg', caption: 'Acting as a driver coach during the NorCal Regional Championships' },
+      { src: '/images/projects/ftc-robotics/6.jpg', caption: 'Our 2025 robot in action' }
     ]
   }
 };

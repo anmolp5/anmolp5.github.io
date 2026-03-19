@@ -11,6 +11,14 @@ const projects = [
     image: '/images/projects/room-improvement/hero.png'
   },
   {
+    id: 'mechathon',
+    title: 'Mechathon at HackIllinois',
+    subtitle: '1st Place John Deere Mechathon',
+    color: '#2b8f2b',
+    link: '/projects/mechathon',
+    image: '/images/projects/mechathon/1.jpg'
+  },
+  {
     id: 'ftc-robotics',
     title: 'FTC Robotics',
     subtitle: 'Biobots #14318',
@@ -21,6 +29,7 @@ const projects = [
   {
     id: 'orthotic-repair',
     title: 'Orthotic Repair',
+    subtitle: 'Knee-Ankle-Foot Orthotic optimization for improved comfort',
     color: '#4682b4',
     link: '/projects/orthotic-repair',
     image: '/images/projects/orthotic-repair/1.jpg'
@@ -41,13 +50,6 @@ const projects = [
     color: '#cd5c5c',
     link: '/projects/small-business-tools',
     image: '/images/projects/small-business-tools/1.png'
-  },
-  {
-    id: 'sitting-table',
-    title: 'Sitting Table',
-    color: '#bc8f8f',
-    link: '/projects/sitting-table',
-    image: '/images/projects/sitting-table/hero.jpg'
   }
 ];
 
