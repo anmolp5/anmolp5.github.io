@@ -13,16 +13,15 @@ const LaptopInterface = ({ onClose, scenes }) => {
                 position: 'absolute',
                 // Center the interface over the laptop screen area
                 top: '50%',
-                left: '52.7%', // Slight left shift
+                left: 'calc(50% + 5vh)', // Absolute offset in vh keeps it 100% physically locked to the 3D model regardless of window aspect ratio
                 transform: 'translate(-50%, -50%)',
-                // Adjusted size to fill laptop screen
-                width: '70vw',
-                maxWidth: '1400px',
+                // Adjusted size to perfectly trace the 3D laptop screen
+                // Use aspect ratio based on 83vh so it scales perfectly with the 3D model's fixed vertical FOV
+                width: 'calc(83vh * 1.465)', // Widened right edge
                 height: '83vh', // Explicit height to be "taller"
-                maxHeight: '95vh',
                 background: 'rgba(255, 255, 255, 0.95)',
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(0, 0, 0, 0.1)',
+                border: 'none',
                 borderRadius: '25px',
                 boxShadow: '0 20px 50px rgba(0,0,0,0.2)',
                 zIndex: 1000,
@@ -46,10 +45,8 @@ const LaptopInterface = ({ onClose, scenes }) => {
                     background: '#0a0a0a', // Matches typical bezel
                     borderBottomLeftRadius: '16px',
                     borderBottomRightRadius: '16px',
-                    // Border only on bottom and sides to trace the shape
-                    borderBottom: '1px solid rgba(0, 0, 0, 0.1)', // Matches container border
-                    borderLeft: '1px solid rgba(0, 0, 0, 0.1)',
-                    borderRight: '1px solid rgba(0, 0, 0, 0.1)',
+                    // Border removed as requested
+                    border: 'none',
                     zIndex: 2000, // On top of everything
                     // No shadow
                 }}></div>
@@ -302,6 +299,17 @@ const LaptopInterface = ({ onClose, scenes }) => {
             </div>
 
             <style>{`
+              /* When the viewport aspect ratio is narrower than the 3D laptop, switch to full window width to prevent cutoff */
+              @media (max-aspect-ratio: 122/100) {
+                .laptop-interface-modal {
+                  width: 100vw !important;
+                  max-width: 100vw !important;
+                  border-radius: 0 !important;
+                  left: 50% !important;
+                  transform: translate(-50%, -50%) !important;
+                }
+              }
+
               @media (max-width: 768px) {
                 .laptop-interface-modal {
                   width: 100vw !important;
