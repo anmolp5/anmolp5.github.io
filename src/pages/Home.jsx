@@ -5,19 +5,7 @@ const Home = () => {
   return (
     <div style={{ paddingBottom: '80px' }}>
       {/* Hero Section */}
-      <section style={{
-        height: '50vh',
-        background: 'linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), url("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        padding: '0 20px',
-        color: '#0a0a0a',
-        marginBottom: '80px'
-      }}>
+      <section className="hero-section">
         <div style={{ maxWidth: '800px' }}>
           <h1 style={{
             fontSize: 'clamp(3rem, 5vw, 4.5rem)',
@@ -36,7 +24,7 @@ const Home = () => {
             marginBottom: '10px',
             letterSpacing: '0.5px'
           }}>
-            Systems Engineering and Design
+            Bioengineering
           </p>
           <p style={{
             fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
