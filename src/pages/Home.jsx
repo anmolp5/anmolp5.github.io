@@ -143,10 +143,10 @@ const Home = () => {
         </h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-          {/* Brainstorm EEG */}
+          {/* Attune Neurofeedback EEG */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '10px', flexWrap: 'wrap', gap: '10px' }}>
-              <h3 style={{ fontSize: '1.4rem', color: '#0a0a0a', margin: 0 }}>Brainstorm EEG Hardware Team</h3>
+              <h3 style={{ fontSize: '1.4rem', color: '#0a0a0a', margin: 0 }}>Attune Neurofeedback EEG Hardware Team</h3>
               <span style={{ color: '#666', fontWeight: '500' }}>Sep 2025 – Present</span>
             </div>
             <p style={{ fontSize: '1.1rem', color: '#8B5CF6', fontWeight: '600', marginBottom: '15px' }}>Hardware Engineer</p>
