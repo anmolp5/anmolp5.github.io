@@ -9,6 +9,7 @@ import Resume from './pages/Resume';
 import Contact from './pages/Contact';
 import { AdminProvider } from './context/AdminContext';
 import AdminBar from './components/AdminBar';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function Layout({ children }) {
   return (
@@ -23,8 +24,9 @@ function Layout({ children }) {
 
 function App() {
   return (
-    <AdminProvider>
-      <Router>
+    <ErrorBoundary>
+      <AdminProvider>
+        <Router>
         <div style={{ minHeight: '100vh' }}>
           <Routes>
             {/* Room3D gets full screen without navigation */}
@@ -41,6 +43,7 @@ function App() {
         </div>
       </Router>
     </AdminProvider>
+  </ErrorBoundary>
   );
 }
 

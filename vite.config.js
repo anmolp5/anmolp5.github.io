@@ -12,7 +12,62 @@ function portfolioAdminPlugin() {
   return {
     name: 'portfolio-admin-plugin',
     configureServer(server) {
+      let isSavingFromApi = false;
+
+      // Watch src/data for external disk changes (e.g. from editor/scripts) and broadcast to client
+      const dataDir = path.resolve(__dirname, 'src/data');
+      if (fs.existsSync(dataDir)) {
+        try {
+          fs.watch(dataDir, (eventType, filename) => {
+            if (isSavingFromApi || !filename) return;
+            if (filename === 'projects.json' || filename === 'home.json') {
+              const type = filename === 'projects.json' ? 'projects' : 'home';
+              const filePath = path.join(dataDir, filename);
+              try {
+                const content = fs.readFileSync(filePath, 'utf-8');
+                const parsed = JSON.parse(content);
+                server.ws.send({
+                  type: 'custom',
+                  event: 'portfolio-data-updated',
+                  data: { type, data: parsed }
+                });
+              } catch (e) {
+                // Incomplete write or invalid JSON, ignore
+              }
+            }
+          });
+        } catch (e) {
+          console.warn('Could not watch src/data:', e);
+        }
+      }
+
       server.middlewares.use((req, res, next) => {
+        // Read fresh JSON directly from disk (bypasses any module cache)
+        if (req.url && req.url.startsWith('/api/get-data') && req.method === 'GET') {
+          try {
+            const url = new URL(req.url, 'http://localhost');
+            const type = url.searchParams.get('type') || 'projects';
+            const filename = type === 'home' ? 'home.json' : 'projects.json';
+            const filePath = path.resolve(__dirname, 'src/data', filename);
+            if (fs.existsSync(filePath)) {
+              const content = fs.readFileSync(filePath, 'utf-8');
+              res.writeHead(200, {
+                'Content-Type': 'application/json',
+                'Cache-Control': 'no-store, no-cache, must-revalidate'
+              });
+              res.end(content);
+              return;
+            }
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'File not found' }));
+            return;
+          } catch (err) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: err.message }));
+            return;
+          }
+        }
+
         // Save JSON data to src/data/*.json
         if (req.url === '/api/save-data' && req.method === 'POST') {
           let body = '';
@@ -20,22 +75,53 @@ function portfolioAdminPlugin() {
           req.on('end', () => {
             try {
               const { type, data } = JSON.parse(body);
+              isSavingFromApi = true;
               if (type === 'projects') {
                 const filePath = path.resolve(__dirname, 'src/data/projects.json');
+                // Safeguard: Ensure newly added paragraphs on disk are not accidentally wiped by stale browser payloads
+                if (fs.existsSync(filePath)) {
+                  try {
+                    const diskData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+                    const diskLighting = diskData?.projectsDetail?.['smart-lighting'];
+                    const incomingLighting = data?.projectsDetail?.['smart-lighting'];
+                    if (diskLighting && incomingLighting) {
+                      const hasEnclosureOnDisk = diskLighting.story?.paragraphs?.some(p => p.includes('Custom Enclosure'));
+                      const hasEnclosureIncoming = incomingLighting.story?.paragraphs?.some(p => p.includes('Custom Enclosure'));
+                      if (hasEnclosureOnDisk && !hasEnclosureIncoming) {
+                        const encHeading = diskLighting.story.paragraphs.find(p => p.includes('Custom Enclosure'));
+                        const encIdx = diskLighting.story.paragraphs.indexOf(encHeading);
+                        const encBody = diskLighting.story.paragraphs[encIdx + 1];
+                        if (encHeading && encBody) {
+                          incomingLighting.story.paragraphs.push(encHeading, encBody);
+                        }
+                        const diskBlock = (diskLighting.contentBlocks || []).find(b => b.content?.includes('Custom Enclosure'));
+                        if (diskBlock && !incomingLighting.contentBlocks?.some(b => b.content?.includes('Custom Enclosure'))) {
+                          incomingLighting.contentBlocks.push(diskBlock);
+                        }
+                      }
+                    }
+                  } catch (e) {
+                    console.warn('Safeguard merge notice:', e);
+                  }
+                }
                 fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+                setTimeout(() => { isSavingFromApi = false; }, 600);
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ success: true, message: 'Projects saved successfully' }));
                 return;
               } else if (type === 'home') {
                 const filePath = path.resolve(__dirname, 'src/data/home.json');
                 fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+                setTimeout(() => { isSavingFromApi = false; }, 600);
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ success: true, message: 'Home data saved successfully' }));
                 return;
               }
+              isSavingFromApi = false;
               res.writeHead(400, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify({ error: 'Unknown data type' }));
             } catch (err) {
+              isSavingFromApi = false;
               res.writeHead(500, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify({ error: err.message }));
             }

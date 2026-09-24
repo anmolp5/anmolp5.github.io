@@ -12,6 +12,7 @@ const InteractiveCanvasImage = ({
   topOffset = 0,
   isAnchored = false,
   editMode = false,
+  onImageClick,
   onUpdateWidth,
   onToggleFloat,
   onToggleAnchor,
@@ -70,7 +71,7 @@ const InteractiveCanvasImage = ({
     e.stopPropagation();
     setIsResizingCorner(true);
 
-    const parentWidth = containerRef.current?.parentElement?.offsetWidth || window.innerWidth;
+    const parentWidth = Math.max(100, containerRef.current?.parentElement?.offsetWidth || window.innerWidth || 800);
     resizeStartRef.current = {
       startX: e.clientX,
       startWidth: numericWidth,
@@ -82,14 +83,28 @@ const InteractiveCanvasImage = ({
     const handleMouseMove = (moveEvent) => {
       const deltaX = moveEvent.clientX - resizeStartRef.current.startX;
       const factor = isLeft ? 1 : -1;
-      const deltaPercent = (deltaX * factor / resizeStartRef.current.parentWidth) * 100;
+      const parentW = Math.max(100, resizeStartRef.current.parentWidth);
+      const deltaPercent = (deltaX * factor / parentW) * 100;
       let newPercent = Math.round(resizeStartRef.current.startWidth + deltaPercent);
+      if (isNaN(newPercent)) newPercent = resizeStartRef.current.startWidth || 35;
       if (newPercent < 15) newPercent = 15;
-      if (newPercent > 65) newPercent = 65;
+      if (newPercent > 100) newPercent = 100;
       latestPercent = newPercent;
 
       if (containerRef.current) {
-        containerRef.current.style.width = `${newPercent}%`;
+        if (newPercent >= 92) {
+          containerRef.current.style.width = '100%';
+          containerRef.current.style.float = 'none';
+          containerRef.current.style.clear = 'both';
+          containerRef.current.style.marginRight = '0px';
+          containerRef.current.style.marginLeft = '0px';
+        } else {
+          containerRef.current.style.width = `${newPercent}%`;
+          containerRef.current.style.float = isLeft ? 'left' : 'right';
+          containerRef.current.style.clear = 'none';
+          containerRef.current.style.marginRight = isLeft ? '16px' : '0px';
+          containerRef.current.style.marginLeft = isLeft ? '0px' : '16px';
+        }
       }
     };
 
@@ -97,7 +112,8 @@ const InteractiveCanvasImage = ({
       setIsResizingCorner(false);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
-      onUpdateWidth(`${latestPercent}%`);
+      const finalWidth = latestPercent >= 92 ? '100%' : `${latestPercent}%`;
+      onUpdateWidth(finalWidth);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -141,14 +157,16 @@ const InteractiveCanvasImage = ({
         if (editMode) setSelectedElementId(id);
       }}
       style={{
-        float: isLeft ? 'left' : 'right',
-        width: width,
-        minWidth: '180px',
-        maxWidth: '550px',
-        marginRight: isLeft ? '40px' : '0',
-        marginLeft: isLeft ? '0' : '40px',
-        marginTop: isAnchored ? '6px' : `${Math.max(6, topOffset || 6)}px`,
-        marginBottom: '24px',
+        float: numericWidth >= 92 ? 'none' : (isLeft ? 'left' : 'right'),
+        clear: numericWidth >= 92 ? 'both' : 'none',
+        display: numericWidth >= 92 ? 'block' : 'inline-block',
+        width: numericWidth >= 92 ? '100%' : width,
+        minWidth: '160px',
+        maxWidth: '100%',
+        marginRight: numericWidth >= 92 ? '0' : (isLeft ? '16px' : '0'),
+        marginLeft: numericWidth >= 92 ? '0' : (isLeft ? '0' : '16px'),
+        marginTop: isAnchored ? '4px' : `${Math.max(4, topOffset || 4)}px`,
+        marginBottom: '14px',
         position: 'relative',
         zIndex: editMode ? (isSelected || isHovered ? 100 : 40) : 1,
         userSelect: isResizingCorner ? 'none' : 'auto',
@@ -240,6 +258,27 @@ const InteractiveCanvasImage = ({
             {isLeft ? 'Float: Left ⟷' : 'Float: Right ⟷'}
           </button>
 
+          {/* Quick Full Width (100%) Toggle */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onUpdateWidth(numericWidth >= 95 ? '45%' : '100%');
+            }}
+            title={numericWidth >= 95 ? "Click for normal floating width (45%)" : "Click for 100% full width"}
+            style={{
+              background: numericWidth >= 95 ? 'rgba(139, 92, 246, 0.45)' : 'rgba(255, 255, 255, 0.15)',
+              color: numericWidth >= 95 ? '#c4b5fd' : '#ffffff',
+              border: numericWidth >= 95 ? '1px solid #8b5cf6' : 'none',
+              borderRadius: '12px',
+              padding: '3px 8px',
+              cursor: 'pointer',
+              fontSize: '0.72rem',
+              fontWeight: '600'
+            }}
+          >
+            {numericWidth >= 95 ? '↔ Full Width: ON' : '↔ Full Width'}
+          </button>
+
           {/* Width Display */}
           <span style={{ color: '#A78BFA', fontWeight: 'bold' }}>{width}</span>
 
@@ -317,6 +356,12 @@ const InteractiveCanvasImage = ({
 
       {/* Image Frame */}
       <div
+        onClick={(e) => {
+          if (!editMode && onImageClick) {
+            e.stopPropagation();
+            onImageClick(src, caption);
+          }
+        }}
         style={{
           position: 'relative',
           borderRadius: '8px',
@@ -326,8 +371,8 @@ const InteractiveCanvasImage = ({
             : editMode && isHovered
             ? '0 0 0 2px #8B5CF6, 0 8px 20px rgba(139, 92, 246, 0.2)'
             : '0 4px 15px rgba(0,0,0,0.1)',
-          transition: 'box-shadow 0.2s ease',
-          cursor: editMode ? (isAnchored ? 'default' : 'grab') : 'default'
+          transition: 'box-shadow 0.2s ease, transform 0.2s ease',
+          cursor: editMode ? (isAnchored ? 'default' : 'grab') : 'zoom-in'
         }}
       >
         {isVideo ? (
@@ -363,6 +408,39 @@ const InteractiveCanvasImage = ({
               pointerEvents: 'none'
             }}
           />
+        )}
+
+        {/* Expand Hint on Hover in View Mode */}
+        {!editMode && isHovered && (
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '10px',
+              right: '10px',
+              background: 'rgba(15, 23, 42, 0.85)',
+              backdropFilter: 'blur(8px)',
+              color: '#ffffff',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              fontSize: '0.72rem',
+              fontWeight: '600',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              pointerEvents: 'none',
+              zIndex: 10
+            }}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 3 21 3 21 9"/>
+              <polyline points="9 21 3 21 3 15"/>
+              <line x1="21" y1="3" x2="14" y2="10"/>
+              <line x1="3" y1="21" x2="10" y2="14"/>
+            </svg>
+            Click to expand
+          </div>
         )}
 
         {/* Drag Hint on Hover in Edit Mode */}

@@ -71,6 +71,16 @@ button {
   letter-spacing: 1px;
 }
 
+button:has(svg:only-child) {
+  padding: 0;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+button svg {
+  pointer-events: none;
+}
+
 button:hover {
   border-color: var(--primary-accent);
   color: var(--primary-accent);

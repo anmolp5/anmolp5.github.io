@@ -11,11 +11,10 @@
     {
       "id": "smart-lighting",
       "title": "Unified Smart Lighting Hub",
-      "subtitle": "ESP8266 & Reverse-Engineered 433 MHz RF Controller",
+      "subtitle": "ESP32, BLE & Reverse-Engineered 433 MHz RF Controller",
       "color": "#2563eb",
       "link": "/projects/smart-lighting",
-      "image": "/images/projects/smart-lighting/hero.svg",
-      "hidden": true
+      "image": "/images/projects/smart-lighting/IMG_5151.jpeg"
     },
     {
       "id": "room-improvement",
@@ -198,65 +197,209 @@
     },
     "smart-lighting": {
       "title": "Unified Smart Lighting Controller Hub",
-      "subtitle": "ESP8266 IoT bridge unifying optical IR and reverse-engineered 433 MHz RF lighting",
+      "subtitle": "ESP32 IoT bridge unifying BLE, optical IR, and reverse-engineered 433 MHz RF lighting",
       "date": "September 2026",
       "tags": [
-        "ESP8266",
+        "ESP32",
+        "BLE",
         "C++",
         "Reverse Engineering",
         "Circuit Design",
         "Soldering",
         "IoT"
       ],
-      "hero": "/images/projects/smart-lighting/hero.svg",
+      "hero": "/images/projects/smart-lighting/IMG_5151.jpeg",
       "processCards": [
         {
           "heading": "Challenge",
-          "content": "Consolidate three disparate lighting fixtures into a single automated hub by eliminating incompatible wireless communication protocols, bulky multi-remote setups, and intermittent battery drainage."
+          "content": "Consolidate three disparate lighting fixtures into a single automated hub by bridging incompatible wireless communication protocols, bulky multi-remote setups, and intermittent battery drainage."
         },
         {
           "heading": "Solution",
-          "content": "Reverse-engineered a proprietary 433 MHz RF remote PCB, modifying its power rail to run off an ESP8266's 3.3V bus, and interfaced GPIO lines through an LM3046 NPN transistor array to simulate button presses."
+          "content": "Engineered an ESP32 hub integrating Bluetooth Low Energy (BLE), 940 nm optical IR transmission, and a reverse-engineered proprietary 433 MHz RF remote PCB modified to run directly from the ESP32's 3.3V bus via an LM3046 NPN transistor array."
         },
         {
           "heading": "Results",
-          "content": "Built a reliable, unified controller coordinating sequential multi-protocol IR transmission bursts and 150 ms low-side RF pulses with zero transistor latching or switch bounce."
+          "content": "Built a reliable, unified controller coordinating sequential multi-protocol BLE commands, optical IR transmission bursts, and low-side RF pulses with zero transistor latching or switch bounce."
         }
       ],
       "contentBlocks": [
         {
           "type": "text",
-          "content": "Problem Space & System Isolation\n\nManaging multiple commercial lighting setups typically results in cluttered desk setups, fragmented wireless remotes, and recurring battery swaps. The goal of this build was to eliminate three separate physical remotes by engineering a unified microcontroller hub capable of driving both optical line-of-sight infrared (IR) receivers and non-line-of-sight 433 MHz radio frequency (RF) receivers simultaneously from a single web/serial command architecture."
+          "content": "Problem Space & System Isolation\n\nManaging multiple commercial lighting setups typically results in cluttered desk setups, fragmented wireless remotes, and recurring battery swaps. The goal of this build was to eliminate separate physical remotes and apps by engineering a unified ESP32 microcontroller hub capable of driving Bluetooth Low Energy (BLE) smart controls, optical line-of-sight infrared (IR) receivers, and non-line-of-sight 433 MHz radio frequency (RF) receivers simultaneously from a single unified command architecture."
         },
         {
           "type": "image-left",
-          "src": "/images/projects/smart-lighting/1.svg",
-          "caption": "Low-side switching interface micro-soldered across scraped button matrix traces.",
-          "width": "35%",
-          "text": "Hardware Reverse Engineering & Switching Circuitry\n\nBecause the 433 MHz fixture relied on a proprietary, encrypted wireless rolling code, decoding the transmission through software was impractical. Instead, a physical commercial 5-button remote was disassembled and reverse-engineered. Using a digital multimeter, the button matrix traces were mapped to identify active pull-down junctions. The board was prepped by scraping back solder mask to expose bare copper traces, allowing lead wires to be soldered directly to the pad contacts. To actuate the buttons electronically, GPIO pins from an ESP8266 were routed through an LM3046 NPN transistor array wired as open-collector low-side switches."
+          "src": "/images/projects/smart-lighting/circuit-schematic.svg",
+          "caption": "Complete system schematic showing ESP32, 940 nm IR emitter driver, and LM3046 RF interface.",
+          "width": "38%",
+          "text": "Hardware Reverse Engineering & Switching Circuitry\n\nBecause the 433 MHz fixture relied on a proprietary, encrypted wireless rolling code, decoding the transmission through software was impractical. Instead, a physical commercial 5-button remote was disassembled and reverse-engineered. Using a digital multimeter, the button matrix traces were mapped to identify active pull-down junctions. The board was prepped by scraping back solder mask to expose bare copper traces, allowing lead wires to be soldered directly to the pad contacts. To actuate the buttons electronically, GPIO pins from an ESP32 were routed through an LM3046 NPN transistor array wired as open-collector low-side switches."
         },
         {
           "type": "image-right",
           "src": "/images/projects/smart-lighting/2.svg",
           "caption": "Base-drive resistor network preventing floating gates and latching states.",
           "width": "35%",
-          "text": "Electrical Debugging & Power Integration\n\nInitial bench testing revealed severe circuit instability: floating logic states on the microcontroller pins caused intermittent transistor latching, holding RF transmission buttons down and crashing the remote transmitter. To stabilize the switching thresholds, 1 kΩ series base-limiting resistors were added in line with 10 kΩ pull-down resistors to tie every transistor base firmly to ground during bootup. Additionally, the remote's native 2×AAA battery pack (3.0V nominal) was removed; traces were spliced to feed power directly from the ESP8266's regulated 3.3V rail over a unified ground plane, ensuring permanent operation without battery fatigue."
+          "text": "Electrical Debugging & Power Integration\n\nInitial bench testing revealed severe circuit instability: floating logic states on the microcontroller pins caused intermittent transistor latching, holding RF transmission buttons down and crashing the remote transmitter. To stabilize the switching thresholds, 1 kΩ series base-limiting resistors were added in line with 10 kΩ pull-down resistors to tie every transistor base firmly to ground during ESP32 bootup. Additionally, the remote's native 2×AAA battery pack (3.0V nominal) was removed; traces were spliced to feed power directly from the ESP32's regulated 3.3V rail over a unified ground plane, ensuring permanent operation without battery fatigue."
         },
         {
           "type": "text",
-          "content": "Multi-Protocol Firmware & Synchronized Control\n\nFirmware was written in C++ to coordinate optical and RF transmissions sequentially. The controller modulates a high-output 940 nm IR LED to match both NEC protocol encodings and custom pulse-distance-width timing frames used by auxiliary fixtures. Non-blocking serial command macros coordinate automated lighting states: a single command triggers an optical IR blast followed immediately by a 150 ms low-side pulse across the RF transistor array, achieving clean, flicker-free room transitions across different lighting ecosystems simultaneously."
+          "content": "No-Remote Desk Lamp Adaptation (ESP8266 Wi-Fi Remote)\n\nWhile the RF and IR fixtures already had wireless receiver circuitry to tap into, the main desk lamp presented a different challenge: it was a completely isolated fixture with no remote and no wireless capabilities. To bring it into the unified ecosystem, I opened the lamp housing and soldered lead wires directly across the tactile power button terminals. I then connected those lines to an ESP8266 microcontroller embedded within the base to act as a dedicated Wi-Fi remote bridge. When the central hub sends a command over the local network, the ESP8266 pulses the soldered power button terminals, allowing a lamp with no native remote to be seamlessly automated over Wi-Fi alongside the rest of the room's lighting."
+        },
+        {
+          "type": "text",
+          "content": "Multi-Protocol Firmware & Synchronized Control\n\nFirmware was written in C++ on the ESP32 to coordinate BLE, optical IR, and RF transmissions seamlessly. The controller manages Bluetooth Low Energy (BLE) connections to interface with modern BLE light fixtures, while modulating a high-output 940 nm IR LED to match NEC protocol encodings and custom pulse-distance-width timing frames for auxiliary fixtures. Non-blocking serial command macros coordinate automated lighting states across all three layers: a single command triggers BLE updates, an optical IR blast, Wi-Fi commands to the ESP8266 desk lamp, and a 150 ms low-side pulse across the RF transistor array, achieving clean, flicker-free room transitions across different lighting ecosystems simultaneously."
+        },
+        {
+          "type": "text",
+          "content": "Custom Enclosure, Cloudflare Global Access & Final Integration\n\nTo transition the system from an exposed workbench prototype into a durable, daily-driver fixture, a custom enclosure was designed in CAD and 3D printed to securely house the perfboard, ESP32, optical emitter, and spliced RF remote PCB with integrated strain relief for all interconnect wiring. A custom faceplate and tactile switch bracket were also fabricated for the desk lamp modification to give the retrofitted button a clean, factory-grade finish. On the networking side, while local Wi-Fi commands enabled sub-millisecond switching within the room, full external accessibility was unlocked by tunneling the local web dashboard through a secure Cloudflare Tunnel. This Zero-Trust architecture establishes an encrypted outbound tunnel to Cloudflare's edge, enabling instant, secure remote control from any smartphone or browser outside the home network without port forwarding or exposing internal IP addresses. With robust low-side switching, automated protocol chaining, custom enclosures, and encrypted global reach, the hub completely unifies previously incompatible lighting standards into a single, cohesive control plane."
         }
       ],
       "images": [
         {
-          "src": "/images/projects/smart-lighting/1.svg",
-          "caption": "Low-side switching interface micro-soldered across scraped button matrix traces."
+          "src": "/images/projects/smart-lighting/circuit-schematic.svg",
+          "caption": "Complete project circuit schematic: ESP32, 940 nm IR emitter circuit, and LM3046 RF interface."
         },
         {
-          "src": "/images/projects/smart-lighting/2.svg",
-          "caption": "Base-drive resistor network preventing floating gates and latching states."
+          "src": "/images/projects/smart-lighting/hero.svg",
+          "caption": "Unified Smart Lighting Hub architecture diagram."
+        },
+        {
+          "src": "/images/projects/smart-lighting/IMG_4948.jpeg",
+          "caption": "Original breadboard prototyping"
+        },
+        {
+          "src": "/images/projects/smart-lighting/IMG_4962.jpeg",
+          "caption": "The circuit soldered onto a perfboard"
+        },
+        {
+          "src": "/images/projects/smart-lighting/Screenshot_2026-09-24_at_3.01.44_PM.png",
+          "caption": "Web GUI"
+        },
+        {
+          "src": "/images/projects/smart-lighting/IMG_5100.mp4",
+          "caption": "The remote in action"
+        },
+        {
+          "src": "/images/projects/smart-lighting/IMG_5124.jpeg",
+          "caption": "Desk lamp adapting circuitry"
+        },
+        {
+          "src": "/images/projects/smart-lighting/IMG_5123.jpeg",
+          "caption": "Custom on button a face plate for the desk lamp"
+        },
+        {
+          "src": "/images/projects/smart-lighting/IMG_4913.jpeg",
+          "caption": "Early prototype with a breadboard and arduino"
+        },
+        {
+          "src": "/images/projects/smart-lighting/IMG_5055.jpeg",
+          "caption": "Inside the enclosure"
+        },
+        {
+          "src": "/images/projects/smart-lighting/IMG_5151.jpeg",
+          "caption": "The final product"
         }
-      ]
+      ],
+      "story": {
+        "paragraphs": [
+          "Problem Space & System Isolation",
+          "Managing multiple commercial lighting setups typically results in cluttered desk setups, fragmented wireless remotes, and recurring battery swaps. The goal of this build was to eliminate separate physical remotes and apps by engineering a unified ESP32 microcontroller hub capable of driving Bluetooth Low Energy (BLE) smart controls, optical line-of-sight infrared (IR) receivers, and non-line-of-sight 433 MHz radio frequency (RF) receivers simultaneously from a single unified command architecture.",
+          "Hardware Reverse Engineering & Switching Circuitry",
+          "Because the 433 MHz fixture relied on a proprietary, encrypted wireless rolling code, decoding the transmission through software was impractical. Instead, a physical commercial 5-button remote was disassembled and reverse-engineered. Using a digital multimeter, the button matrix traces were mapped to identify active pull-down junctions. The board was prepped by scraping back solder mask to expose bare copper traces, allowing lead wires to be soldered directly to the pad contacts. To actuate the buttons electronically, GPIO pins from an ESP32 were routed through an LM3046 NPN transistor array wired as open-collector low-side switches. The buttons on the remote did not use a common ground, instead relying on a series of AND gates to get more inputs out of fewer channels. Because of this, I had to solder two wires from each button pad to the breadboard.",
+          "Electrical Debugging & Power Integration",
+          "Initial bench testing revealed severe circuit instability: floating logic states on the microcontroller pins caused intermittent transistor latching, holding RF transmission buttons down and crashing the remote transmitter. To stabilize the switching thresholds, 1 kΩ series base-limiting resistors were added in line with 10 kΩ pull-down resistors to tie every transistor base firmly to ground during ESP32 bootup. Additionally, the remote's native 2×AAA battery pack (3.0V nominal) was removed; traces were spliced to feed power directly from the ESP32's regulated 3.3V rail over a unified ground plane, ensuring permanent operation without battery fatigue.",
+          "No-Remote Desk Lamp Adaptation (ESP8266 Wi-Fi Remote)",
+          "While the RF and IR fixtures already had wireless receiver circuitry to tap into, the main desk lamp presented a different challenge: it was a completely isolated fixture with no remote and no wireless capabilities. To bring it into the unified ecosystem, I opened the lamp housing and soldered lead wires directly across the tactile power button terminals. I then connected those lines to an ESP8266 microcontroller embedded within the base to act as a dedicated Wi-Fi remote bridge. When the central hub sends a command over the local network, the ESP8266 pulses the soldered power button terminals, allowing a lamp with no native remote to be seamlessly automated over Wi-Fi alongside the rest of the room's lighting.",
+          "Multi-Protocol Firmware & Synchronized Control",
+          "Firmware was written in C++ on the ESP32 to coordinate BLE, optical IR, and RF transmissions seamlessly. The controller manages Bluetooth Low Energy (BLE) connections to interface with modern BLE light fixtures, while modulating a high-output 940 nm IR LED to match NEC protocol encodings and custom pulse-distance-width timing frames for auxiliary fixtures. Non-blocking serial command macros coordinate automated lighting states across all three layers: a single command triggers BLE updates, an optical IR blast, Wi-Fi commands to the ESP8266 desk lamp, and a 150 ms low-side pulse across the RF transistor array, achieving clean, flicker-free room transitions across different lighting ecosystems simultaneously.",
+          "Custom Enclosure, Cloudflare Global Access & Final Integration",
+          "To transition the system from an exposed workbench prototype into a durable, daily-driver fixture, a custom enclosure was designed in CAD and 3D printed to securely house the perfboard, ESP32, optical emitter, and spliced RF remote PCB with integrated strain relief for all interconnect wiring. A custom faceplate and tactile switch bracket were also fabricated for the desk lamp modification to give the retrofitted button a clean, factory-grade finish. On the networking side, while local Wi-Fi commands enabled sub-millisecond switching within the room, full external accessibility was unlocked by tunneling the local web dashboard through a secure Cloudflare Tunnel. With robust low-side switching, automated protocol chaining, custom enclosures, and encrypted global reach, the hub completely unifies previously incompatible lighting standards into a single, cohesive control plane.",
+          ""
+        ],
+        "canvasImages": [
+          {
+            "id": "img-schematic",
+            "src": "/images/projects/smart-lighting/circuit-schematic.svg",
+            "caption": "Complete project circuit schematic: ESP32, 940 nm IR emitter circuit, and LM3046 RF interface. (Click to enlarge)",
+            "width": "53%",
+            "isLeft": true,
+            "paragraphIndex": 2,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790279882492-krhj",
+            "src": "/images/projects/smart-lighting/IMG_4962.jpeg",
+            "caption": "The final circuit, soldered onto a perfboard",
+            "width": "35%",
+            "isLeft": false,
+            "paragraphIndex": 5,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790280025143-k8sm",
+            "src": "/images/projects/smart-lighting/hero.svg",
+            "caption": "Unified Smart Lighting Hub architecture diagram.",
+            "width": "44%",
+            "isLeft": false,
+            "paragraphIndex": 2,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790280124445-aubl",
+            "src": "/images/projects/smart-lighting/Screenshot_2026-09-24_at_3.01.44_PM.png",
+            "caption": "The web GUI",
+            "width": "30%",
+            "isLeft": false,
+            "paragraphIndex": 9,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790280203458-tq0x",
+            "src": "/images/projects/smart-lighting/IMG_5100.mp4",
+            "caption": "The remote in action, controlling all lights with one button",
+            "width": "60%",
+            "isLeft": false,
+            "paragraphIndex": 1,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790283831051-u9ym",
+            "src": "/images/projects/smart-lighting/IMG_5124.jpeg",
+            "caption": "The ESP8266 circuit mounted on the underside of the desk",
+            "width": "33%",
+            "isLeft": true,
+            "paragraphIndex": 7,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790284318288-0uih",
+            "src": "/images/projects/smart-lighting/IMG_4913.jpeg",
+            "caption": "Original prototype, using arduino and a breadboard with many jumper wires.",
+            "width": "22%",
+            "isLeft": true,
+            "paragraphIndex": 3,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790285618387-ckgr",
+            "src": "/images/projects/smart-lighting/IMG_5055.jpeg",
+            "caption": "A look inside the enclosure",
+            "width": "35%",
+            "isLeft": true,
+            "paragraphIndex": 11,
+            "topOffset": 0,
+            "isAnchored": false
+          }
+        ]
+      }
     },
     "small-business-tools": {
       "title": "Small Business Tools",

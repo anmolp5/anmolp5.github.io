@@ -5,37 +5,26 @@ import { ADMIN_CONFIG } from '../adminConfig';
 
 const AdminContext = createContext(null);
 
-const loadInitialProjects = () => {
+// Purge stale local storage data on load
+if (typeof window !== 'undefined') {
   try {
-    const cached = typeof window !== 'undefined' ? localStorage.getItem('portfolio_projects_data') : null;
-    if (cached) {
-      const parsed = JSON.parse(cached.replace(/\.mov/gi, '.mp4'));
-      if (parsed && parsed.projectsDetail) return parsed;
-    }
+    localStorage.removeItem('portfolio_projects_data');
+    localStorage.removeItem('portfolio_home_data');
+    localStorage.removeItem('portfolio_data_version');
   } catch (e) {}
-  return initialProjectsData;
-};
-
-const loadInitialHome = () => {
-  try {
-    const cached = typeof window !== 'undefined' ? localStorage.getItem('portfolio_home_data') : null;
-    if (cached) {
-      const parsed = JSON.parse(cached);
-      if (parsed && parsed.hero) return parsed;
-    }
-  } catch (e) {}
-  return initialHomeData;
-};
+}
 
 export const AdminProvider = ({ children }) => {
-  const [adminLocked, setAdminLocked] = useState(ADMIN_CONFIG.locked);
-  const [isLocalhost, setIsLocalhost] = useState(false);
-  // Hardcoded out for production pushed version as requested
+  const adminLocked = true;
+  const setAdminLocked = () => {};
+  const isLocalhost = false;
+  const setIsLocalhost = () => {};
   const editMode = false;
   const setEditMode = () => {};
-  const [projectsData, setProjectsDataState] = useState(loadInitialProjects);
-  const [homeData, setHomeDataState] = useState(loadInitialHome);
-  const [dirty, setDirty] = useState(false);
+  const [projectsData, setProjectsDataState] = useState(initialProjectsData);
+  const [homeData, setHomeDataState] = useState(initialHomeData);
+  const dirty = false;
+  const setDirty = () => {};
   const [saveStatus, setSaveStatus] = useState('idle'); // 'idle' | 'saving' | 'saved' | 'error'
   const [statusMessage, setStatusMessage] = useState('');
 
@@ -57,6 +46,52 @@ export const AdminProvider = ({ children }) => {
       setIsLocalhost(isLocal);
     }
   }, []);
+
+  // Fetch fresh data from disk on load or tab focus (bypasses stale cached bundle)
+  const refreshFromDisk = useCallback(() => {
+    if (dirty) return;
+    fetch('/api/get-data?type=projects')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data) setProjectsDataState(data);
+      })
+      .catch(() => {});
+
+    fetch('/api/get-data?type=home')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data) setHomeDataState(data);
+      })
+      .catch(() => {});
+  }, [dirty]);
+
+  useEffect(() => {
+    if (isLocalhost) {
+      refreshFromDisk();
+      window.addEventListener('focus', refreshFromDisk);
+      return () => window.removeEventListener('focus', refreshFromDisk);
+    }
+  }, [isLocalhost, refreshFromDisk]);
+
+  // Vite HMR custom event listener: instant sync whenever disk JSON files are modified
+  useEffect(() => {
+    if (import.meta.hot) {
+      const handleDataUpdate = (payload) => {
+        if (!dirty && payload?.data) {
+          if (payload.type === 'projects') {
+            setProjectsDataState(payload.data);
+          } else if (payload.type === 'home') {
+            setHomeDataState(payload.data);
+          }
+        }
+      };
+      import.meta.hot.on('portfolio-data-updated', handleDataUpdate);
+      return () => {
+        import.meta.hot.off('portfolio-data-updated', handleDataUpdate);
+      };
+    }
+  }, [dirty]);
+
 
   // Background Auto-Save to repository disk
   useEffect(() => {
@@ -85,7 +120,6 @@ export const AdminProvider = ({ children }) => {
     };
   }, [dirty, projectsData, homeData]);
 
-  // Hardcoded out for production pushed version as requested
   const canEdit = false;
 
   // Push current state to undo history before making a mutation
