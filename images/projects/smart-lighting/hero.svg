@@ -1,33 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs>
     <linearGradient id="blueBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#091326"/>
-      <stop offset="50%" stop-color="#0f1f3d"/>
+      <stop offset="0%" stop-color="#080e1a"/>
+      <stop offset="50%" stop-color="#0e172a"/>
       <stop offset="100%" stop-color="#172554"/>
     </linearGradient>
     <pattern id="circGrid" width="35" height="35" patternUnits="userSpaceOnUse">
-      <circle cx="17.5" cy="17.5" r="1" fill="rgba(96, 165, 250, 0.2)"/>
+      <circle cx="17.5" cy="17.5" r="1" fill="rgba(96, 165, 250, 0.25)"/>
     </pattern>
   </defs>
   <rect width="100%" height="100%" fill="url(#blueBg)"/>
   <rect width="100%" height="100%" fill="url(#circGrid)"/>
 
   <!-- System Diagram / Vector Art -->
-  <g transform="translate(600, 420)">
-    <!-- ESP8266 Core Hub -->
-    <rect x="-100" y="-80" width="200" height="160" rx="14" fill="rgba(30, 58, 138, 0.4)" stroke="#3B82F6" stroke-width="2.5"/>
-    <rect x="-70" y="-55" width="140" height="70" rx="6" fill="#1E293B" stroke="#60A5FA"/>
-    <text x="0" y="-20" fill="#93C5FD" font-family="monospace" font-size="16" font-weight="bold" text-anchor="middle">ESP8266</text>
-    <text x="0" y="3" fill="#60A5FA" font-family="monospace" font-size="11" text-anchor="middle">802.11 b/g/n IoT</text>
-    <text x="0" y="45" fill="#E2E8F0" font-family="monospace" font-size="12" text-anchor="middle">UNIFIED CONTROLLER</text>
+  <g transform="translate(600, 440)">
+    <!-- ESP32 Core Hub -->
+    <rect x="-110" y="-85" width="220" height="170" rx="14" fill="rgba(30, 58, 138, 0.45)" stroke="#3B82F6" stroke-width="2.5"/>
+    <rect x="-80" y="-60" width="160" height="75" rx="8" fill="#1E293B" stroke="#60A5FA" stroke-width="1.5"/>
+    <text x="0" y="-22" fill="#93C5FD" font-family="monospace" font-size="18" font-weight="bold" text-anchor="middle">ESP32</text>
+    <text x="0" y="3" fill="#60A5FA" font-family="monospace" font-size="12" text-anchor="middle">Wi-Fi + BLE 4.2</text>
+    <text x="0" y="50" fill="#E2E8F0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle">UNIFIED CONTROLLER</text>
 
     <!-- 433 MHz RF Pathway (Left) -->
-    <g transform="translate(-220, 0)">
-      <line x1="120" y1="0" x2="30" y2="0" stroke="#38BDF8" stroke-width="2.5"/>
-      <rect x="-140" y="-60" width="170" height="120" rx="10" fill="rgba(14, 165, 233, 0.15)" stroke="#38BDF8" stroke-width="2"/>
-      <text x="-55" y="-25" fill="#38BDF8" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">LM3046 ARRAY</text>
-      <text x="-55" y="-5" fill="#BAE6FD" font-family="monospace" font-size="11" text-anchor="middle">5x NPN Low-Side</text>
-      <text x="-55" y="25" fill="#94A3B8" font-family="monospace" font-size="10" text-anchor="middle">433 MHz RF Matrix</text>
+    <g transform="translate(-250, 0)">
+      <line x1="140" y1="0" x2="30" y2="0" stroke="#38BDF8" stroke-width="2.5"/>
+      <rect x="-140" y="-65" width="170" height="130" rx="10" fill="rgba(14, 165, 233, 0.15)" stroke="#38BDF8" stroke-width="2"/>
+      <text x="-55" y="-28" fill="#38BDF8" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">LM3046 ARRAY</text>
+      <text x="-55" y="-6" fill="#BAE6FD" font-family="monospace" font-size="11" text-anchor="middle">5x NPN Low-Side</text>
+      <text x="-55" y="24" fill="#94A3B8" font-family="monospace" font-size="10" text-anchor="middle">433 MHz RF Matrix</text>
       
       <!-- Radio Waves -->
       <path d="M -160 -20 A 30 30 0 0 0 -160 20" fill="none" stroke="#38BDF8" stroke-width="2"/>
@@ -36,33 +36,48 @@
     </g>
 
     <!-- 940 nm IR Pathway (Right) -->
-    <g transform="translate(220, 0)">
-      <line x1="-120" y1="0" x2="-30" y2="0" stroke="#F43F5E" stroke-width="2.5"/>
-      <rect x="-30" y="-60" width="170" height="120" rx="10" fill="rgba(244, 63, 94, 0.15)" stroke="#F43F5E" stroke-width="2"/>
-      <text x="55" y="-25" fill="#FB7185" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">940 nm IR LED</text>
-      <text x="55" y="-5" fill="#FECDD3" font-family="monospace" font-size="11" text-anchor="middle">NEC + Custom Pulse</text>
-      <text x="55" y="25" fill="#94A3B8" font-family="monospace" font-size="10" text-anchor="middle">Line-of-Sight Blast</text>
+    <g transform="translate(250, 0)">
+      <line x1="-140" y1="0" x2="-30" y2="0" stroke="#A855F7" stroke-width="2.5"/>
+      <rect x="-30" y="-65" width="170" height="130" rx="10" fill="rgba(168, 85, 247, 0.15)" stroke="#A855F7" stroke-width="2"/>
+      <text x="55" y="-28" fill="#D8B4FE" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">940 nm IR LED</text>
+      <text x="55" y="-6" fill="#E9D5FF" font-family="monospace" font-size="11" text-anchor="middle">NEC + Custom Pulse</text>
+      <text x="55" y="24" fill="#94A3B8" font-family="monospace" font-size="10" text-anchor="middle">Line-of-Sight Blast</text>
 
       <!-- Optical Rays -->
-      <line x1="145" y1="0" x2="190" y2="0" stroke="#FB7185" stroke-width="2" stroke-dasharray="4,4"/>
-      <line x1="145" y1="-15" x2="185" y2="-30" stroke="#FB7185" stroke-width="1.5" stroke-dasharray="4,4"/>
-      <line x1="145" y1="15" x2="185" y2="30" stroke="#FB7185" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <line x1="145" y1="0" x2="190" y2="0" stroke="#C084FC" stroke-width="2" stroke-dasharray="4,4"/>
+      <line x1="145" y1="-15" x2="185" y2="-30" stroke="#C084FC" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <line x1="145" y1="15" x2="185" y2="30" stroke="#C084FC" stroke-width="1.5" stroke-dasharray="4,4"/>
+    </g>
+
+    <!-- Wi-Fi Desk Lamp Retrofit Pathway (Top) -->
+    <g transform="translate(0, -180)">
+      <line x1="0" y1="95" x2="0" y2="25" stroke="#10B981" stroke-width="2.5" stroke-dasharray="6 3"/>
+      <rect x="-110" y="-45" width="220" height="70" rx="10" fill="rgba(16, 185, 129, 0.15)" stroke="#10B981" stroke-width="2"/>
+      <text x="0" y="-20" fill="#6EE7B7" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">WI-FI DESK LAMP</text>
+      <text x="0" y="-2" fill="#A7F3D0" font-family="monospace" font-size="10" text-anchor="middle">No-Remote Hardware Retrofit</text>
+      <text x="0" y="16" fill="#94A3B8" font-family="monospace" font-size="9" text-anchor="middle">802.11 LAN / MOSFET Switch</text>
     </g>
   </g>
 
   <!-- Titles -->
-  <text x="60" y="90" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800">Unified Smart Lighting Hub</text>
-  <text x="60" y="125" fill="#60A5FA" font-family="monospace" font-size="16">ESP8266 // REVERSE-ENGINEERED 433 MHz RF &amp; 940 nm OPTICAL IR</text>
+  <text x="60" y="85" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800">Unified Smart Lighting Hub</text>
+  <text x="60" y="120" fill="#60A5FA" font-family="monospace" font-size="15">ESP32 // WI-FI DESK LAMP // 433 MHz RF MATRIX // 940 nm OPTICAL IR</text>
 
   <!-- Tech Badges -->
-  <g transform="translate(60, 150)">
-    <rect x="0" y="0" width="90" height="28" rx="14" fill="rgba(59, 130, 246, 0.2)" stroke="#3B82F6"/>
-    <text x="45" y="18" fill="#93C5FD" font-family="monospace" font-size="11" text-anchor="middle">ESP8266</text>
+  <g transform="translate(60, 142)">
+    <rect x="0" y="0" width="85" height="30" rx="15" fill="rgba(59, 130, 246, 0.2)" stroke="#3B82F6"/>
+    <text x="42.5" y="19" fill="#93C5FD" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">ESP32</text>
 
-    <rect x="100" y="0" width="120" height="28" rx="14" fill="rgba(56, 189, 248, 0.2)" stroke="#38BDF8"/>
-    <text x="160" y="18" fill="#BAE6FD" font-family="monospace" font-size="11" text-anchor="middle">433 MHz RF</text>
+    <rect x="95" y="0" width="165" height="30" rx="15" fill="rgba(16, 185, 129, 0.2)" stroke="#10B981"/>
+    <text x="177.5" y="19" fill="#6EE7B7" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">WI-FI DESK LAMP</text>
 
-    <rect x="230" y="0" width="130" height="28" rx="14" fill="rgba(244, 63, 94, 0.2)" stroke="#F43F5E"/>
-    <text x="295" y="18" fill="#FECDD3" font-family="monospace" font-size="11" text-anchor="middle">940 nm OPTICAL</text>
+    <rect x="270" y="0" width="115" height="30" rx="15" fill="rgba(56, 189, 248, 0.2)" stroke="#38BDF8"/>
+    <text x="327.5" y="19" fill="#BAE6FD" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">433 MHz RF</text>
+
+    <rect x="395" y="0" width="135" height="30" rx="15" fill="rgba(168, 85, 247, 0.2)" stroke="#A855F7"/>
+    <text x="462.5" y="19" fill="#D8B4FE" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">940 nm OPTICAL</text>
+
+    <rect x="540" y="0" width="85" height="30" rx="15" fill="rgba(244, 63, 94, 0.2)" stroke="#F43F5E"/>
+    <text x="582.5" y="19" fill="#FECDD3" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">BLE 4.2</text>
   </g>
 </svg>
