@@ -29,6 +29,7 @@ const loadInitialHome = () => {
 
 export const AdminProvider = ({ children }) => {
   const [adminLocked, setAdminLocked] = useState(ADMIN_CONFIG.locked);
+  const [isLocalhost, setIsLocalhost] = useState(false);
   // Hardcoded out for production pushed version as requested
   const editMode = false;
   const setEditMode = () => {};

@@ -11,7 +11,6 @@ const AdminBar = () => {
     saveStatus,
     statusMessage,
     toggleLock,
-    adminLocked,
     undo,
     redo,
     canUndo,

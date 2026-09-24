@@ -243,6 +243,7 @@ const ProjectDetail = () => {
     }
 
     let targetIndex = 0;
+    let calculatedOffset = 0;
     for (let i = 0; i < paraEls.length; i++) {
       const el = paraEls[i];
       const elRect = el.getBoundingClientRect();
