@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
@@ -7,6 +7,8 @@ import ProjectDetail from './pages/Projectdetail';
 import Room3D from './pages/Room3D';
 import Resume from './pages/Resume';
 import Contact from './pages/Contact';
+import { AdminProvider } from './context/AdminContext';
+import AdminBar from './components/AdminBar';
 
 function Layout({ children }) {
   return (
@@ -21,21 +23,24 @@ function Layout({ children }) {
 
 function App() {
   return (
-    <Router>
-      <div style={{ minHeight: '100vh' }}>
-        <Routes>
-          {/* Room3D gets full screen without navigation */}
-          <Route path="/projects/room-improvement" element={<Room3D />} />
+    <AdminProvider>
+      <Router>
+        <div style={{ minHeight: '100vh' }}>
+          <Routes>
+            {/* Room3D gets full screen without navigation */}
+            <Route path="/projects/room-improvement" element={<Room3D />} />
 
-          {/* All other routes get navigation */}
-          <Route path="/" element={<Layout><Home /></Layout>} />
-          <Route path="/projects" element={<Layout><Projects /></Layout>} />
-          <Route path="/projects/:projectId" element={<Layout><ProjectDetail /></Layout>} />
-          <Route path="/resume" element={<Layout><Resume /></Layout>} />
-          <Route path="/contact" element={<Layout><Contact /></Layout>} />
-        </Routes>
-      </div>
-    </Router>
+            {/* All other routes get navigation */}
+            <Route path="/" element={<Layout><Home /></Layout>} />
+            <Route path="/projects" element={<Layout><Projects /></Layout>} />
+            <Route path="/projects/:projectId" element={<Layout><ProjectDetail /></Layout>} />
+            <Route path="/resume" element={<Layout><Resume /></Layout>} />
+            <Route path="/contact" element={<Layout><Contact /></Layout>} />
+          </Routes>
+          <AdminBar />
+        </div>
+      </Router>
+    </AdminProvider>
   );
 }
 

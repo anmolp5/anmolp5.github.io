@@ -1,0 +1,69 @@
+{
+  "hero": {
+    "name": "Anmol Prabhakar",
+    "major": "Bioengineering",
+    "minor": "Minor in Electrical Engineering",
+    "focus": "Focus: Electromechanical Integration, Mechanism Kinematics, and Wearable Biosensors",
+    "school": "University of Illinois Urbana-Champaign",
+    "graduation": "Expected Graduation: May 2028"
+  },
+  "about": {
+    "paragraphs": [
+      "I build mechanical systems at the boundary where hardware interacts directly with the physical world and the human body. As a Bioengineering student with an Electrical Engineering minor, my focus is bridging mechanical kinematics with embedded control—from routing tendon channels and designing snap-fit linkages to reverse-engineering RF circuits and packaging wearable biosensors. I prioritize functional engineering: validating tight clearances in CAD, eliminating mechanism binding, and iterating prototypes to build responsive, reliable hardware."
+    ],
+    "image": "/images/home/profile.jpg"
+  },
+  "experiences": [
+    {
+      "id": "attune",
+      "company": "Attune Neurofeedback EEG Hardware Team",
+      "role": "Hardware Engineer",
+      "period": "Sep 2025 – Present",
+      "location": "Champaign, IL",
+      "bullets": [
+        "Engineered modular EEG headset housings in Onshape using ISO shaft-basis interference fits (sub-0.03 mm clearances) and integrated friction detents with 0.4 mm engagement ribs, securing modular electrode cartridges against 3.5 N extraction loads without mechanical fasteners.",
+        "Routed internal 1.8 mm conduit pathways across 7 FDM iterations to prevent wire fatigue failure and reduced overall enclosure packaging volume by 25%.",
+        "Designed an adjustable compliant headband strap mechanism with 60 mm of travel, sustaining 1.5–2.0 N normal scalp contact pressure across head circumferences from 52 cm to 62 cm.",
+        "Evaluated analog front-end schematics and multi-pin cartridge interconnects to minimize contact impedance (<50 mΩ) and isolate microvolt biosignals (0.5–100 µV) from external electromagnetic interference (EMI)."
+      ]
+    },
+    {
+      "id": "beverly",
+      "company": "Beverly Orthopedics",
+      "role": "Clinical Engineering Intern",
+      "period": "Jul 2024",
+      "location": "Montebello, CA",
+      "bullets": [
+        "Fabricated 13 custom-molded carbon fiber and polycarbonate orthotic inserts utilizing 25 in-Hg vacuum bagging and heated press lamination cycles (160°C–180°C).",
+        "Post-processed composite and thermoplastic blanks on a high-speed rotary grinder at 3,400 RPM, blending edge radii to sub-millimeter profiles to match strict internal shoe welt boundaries.",
+        "Digitized patient foot morphology with millimeter-level arch accuracy using flatbed optical surface scanners, and facilitated clinical delivery consultations via real-time Spanish translation for 20+ patients."
+      ]
+    },
+    {
+      "id": "credence",
+      "company": "Credence Prosthetics",
+      "role": "Prosthetics & Orthotics Intern",
+      "period": "Jun 2024",
+      "location": "Gurugram, India",
+      "bullets": [
+        "Assembled 8 adult and pediatric Knee-Ankle-Foot Orthoses (KAFOs) and cerebral palsy braces, mechanically aligning bilateral aluminum side-rails within 1° of the anatomical sagittal knee axis.",
+        "Calibrated drop-lock knee hinges to lock at 0° full extension, ensuring structural joint stability under 500+ N cyclic stance loads without binding.",
+        "Formed positive plaster limb casts to mold 3–4 mm rigid polycarbonate shells, and adjusted coronal and sagittal alignment angles across 10-meter patient walk tests to eliminate hyperextension hot spots."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "title": "Technical Design",
+      "skills": "Fusion 360, Onshape, SolidWorks, Python (Pandas/NumPy), FDM 3D Printing, Rapid Prototyping"
+    },
+    {
+      "title": "Fabrication",
+      "skills": "CNC Machining, Bandsaw, Rotary Grinder, Surface Planer, Carbon Fiber Layups, Circuit Assembly"
+    },
+    {
+      "title": "Languages",
+      "skills": "English (Native), Hindi (Native), Spanish (Professional Working Proficiency)"
+    }
+  ]
+}

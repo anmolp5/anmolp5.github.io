@@ -1,347 +1,579 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
-
-const projectData = {
-  'small-business-tools': {
-    title: 'Small Business Tools',
-    subtitle: 'Custom inventory and photography tools for Kanyalndya jewelry business',
-    date: 'January 2025',
-    tags: ['CAD', 'Manufacturing', 'AI Integration'],
-    hero: '/images/projects/small-business-tools/1.png',
-    processCards: [
-      {
-        heading: 'Challenge',
-        content: 'Small businesses often struggle with efficient inventory management and consistent product presentation. The manual processes were time-consuming and prone to errors.'
-      },
-      {
-        heading: 'Solution',
-        content: 'I developed a set of 3D-printed tools custom-fitted to their products to speed up sizing and sorting. I also designed a magnetic, modular photobox that allows for quick background changes and consistent lighting.'
-      },
-      {
-        heading: 'Results',
-        content: 'Inventory processing time was reduced by 40%, and the standardized photography significantly improved the online store aesthetic, leading to increased engagement.'
-      }
-    ],
-    contentBlocks: [
-      {
-        type: 'image-right',
-        src: '/images/projects/small-business-tools/2.png',
-        caption: 'Bangle sizing tool',
-        text: `I designed and manufactured a comprehensive suite of custom inventory management tools, specifically tailored for the unique challenges faced by the Kanyalndya jewelry business. The primary objective was to drastically streamline day-to-day operations, moving away from inefficient manual processes. Previously, sorting and sizing involved a chaotic, unstructured pile of products, which consistently caused significant delays in order fulfillment and inventory tracking.
-        
-        By fabricating specialized 3D-printed tools custom-fitted to their exact product dimensions—including precision sizing gauges and slotted organizational display units—we successfully established a rigid system. This physical infrastructure minimized human error and cognitive load, ultimately speeding up the sizing and sorting workflow by over 40%, directly impacting the business's bottom line.`
-      },
-      {
-        type: 'text',
-        content: `Furthermore, I conceptualized and engineered a highly modular, magnetic photobox system designed to standardize product photography for their e-commerce platform. High-quality, consistent photos are absolutely critical for online jewelry sales to build customer trust. However, setting up the lighting and composition daily was an enormous time sink for the owner. 
-        
-        The innovative magnetic wall design of the photobox allows for rapid background and texture changes while maintaining perfectly consistent, diffused lighting across entirely different batches of products, ensuring a unified aesthetic across their entire catalog.`
-      },
-      {
-        type: 'image-left',
-        src: '/images/projects/small-business-tools/1.png',
-        caption: 'CAD design of the photobox stand',
-        text: `To construct a holistic business transformation, the physical tools were augmented by digital automation. I implemented AI-driven workflows by personally training the business owner on leveraging several Large Language Models (LLMs) to automate their repetitive administrative tasks. 
-        
-        This digital overhaul included systems for generating standardized barcodes on the fly and creating automated, professional phrasing for client invoicing and communications. By seamlessly combining physical manufacturing solutions with cutting-edge digital AI optimizations, this small business was empowered to substantially scale their throughput and professional appearance without the need to increase their headcount.`
-      },
-      {
-        type: 'text',
-        content: `The magnetic photobox system proved to be an invaluable asset for consistent branding. Prior to its implementation, lighting setups were ad-hoc, leading to varying shadow lengths and color temperatures that degraded the professional appearance of the online storefront.`
-      }
-    ],
-    images: [
-      { src: '/images/projects/small-business-tools/1.png', caption: 'CAD design of the photobox stand' },
-      { src: '/images/projects/small-business-tools/2.png', caption: 'Bangle sizing tool' },
-      { src: '/images/projects/small-business-tools/3.png', caption: 'Earing sizing tool' },
-      { src: '/images/projects/small-business-tools/5.jpg', caption: 'Modular photobox without backgrounds' },
-      { src: '/images/projects/small-business-tools/6.jpg', caption: 'One example of background without base' },
-      { src: '/images/projects/small-business-tools/7.jpg', caption: 'Photobox with background and base' }
-    ]
-  },
-  'orthotic-repair': {
-    title: 'Orthotic Repair',
-    subtitle: 'Knee-Ankle-Foot Orthotic optimization for improved comfort',
-    date: 'July 2025',
-    tags: ['CAD', 'Biomechanics', 'Prototyping'],
-    hero: '/images/projects/orthotic-repair/1.jpg',
-    processCards: [
-      {
-        heading: 'Challenge',
-        content: 'The user experienced significant discomfort and skin irritation due to pressure points in the original orthotic design, particularly around the ankle and shin. Additionally, a leg length discrepancy caused uneven foot leveling and stance issues.'
-      },
-      {
-        heading: 'Solution',
-        content: 'Using photo references and CAD modeling, I designed custom spacers and attachments to create essential relief around the high-pressure areas. I also modeled and 3D printed a flexible TPU insole to perfectly counteract the leg length difference.'
-      },
-      {
-        heading: 'Results',
-        content: 'The custom spacers successfully redistributed pressure and eliminated pain points, while the TPU riser restored proper foot leveling. This allowed the user to wear the orthotic for extended periods.'
-      }
-    ],
-    contentBlocks: [
-      {
-        type: 'text',
-        content: `Knee-Ankle-Foot Orthotics (KAFOs) are highly critical mobility aids designed to stabilize the lower extremities, but their rigid, unyielding nature often leads to severe discomfort over extended periods of continuous use. In this project, I assessed the root causes of patient discomfort, focusing heavily on both the complex posterior shell geometry enveloping the ankle and calf regions, as well as the patient's stance and gait equilibrium.
-        
-        The primary issue identified during the initial evaluation was the presence of distinct, localized pressure points causing restricted blood flow and significant skin irritation, particularly focused on the anterior shin during the dynamic swing phase of the gait cycle.`
-      },
-      {
-        type: 'image-left',
-        src: '/images/projects/orthotic-repair/2.jpg',
-        caption: 'Final attachment to brace in CAD',
-        text: `To address these anatomical challenges, I utilized reference images and standard CAD techniques to model the patient's bracing parameters—avoiding the need for complex 3D scanning equipment. From this digitized baseline, I engineered novel geometric solutions specifically aimed at redistributing the mechanical load away from the highly sensitive anterior tissue. 
-        
-        Rather than attempting to reinvent the brace shell or carve out complex pressure relief channels, the new design paradigm involved fabricating custom-fitted spacers to create strategic relief in the tightest areas. By systematically adjusting these geometric parameters, we successfully achieved a biomechanically optimal fit that eliminated the acute shin pain points.`
-      },
-      {
-        type: 'image-right',
-        src: '/images/projects/orthotic-repair/1.jpg',
-        caption: 'TPU insole riser for KAFO',
-        text: `Beyond the localized pressure points on the shin, the patient also suffered from stance instability due to a noticeable leg length discrepancy. This difference in physical length threw their feet leveling completely off equilibrium, causing painful structural compensation and fatigue higher up in the kinetic chain.
-        
-        To resolve this, I carefully calculated the required offset and designed a custom sole to perfectly counteract the height discrepancy. This custom riser was 3D printed using flexible TPU (Thermoplastic Polyurethane), providing not only the exact structural lift needed to perfectly level their feet, but also a highly compliant, shock-absorbing surface for maximum all-day comfort.`
-      },
-      {
-        type: 'image-left',
-        src: '/images/projects/orthotic-repair/3.jpg',
-        caption: 'Riser placed in real brace',
-        text: `The physical translation involved fabricating iterative working prototypes to test within the actual user's shoe and brace system. Following each iteration, the user actively tested the orthotic device on a treadmill under controlled conditions, providing detailed subjective comfort scores.
-        
-        The final combined solution of rigid calf spacers for pressure relief and the flexible TPU insole for leveling allowed the user to wear the KAFO device for a full, active workday entirely free from the debilitating fatigue they had previously experienced.`
-      }
-    ],
-    images: [
-      { src: '/images/projects/orthotic-repair/1.jpg', caption: 'TPU insole riser for exact leg leveling' },
-      { src: '/images/projects/orthotic-repair/2.jpg', caption: 'Custom CAD-modeled spacer attachment' },
-      { src: '/images/projects/orthotic-repair/3.jpg', caption: 'Testing the 3D printed components inside the actual brace' },
-      { src: '/images/projects/orthotic-repair/4.jpg', caption: "Thigh band for a child's cerebral palsy brace during my internship in India" },
-      { src: '/images/projects/orthotic-repair/5.jpg', caption: 'A set of prosthetic legs I assembled during my internship in Montebello, CA' }
-    ]
-  },
-  'golf-ball-launcher': {
-    title: 'Golf Ball Launcher',
-    subtitle: 'Precision flywheel golf ball launching system',
-    date: 'Spring 2024',
-    tags: ['Mechanical Design', 'Mechatronics', 'Control Systems'],
-    hero: '/images/projects/golf-ball-launcher/hero.png',
-    processCards: [
-      { heading: 'Challenge', content: 'For a comprehensive school engineering project, we were tasked with designing a device to reliably launch a golf ball to hit an 8-inch target situated 2 meters away and 1 meter high, twice in a row.' },
-      { heading: 'Solution', content: 'We engineered a custom dual-flywheel pitching mechanism. To achieve the required precision, we integrated an IMU within our motor controller to actively dial in the launch angle and utilized a CAD-mounted laser sight to calibrate our real-world trajectory.' },
-      { heading: 'Results', content: 'The system offered unparalleled repeatability. The motor control code allowed for rapid tuning, resulting in our team hitting the tiny target 25 consecutive times—the only group in the class to achieve such flawless accuracy.' }
-    ],
-    contentBlocks: [
-      {
-        type: 'image-right',
-        src: '/images/projects/golf-ball-launcher/5.png',
-        caption: 'CAD of launcher',
-        text: `As part of a rigorous academic engineering capstone, our team was presented with a strict mechanical design and controls challenge: engineer a system capable of accurately launching a standard golf ball to repeatedly strike an 8-inch physical target located exactly 2 meters horizontally away and elevated 1 meter off the ground. The strict criteria dictated that the system must hit the target at least twice consecutively, requiring extremely high precision and repeatability over brute force.
-        
-        To solve this, we explicitly avoided unpredictable catapults and instead designed a highly tunable, dual-flywheel pitching mechanism. The core advantage of a flywheel system is that the energy transferred to the projectile is dictated entirely by the rotational velocity of the wheels, which can be precisely governed by closed-loop motor control code rather than inconsistent spring tension.`
-      },
-      {
-        type: 'image-left',
-        src: '/images/projects/golf-ball-launcher/1.jpg',
-        caption: 'REV Control hub used to control',
-        text: `Achieving the desired velocity was only half the equation; angular precision was paramount. We integrated an Inertial Measurement Unit (IMU) deeply into our custom motor controller architecture. This allowed us to actively monitor and strictly dial in the exact pitch angle of the launcher barrel before every single shot, eliminating human error in setup. 
-        
-        Furthermore, we designed and 3D-printed a specialized mounting bracket to securely attach a continuous laser sight strictly parallel to the launch vector. This allowed us to visually calibrate and anchor our mathematical trajectory models against the physical target in real-world space. Ultimately, this combination of mechanical stability and intelligent mechatronic control resulted in our system hitting the 8-inch target an incredible 25 times in a row, making us the only team in the entire class to achieve such a flawless performance record.`
-      }
-    ],
-    images: [
-      { src: '/images/projects/golf-ball-launcher/1.jpg', caption: 'REV Control hub used to control' },
-      { src: '/images/projects/golf-ball-launcher/2.jpg', caption: 'Foam feet to improve grip and dampen vibrations' },
-      { src: '/images/projects/golf-ball-launcher/3.jpg', caption: 'Fully assembled launcher' },
-      { src: '/images/projects/golf-ball-launcher/4.mov', caption: 'An example of our launcher hitting the target' },
-      { src: '/images/projects/golf-ball-launcher/5.png', caption: 'CAD of launcher' },
-      { src: '/images/projects/golf-ball-launcher/6.png', caption: 'Lazer sight attachment module' }
-    ]
-  },
-  'mechathon': {
-    title: 'Mechathon at HackIllinois',
-    subtitle: '1st Place Medium Track John Deere Mechathon',
-    date: 'February 2026',
-    tags: ['Arduino', 'CuraSlicer', 'LightBurn', 'Onshape'],
-    hero: '/images/projects/mechathon/4.jpg',
-    processCards: [
-      { heading: 'Challenge', content: 'Design, fabricate, and program a robot to autonomously traverse and perfectly level a rugged pit of sand within a strict 48-hour deadline for John Deere at HackIllinois.' },
-      { heading: 'Solution', content: 'We built a custom servo-actuated four-bar linkage system with laser-cut rakes, paired with a drag-spinning front sweeper to achieve optimal multi-pass leveling.' },
-      { heading: 'Results', content: 'Our robot achieved the 3rd most level sand overall across all participants, securing us 1st place in the Medium Track.' }
-    ],
-    contentBlocks: [
-      {
-        type: 'text',
-        content: `During the HackIllinois Mechathon, our team was presented with a unique hardware challenge by John Deere: engineer a robot capable of traversing and perfectly leveling a rugged, uneven pit of sand. Given the intense 48-hour time constraint, we had to heavily prioritize rapid ideation and minimum viable product (MVP) design over extensive prototyping. 
-        
-        Drawing inspiration from industrial concrete leveling machinery and Zen sand gardens, we immediately broke down the mechanical requirements. By dividing sub-systems based on our respective strengths, we jumped into CAD (Onshape) and utilized laser cutters and 3D printers to fabricate custom mechanisms, ensuring we could swiftly iterate on our initial paper models.`
-      },
-      {
-        type: 'image-left',
-        src: '/images/projects/mechathon/2.jpg',
-        caption: 'Speaking to the judges during our demo',
-        text: `Our final mechanical architecture featured two primary active systems. On the front, we implemented a custom spinning sweeper designed to clear large mounds of sand directly in the path of the treads. On the rear, we engineered a parallelogram four-bar linkage actuated by a precise servo motor. 
-        
-        This linkage held two laser-cut rakes and allowed us to dynamically control the height of the toolpath. This critical feature enabled the robot to perform alternating high-pass and low-pass sweeps across the terrain, gradually and evenly flattening the sand with each pass rather than getting stuck in deep dunes.`
-      },
-      {
-        type: 'image-right',
-        src: '/images/projects/mechathon/3.jpg',
-        caption: 'Testing the four-bar linkage capabilities in the sand pit',
-        text: `The rapid development cycle was fraught with physical challenges. Initially, we discovered that our custom front spinner mechanism was visually interfering with the ultrasonic sensor, leading to erratic pathfinding logic. We quickly pivoted by removing a problematic front roller and upsizing the sweeper to compensate. 
-        
-        Additionally, the fine sand presented environmental hazards; it began trapping the treads, prompting us to continuously design and implement custom side-guards. Finally, when the Arduino struggled to adequately distribute power to the sweeping motors, we had to breadboard custom circuitry on the fly to bypass the limitations.\n\nThis incredibly grueling, sleepless weekend was a masterclass in working under intense pressure. It exposed inefficiencies in our standard workflows but ultimately taught us how to optimally delegate complex engineering tasks in a high-stakes environment. Through rigorous mechanical design, we successfully achieved the third most level sand overall among all participants, securing us 1st Place in the Medium Track.`
-      }
-    ],
-    images: [
-      { src: '/images/projects/mechathon/1.jpg', caption: 'Our completed John Deere Sand Leveling Robot' },
-      { src: '/images/projects/mechathon/2.jpg', caption: 'Speaking to the judges during our demo' },
-      { src: '/images/projects/mechathon/3.jpg', caption: 'Testing the leveling capabilities in the sand pit' },
-      { src: '/images/projects/mechathon/4.jpg', caption: 'Presenting our final product to the judges' },
-      { src: '/images/projects/mechathon/5.jpg', caption: '1st Place Team in the Medium Track!' }
-    ]
-  },
-  'ftc-robotics': {
-    title: 'FTC Robotics',
-    subtitle: 'Biobots #14318 - 6 seasons of competitive robotics',
-    date: 'August 2019 - February 2025',
-    tags: ['Robotics', 'CAD', 'Team Leadership'],
-    hero: '/images/projects/ftc-robotics/hero.jpg',
-    processCards: [
-      { heading: 'Challenge', content: 'Design and fabricate a new competitive robot annually to meet constantly changing competition objectives.' },
-      { heading: 'Solution', content: 'Our robots featured custom-designed drivetrains, intake mechanisms, and lift systems, optimized for reliability and speed during competition matches. As team captain, I managed project timelines and mentored younger members in CAD.' },
-      { heading: 'Results', content: 'We consistently reached regional championships and won multiple awards for our engineering documentation and community outreach efforts.' }
-    ],
-    contentBlocks: [
-      {
-        type: 'image-left',
-        src: '/images/projects/ftc-robotics/cropped_2_zoomed.jpg',
-        caption: 'Our 2025 Competition Robot',
-        width: '25%',
-        maxWidth: '300px',
-        text: `For six consecutive, highly intensive academic seasons, I proudly served as a core mechanical design engineer and ultimately rose to the position of Hardware Captain and Lead Strategist for FIRST Tech Challenge (FTC) Team #14318, the Biobots.
-
-Our team won the Motivate, Think, Design, Connect (x2), Inspire Awards. We were also NorCal Regional Championship Division Finalists in (2024).
-
-In this leadership role, I was directly responsible for leading a cross-functional, highly motivated team of seven high school students through the entirety of the grueling, professional-grade engineering design process. This extensive process ranged from the initial, critical analysis of the complex yearly game strategy to the creation of highly detailed full-robot CAD assemblies, and finally culminating in the precise physical manufacturing and assembly of the competition hardware. Due to the nature of FIRST competitions, every single season mandated the conceptualization and execution of a completely new robotic architecture in order to successfully solve the unique physical hurdles and scoring mechanisms presented that year.`
-      },
-      {
-        type: 'image-right',
-        src: '/images/projects/ftc-robotics/7.png',
-        caption: 'Our Full Robot in CAD',
-        align: 'flex-end',
-        text: `As Hardware Captain, I was primarily responsible for dictating the overall technical direction and systems architecture. Each competitive season inevitably involved navigating multiple, highly stressful full-system redesigns under extremely tight deadlines. Rather than relying on mere intuition or trial-and-error, I implemented a rigorous, iterative approach to our engineering. This disciplined approach allowed the team to strongly prioritize absolute hardware reliability under the intense, physical constraints of a chaotic 2.5-minute competition match, directly leading to our sustained success on the field.`
-      },
-      {
-        type: 'image-left',
-        src: '/images/projects/ftc-robotics/cropped_5_25.jpg',
-        caption: 'Me acting as a driver coach in a regional match',
-        align: 'flex-start',
-        text: `During competitions, I played the role of Player Coach. I was familiar with every detail of the rule book and our driver strategies. I kept a clip board with a blank map of the season’s mat and a dry erase marker to be able to work with our alliance members to create efficient pathing in order to maximize scoring output.
-
-Through my extensive tenure in competitive robotics, I rapidly developed a remarkably robust foundation in advanced 3D CAD modeling (utilizing both Onshape and Fusion360), rapid physical prototyping methodologies, and the crucial principles of Design for Manufacturability (DFM). I heavily utilized and managed modern manufacturing techniques, specifically operating 3D printers and CNC routers for the rapid production of highly customized, lightweight structural components. Furthermore, beyond the strictly technical engineering skills acquired, this experience was instrumental in honing my leadership capabilities. I expertly managed complex team coordination, strategically delegated nuanced tasks across the distinct software and hardware sub-teams, and rigorously ensured that our completed physical robotic hardware flawlessly and reliably integrated with the advanced autonomous control algorithms written by our programming division.`
-      }
-    ],
-    images: [
-      { src: '/images/projects/ftc-robotics/7.png', caption: 'Full CAD assembly of the custom 2025 competition robot' },
-      { src: '/images/projects/ftc-robotics/2.jpg', caption: '2025 Competition robot built in real life' },
-      { src: '/images/projects/ftc-robotics/3.jpg', caption: 'Early prototype of a 2022 robot' },
-      { src: '/images/projects/ftc-robotics/4.jpg', caption: 'Drivetrain of our 2021 robot' },
-      { src: '/images/projects/ftc-robotics/5.jpg', caption: 'Acting as a driver coach during the NorCal Regional Championships' },
-      { src: '/images/projects/ftc-robotics/6.jpg', caption: 'Our 2025 robot in action' }
-    ]
-  }
-};
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
+import { useAdmin } from '../context/AdminContext';
+import GalleryDrawer from '../components/GalleryDrawer';
+import { isMediaVideo } from '../utils/media';
+import InteractiveCanvasImage from '../components/InteractiveCanvasImage';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
-  const project = projectData[projectId];
+  const {
+    projectsData,
+    updateProjectsData,
+    editMode,
+    uploadImage,
+    updateCoverPhoto,
+    updateImageCaption
+  } = useAdmin();
+
+  const project = projectsData?.projectsDetail?.[projectId];
 
   // Lightbox State
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Keyboard navigation for Lightbox
-  const handleKeyDown = useCallback((e) => {
-    if (!lightboxOpen || !project?.images?.length) return;
+  // Cover Photo Picker & Drag State
+  const [showCoverPicker, setShowCoverPicker] = useState(false);
+  const [isDraggingOverCover, setIsDraggingOverCover] = useState(false);
+  const [customCoverUrl, setCustomCoverUrl] = useState('');
+  const coverFileInputRef = useRef(null);
 
-    if (e.key === 'Escape') setLightboxOpen(false);
-    if (e.key === 'ArrowRight') setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-    if (e.key === 'ArrowLeft') setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
-  }, [lightboxOpen, project]);
+  // Document Canvas Drag & Hover State
+  const storyCanvasRef = useRef(null);
+  const dragIndicatorRef = useRef(null);
+  const [hoveredDividerIndex, setHoveredDividerIndex] = useState(null);
+
+  // Track global dragging state to avoid contentEditable text-drag interference
+  useEffect(() => {
+    const handleDragStart = () => {
+      document.body.classList.add('is-canvas-dragging');
+    };
+    const handleDragEnd = () => {
+      document.body.classList.remove('is-canvas-dragging');
+      if (dragIndicatorRef.current) {
+        dragIndicatorRef.current.style.display = 'none';
+      }
+    };
+    window.addEventListener('dragstart', handleDragStart, true);
+    window.addEventListener('dragend', handleDragEnd, true);
+    window.addEventListener('drop', handleDragEnd, true);
+    return () => {
+      window.removeEventListener('dragstart', handleDragStart, true);
+      window.removeEventListener('dragend', handleDragEnd, true);
+      window.removeEventListener('drop', handleDragEnd, true);
+    };
+  }, []);
+
+  // Keyboard navigation for Lightbox
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (!lightboxOpen || !project?.images?.length) return;
+      if (e.key === 'Escape') setLightboxOpen(false);
+      if (e.key === 'ArrowRight') setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+      if (e.key === 'ArrowLeft')
+        setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+    },
+    [lightboxOpen, project]
+  );
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
-  // Prevent background scrolling when lightbox is open
   useEffect(() => {
     if (lightboxOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => { document.body.style.overflow = 'unset'; }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [lightboxOpen]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [projectId]);
 
-  if (!project) {
-    return (
-      <div style={{ minHeight: '100vh', background: '#f5f5f5', padding: '100px 40px', textAlign: 'center' }}>
-        <h1 style={{ color: '#0a0a0a', fontSize: '2.5rem', marginBottom: '20px' }}>Project Not Found</h1>
-        <Link to="/projects" state={{ scrollTo: projectId }} style={{ color: '#8B5CF6', fontSize: '1.2rem', textDecoration: 'none', fontWeight: 'bold' }}>← Back to Projects</Link>
-      </div>
-    );
+  // Normalize project narrative into Unified Document Canvas format (paragraphs + canvasImages)
+  const storyData = useMemo(() => {
+    if (!project) return { paragraphs: [], canvasImages: [] };
+
+    if (project.story) {
+      return {
+        paragraphs: Array.isArray(project.story.paragraphs) ? project.story.paragraphs : [],
+        canvasImages: Array.isArray(project.story.canvasImages) ? project.story.canvasImages : []
+      };
+    }
+
+    // Convert legacy contentBlocks to Document Canvas format
+    const paragraphs = [];
+    const canvasImages = [];
+    let imageCounter = 0;
+
+    (project.contentBlocks || []).forEach((block) => {
+      if (block.type === 'text') {
+        const paras = block.content.split('\n\n').filter(Boolean);
+        paras.forEach((p) => paragraphs.push(p.trim()));
+      } else if (block.type === 'image-left' || block.type === 'image-right') {
+        const paras = (block.text || '').split('\n\n').filter(Boolean);
+        // If there's a heading line followed by body text:
+        if (paras.length > 1 && paras[0].length < 80 && !paras[0].endsWith('.')) {
+          // Push heading first (so it renders at 100% full width above the float)
+          paragraphs.push(paras[0].trim());
+          // Image belongs to the body text paragraph below the heading
+          const paraIndexForThisImage = paragraphs.length;
+          for (let i = 1; i < paras.length; i++) {
+            paragraphs.push(paras[i].trim());
+          }
+          canvasImages.push({
+            id: `img-${imageCounter++}`,
+            src: block.src,
+            caption: block.caption || '',
+            width: block.width || '35%',
+            isLeft: block.type === 'image-left',
+            paragraphIndex: paraIndexForThisImage,
+            topOffset: 0
+          });
+        } else {
+          const paraIndexForThisImage = paragraphs.length;
+          paras.forEach((p) => paragraphs.push(p.trim()));
+          canvasImages.push({
+            id: `img-${imageCounter++}`,
+            src: block.src,
+            caption: block.caption || '',
+            width: block.width || '35%',
+            isLeft: block.type === 'image-left',
+            paragraphIndex: paraIndexForThisImage,
+            topOffset: 0
+          });
+        }
+      }
+    });
+
+    return { paragraphs, canvasImages };
+  }, [project]);
+
+  const projectItemInList = projectsData?.projectsList?.find((p) => p.id === projectId);
+  const isHidden = projectItemInList?.hidden || project?.hidden || projectId === 'smart-lighting';
+
+  if (!project || isHidden) {
+    return <Navigate to="/projects" replace />;
   }
+
+  // --- Updaters ---
+  const updateProjectField = (field, value) => {
+    updateProjectsData((prev) => ({
+      ...prev,
+      projectsDetail: {
+        ...prev.projectsDetail,
+        [projectId]: {
+          ...prev.projectsDetail[projectId],
+          [field]: value
+        }
+      }
+    }));
+  };
+
+  const updateProcessCard = (index, field, value) => {
+    const newCards = [...project.processCards];
+    newCards[index] = { ...newCards[index], [field]: value };
+    updateProjectField('processCards', newCards);
+  };
+
+  const updateStory = (newStory) => {
+    updateProjectsData((prev) => ({
+      ...prev,
+      projectsDetail: {
+        ...prev.projectsDetail,
+        [projectId]: {
+          ...prev.projectsDetail[projectId],
+          story: newStory
+        }
+      }
+    }));
+  };
+
+  const updateParagraph = (index, text) => {
+    const newParagraphs = [...(storyData.paragraphs || [])];
+    newParagraphs[index] = text;
+    updateStory({ ...storyData, paragraphs: newParagraphs });
+  };
+
+  const insertParagraphAfter = (index) => {
+    const newParagraphs = [...(storyData.paragraphs || [])];
+    newParagraphs.splice(index + 1, 0, 'New paragraph here. Click to type directly on canvas.');
+    const updatedImages = (storyData.canvasImages || []).map((img) => {
+      if (img.paragraphIndex > index) {
+        return { ...img, paragraphIndex: img.paragraphIndex + 1 };
+      }
+      return img;
+    });
+    updateStory({ paragraphs: newParagraphs, canvasImages: updatedImages });
+  };
+
+  const updateCanvasImage = (imageId, updates) => {
+    const updatedImages = (storyData.canvasImages || []).map((img) =>
+      img.id === imageId ? { ...img, ...updates } : img
+    );
+    updateStory({ ...storyData, canvasImages: updatedImages });
+  };
+
+  const moveImageToParagraph = (imageId, targetParagraphIndex) => {
+    const maxIdx = Math.max(0, (storyData.paragraphs?.length || 1) - 1);
+    const clamped = Math.max(0, Math.min(targetParagraphIndex, maxIdx));
+    updateCanvasImage(imageId, { paragraphIndex: clamped, topOffset: 0 });
+  };
+
+  const toggleImageAnchor = (imageId) => {
+    const img = (storyData.canvasImages || []).find((i) => i.id === imageId);
+    if (!img) return;
+    const willAnchor = !img.isAnchored;
+    updateCanvasImage(imageId, {
+      isAnchored: willAnchor,
+      topOffset: 0
+    });
+  };
+
+  const removeCanvasImage = (imageId) => {
+    const updatedImages = (storyData.canvasImages || []).filter((img) => img.id !== imageId);
+    updateStory({ ...storyData, canvasImages: updatedImages });
+  };
+
+  // Calculate target paragraph from mouse Y on document canvas
+  const getDropLocation = (clientY) => {
+    if (!storyCanvasRef.current) return { paragraphIndex: 0, relativeY: 0 };
+    const canvasRect = storyCanvasRef.current.getBoundingClientRect();
+    const mouseY = clientY - canvasRect.top;
+
+    const paraEls = Array.from(storyCanvasRef.current.querySelectorAll('.story-paragraph'));
+    if (paraEls.length === 0) {
+      return { paragraphIndex: 0, relativeY: Math.max(0, mouseY) };
+    }
+
+    let targetIndex = 0;
+    for (let i = 0; i < paraEls.length; i++) {
+      const el = paraEls[i];
+      const elRect = el.getBoundingClientRect();
+      const paraTop = elRect.top - canvasRect.top;
+      const paraBottom = elRect.bottom - canvasRect.top;
+
+      if (mouseY <= paraBottom || i === paraEls.length - 1) {
+        targetIndex = i;
+        calculatedOffset = Math.max(0, Math.round(mouseY - paraTop));
+        break;
+      }
+    }
+
+    return {
+      paragraphIndex: Math.max(0, Math.min(targetIndex, (storyData.paragraphs.length || 1) - 1)),
+      topOffset: calculatedOffset,
+      relativeY: mouseY
+    };
+  };
+
+  const handleCanvasDragOver = (e) => {
+    if (!editMode) return;
+    e.preventDefault();
+    e.stopPropagation();
+    e.dataTransfer.dropEffect = 'copy';
+    if (dragIndicatorRef.current && storyCanvasRef.current) {
+      const canvasRect = storyCanvasRef.current.getBoundingClientRect();
+      const relativeY = Math.max(0, e.clientY - canvasRect.top);
+      dragIndicatorRef.current.style.display = 'block';
+      dragIndicatorRef.current.style.top = `${relativeY}px`;
+    }
+  };
+
+  const handleCanvasDragLeave = (e) => {
+    if (storyCanvasRef.current && !storyCanvasRef.current.contains(e.relatedTarget)) {
+      if (dragIndicatorRef.current) {
+        dragIndicatorRef.current.style.display = 'none';
+      }
+    }
+  };
+
+  const handleDropAtParagraph = async (e, targetParagraphIndex, explicitOffset = null) => {
+    if (!editMode) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (dragIndicatorRef.current) dragIndicatorRef.current.style.display = 'none';
+    setHoveredDividerIndex(null);
+    document.body.classList.remove('is-canvas-dragging');
+
+    const maxIdx = Math.max(0, (storyData.paragraphs?.length || 1) - 1);
+    const clampedIndex = Math.max(0, Math.min(targetParagraphIndex, maxIdx));
+    const loc = getDropLocation(e.clientY);
+    const resolvedOffset = explicitOffset !== null ? explicitOffset : loc.topOffset;
+
+    // 1. Direct file drop from user's computer (drag from Finder/Explorer onto paragraph)
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      for (const file of e.dataTransfer.files) {
+        const isImg = file.type.startsWith('image/');
+        const isVid = file.type.startsWith('video/') || /\.(mp4|mov|webm|m4v|ogv)$/i.test(file.name);
+        if (isImg || isVid) {
+          try {
+            const uploadedUrl = await uploadImage(projectId, file);
+            if (uploadedUrl) {
+              const newAsset = {
+                id: `img-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+                src: uploadedUrl,
+                caption: file.name,
+                width: '35%',
+                isLeft: true,
+                paragraphIndex: clampedIndex,
+                topOffset: resolvedOffset,
+                isAnchored: false
+              };
+              updateStory({
+                ...storyData,
+                canvasImages: [...(storyData.canvasImages || []), newAsset]
+              });
+            }
+          } catch (err) {
+            console.error('File drop upload error:', err);
+          }
+        }
+      }
+      return;
+    }
+
+    // 2. Retrieve payload from window global backup OR dataTransfer JSON/text
+    let dragPayload = window.__portfolioActiveDrag;
+    if (!dragPayload) {
+      try {
+        const jsonText =
+          e.dataTransfer.getData('application/json') ||
+          e.dataTransfer.getData('text/plain') ||
+          e.dataTransfer.getData('text');
+        if (jsonText) dragPayload = JSON.parse(jsonText);
+      } catch (err) {}
+    }
+
+    if (!dragPayload) return;
+
+    if (dragPayload.type === 'move-image') {
+      updateCanvasImage(dragPayload.imageId, {
+        paragraphIndex: clampedIndex,
+        topOffset: resolvedOffset,
+        isAnchored: false
+      });
+      return;
+    }
+
+    if (dragPayload.type === 'new-image' || dragPayload.src) {
+      const newImage = {
+        id: `img-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+        src: dragPayload.src,
+        caption: dragPayload.caption || '',
+        width: '35%',
+        isLeft: true,
+        paragraphIndex: clampedIndex,
+        topOffset: resolvedOffset,
+        isAnchored: false
+      };
+
+      updateStory({
+        ...storyData,
+        canvasImages: [...(storyData.canvasImages || []), newImage]
+      });
+    }
+  };
+
+  const handleCanvasDrop = (e) => {
+    if (!editMode) return;
+    const loc = getDropLocation(e.clientY);
+    handleDropAtParagraph(e, loc.paragraphIndex, loc.topOffset);
+  };
+
+  const handleInsertAsset = (asset) => {
+    const targetIdx = Math.max(0, (storyData.paragraphs?.length || 1) - 1);
+    const newImage = {
+      id: `img-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+      src: asset.src,
+      caption: asset.caption || '',
+      width: '35%',
+      isLeft: true,
+      paragraphIndex: targetIdx,
+      topOffset: 0,
+      isAnchored: false
+    };
+
+    updateStory({
+      ...storyData,
+      canvasImages: [...(storyData.canvasImages || []), newImage]
+    });
+  };
+
+  // Group images by their assigned paragraph index
+  const imagesByParagraph = {};
+  (storyData.canvasImages || []).forEach((img) => {
+    if (!img) return;
+    const maxIdx = Math.max(0, (storyData.paragraphs?.length || 1) - 1);
+    const pIdx = Math.max(0, Math.min(img.paragraphIndex || 0, maxIdx));
+    if (!imagesByParagraph[pIdx]) {
+      imagesByParagraph[pIdx] = [];
+    }
+    imagesByParagraph[pIdx].push(img);
+  });
 
   return (
     <div style={{ paddingBottom: '100px', background: '#f5f5f5' }}>
-      <div style={{
-        width: '100%',
-        minHeight: '100vh',
-        background: '#ffffff',
-        paddingBottom: '60px'
-      }}>
+      <div
+        style={{
+          width: '100%',
+          minHeight: '100vh',
+          background: '#ffffff',
+          paddingBottom: '60px'
+        }}
+      >
         {/* Hero Section */}
-        <section style={{
-          height: '50vh',
-          position: 'relative',
-          overflow: 'hidden',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#0a0a0a',
-          textAlign: 'center',
-          padding: '0 20px',
-          marginBottom: '40px' /* Reduced from 60px */
-        }}>
+        <section
+          onDragOver={(e) => {
+            if (editMode) {
+              e.preventDefault();
+              e.dataTransfer.dropEffect = 'copy';
+              setIsDraggingOverCover(true);
+            }
+          }}
+          onDragLeave={(e) => {
+            if (editMode && !e.currentTarget.contains(e.relatedTarget)) {
+              setIsDraggingOverCover(false);
+            }
+          }}
+          onDrop={async (e) => {
+            if (!editMode) return;
+            e.preventDefault();
+            setIsDraggingOverCover(false);
+
+            // Dragged asset from media drawer
+            const activeDrag = window.__portfolioActiveDrag;
+            if (activeDrag && activeDrag.src) {
+              updateCoverPhoto(projectId, activeDrag.src);
+              return;
+            }
+
+            // Dropped image file from desktop
+            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+              const file = e.dataTransfer.files[0];
+              if (file.type.startsWith('image/')) {
+                try {
+                  const url = await uploadImage(projectId, file);
+                  updateCoverPhoto(projectId, url);
+                } catch (err) {
+                  alert('Failed to upload cover photo: ' + err.message);
+                }
+              }
+            }
+          }}
+          style={{
+            height: '50vh',
+            minHeight: '380px',
+            position: 'relative',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#0a0a0a',
+            textAlign: 'center',
+            padding: '0 20px',
+            marginBottom: '40px',
+            outline: isDraggingOverCover ? '4px dashed #8B5CF6' : 'none',
+            outlineOffset: '-4px',
+            transition: 'outline 0.2s ease'
+          }}
+        >
           {/* Blurred Background */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundImage: `url('${project.hero}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'blur(12px)',
-            transform: 'scale(1.1)',
-            zIndex: 0
-          }} />
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundImage: `url('${project.hero}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'blur(12px)',
+              transform: 'scale(1.1)',
+              zIndex: 0
+            }}
+          />
           {/* Overlay */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            background: `linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.6))`,
-            zIndex: 1
-          }} />
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: `linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.6))`,
+              zIndex: 1
+            }}
+          />
+
+          {/* Drag Overlay Feedback */}
+          {isDraggingOverCover && (
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'rgba(139, 92, 246, 0.25)',
+                backdropFilter: 'blur(4px)',
+                zIndex: 15,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                pointerEvents: 'none'
+              }}
+            >
+              <div
+                style={{
+                  background: 'rgba(15, 23, 42, 0.92)',
+                  color: '#ffffff',
+                  padding: '12px 24px',
+                  borderRadius: '30px',
+                  fontWeight: '700',
+                  fontSize: '1rem',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+              >
+                📸 Drop Image to Set as Project Cover Photo
+              </div>
+            </div>
+          )}
+
+          {/* Change Cover Photo Button (Edit Mode) */}
+          {editMode && (
+            <div style={{ position: 'absolute', top: '20px', right: '24px', zIndex: 20 }}>
+              <button
+                onClick={() => setShowCoverPicker(true)}
+                style={{
+                  background: 'rgba(15, 23, 42, 0.88)',
+                  backdropFilter: 'blur(10px)',
+                  color: '#ffffff',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '24px',
+                  padding: '8px 16px',
+                  fontSize: '0.82rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#8B5CF6';
+                  e.currentTarget.style.transform = 'scale(1.03)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(15, 23, 42, 0.88)';
+                  e.currentTarget.style.transform = 'scale(1)';
+                }}
+              >
+                📷 Change Cover Photo
+              </button>
+            </div>
+          )}
 
           <div style={{ maxWidth: '900px', position: 'relative', zIndex: 2 }}>
             <Link
@@ -370,47 +602,73 @@ const ProjectDetail = () => {
             >
               ← Back to Projects
             </Link>
-            <h1 style={{
-              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-              fontWeight: '800',
-              fontFamily: 'system-ui, -apple-system, sans-serif',
-              marginBottom: '15px',
-              letterSpacing: '-1px'
-            }}>
+
+            <h1
+              contentEditable={editMode}
+              suppressContentEditableWarning={true}
+              onBlur={(e) => updateProjectField('title', e.currentTarget.innerText.trim())}
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontWeight: '800',
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+                marginBottom: '15px',
+                letterSpacing: '-1px',
+                outline: 'none',
+                cursor: editMode ? 'text' : 'inherit'
+              }}
+            >
               {project.title}
             </h1>
-            <p style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
-              color: '#444',
-              marginBottom: '20px',
-              maxWidth: '700px',
-              margin: '0 auto 20px'
-            }}>
+
+            <p
+              contentEditable={editMode}
+              suppressContentEditableWarning={true}
+              onBlur={(e) => updateProjectField('subtitle', e.currentTarget.innerText.trim())}
+              style={{
+                fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+                color: '#444',
+                marginBottom: '20px',
+                maxWidth: '700px',
+                margin: '0 auto 20px',
+                outline: 'none',
+                cursor: editMode ? 'text' : 'inherit'
+              }}
+            >
               {project.subtitle}
             </p>
-            <p style={{
-              fontSize: '1rem',
-              color: '#666',
-              fontWeight: '500'
-            }}>
+
+            <p
+              contentEditable={editMode}
+              suppressContentEditableWarning={true}
+              onBlur={(e) => updateProjectField('date', e.currentTarget.innerText.trim())}
+              style={{
+                fontSize: '1rem',
+                color: '#666',
+                fontWeight: '500',
+                outline: 'none',
+                cursor: editMode ? 'text' : 'inherit'
+              }}
+            >
               {project.date}
             </p>
           </div>
         </section>
 
         {/* Tags */}
-        <section style={{
-          maxWidth: '1000px',
-          margin: '0 auto 60px',
-          padding: '0 40px',
-          display: 'flex',
-          gap: '12px',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }}>
-          {project.tags.map((tag) => (
+        <section
+          style={{
+            maxWidth: '1000px',
+            margin: '0 auto 60px',
+            padding: '0 40px',
+            display: 'flex',
+            gap: '12px',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}
+        >
+          {project.tags.map((tag, idx) => (
             <span
-              key={tag}
+              key={idx}
               style={{
                 padding: '8px 20px',
                 background: 'white',
@@ -428,65 +686,79 @@ const ProjectDetail = () => {
         </section>
 
         {/* Process Cards (Challenge -> Solution -> Results) */}
-        <section style={{
-          maxWidth: '1400px',
-          margin: '0 auto 60px',
-          padding: '0 20px'
-        }}>
-          <div className="process-cards-grid" style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'stretch',
-            gap: '20px'
-          }}>
+        <section
+          style={{
+            maxWidth: '1400px',
+            margin: '0 auto 60px',
+            padding: '0 20px'
+          }}
+        >
+          <div
+            className="process-cards-grid"
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'stretch',
+              gap: '20px'
+            }}
+          >
             {project.processCards.map((card, index) => (
               <React.Fragment key={index}>
-                <div className="process-card" style={{
-                  background: 'white',
-                  padding: '40px 30px',
-                  borderRadius: '12px',
-                  border: '1px solid #eaeaea',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.03)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  position: 'relative',
-                  flex: '1',
-                  minWidth: 0
-                }}>
-                  <div style={{
-                    display: 'inline-block',
-                    background: 'rgba(139, 92, 246, 0.1)',
-                    color: '#8B5CF6',
-                    padding: '6px 14px',
-                    borderRadius: '20px',
-                    fontSize: '0.85rem',
-                    fontWeight: '700',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                    marginBottom: '20px',
-                    alignSelf: 'flex-start'
-                  }}>
+                <div
+                  className="process-card"
+                  style={{
+                    background: 'white',
+                    padding: '40px 30px',
+                    borderRadius: '12px',
+                    border: '1px solid #eaeaea',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.03)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: '1 1 0',
+                    minWidth: '250px'
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontSize: '1.4rem',
+                      fontWeight: '700',
+                      marginBottom: '15px',
+                      color: '#0a0a0a',
+                      letterSpacing: '-0.5px'
+                    }}
+                  >
                     {card.heading}
-                  </div>
-                  <p style={{
-                    fontSize: '1.05rem',
-                    lineHeight: '1.7',
-                    color: '#444',
-                    margin: 0
-                  }}>
+                  </h3>
+                  <p
+                    contentEditable={editMode}
+                    suppressContentEditableWarning={true}
+                    onBlur={(e) => updateProcessCard(index, 'content', e.currentTarget.innerText.trim())}
+                    style={{
+                      fontSize: '1rem',
+                      lineHeight: '1.6',
+                      color: '#444',
+                      margin: 0,
+                      textAlign: 'left',
+                      outline: 'none',
+                      cursor: editMode ? 'text' : 'inherit'
+                    }}
+                  >
                     {card.content}
                   </p>
                 </div>
-                {/* Optional: Add an arrow between items on Desktop (hidden via CSS on mobile later) */}
+
                 {index < project.processCards.length - 1 && (
-                  <div className="process-arrow" style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#e0e0e0',
-                    fontSize: '2rem',
-                    flexShrink: 0
-                  }}>
+                  <div
+                    className="process-arrow"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#e0e0e0',
+                      fontSize: '2rem',
+                      flexShrink: 0
+                    }}
+                  >
                     →
                   </div>
                 )}
@@ -495,463 +767,989 @@ const ProjectDetail = () => {
           </div>
         </section>
 
-        {/* Flexible Content Blocks */}
-        <section style={{
-          maxWidth: '1200px', // Restored
-          margin: '0 auto 80px',
-          padding: '0 20px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '40px' // Restored
-        }}>
-          {project.contentBlocks.map((block, index) => {
-            switch (block.type) {
-              case 'text':
-                return (
-                  <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                    {block.content.split('\n\n').map((para, i) => (
-                      <p key={i} style={{
+        {/* DOCUMENT CANVAS: Continuous Narrative with Native Flow & Space Filling */}
+        <section
+          style={{
+            maxWidth: '1200px',
+            margin: '0 auto 80px',
+            padding: '0 20px',
+            position: 'relative'
+          }}
+        >
+          <div
+            ref={storyCanvasRef}
+            onDragOver={handleCanvasDragOver}
+            onDragLeave={handleCanvasDragLeave}
+            onDrop={handleCanvasDrop}
+            style={{
+              position: 'relative',
+              minHeight: '200px',
+              padding: editMode ? '10px 0' : '0'
+            }}
+          >
+            {/* Global style preventing contenteditable text interference during drag */}
+            <style>{`
+              .is-canvas-dragging [contenteditable] {
+                user-select: none !important;
+                pointer-events: none !important;
+              }
+            `}</style>
+
+            {/* Live Visual Drag Guideline (Ref-based, zero React re-renders during drag) */}
+            <div
+              ref={dragIndicatorRef}
+              style={{
+                display: 'none',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '2px',
+                background: '#8B5CF6',
+                boxShadow: '0 0 10px rgba(139, 92, 246, 0.9)',
+                zIndex: 2000,
+                pointerEvents: 'none'
+              }}
+            />
+
+            {storyData.paragraphs.map((paraText, pIdx) => {
+              const imagesForThisPara = imagesByParagraph[pIdx] || [];
+              const isHead = paraText && paraText.trim().length < 80 && !paraText.trim().endsWith('.') && !paraText.includes('. ');
+
+              return (
+                <React.Fragment key={pIdx}>
+                  {/* Images slotted at this paragraph:
+                      All text above this point renders at 100% full width!
+                      The body text beside this wraps around the float cleanly. */}
+                  {imagesForThisPara.map((img) => (
+                    <InteractiveCanvasImage
+                      key={img.id}
+                      id={img.id}
+                      src={img.src}
+                      caption={img.caption}
+                      width={img.width || '35%'}
+                      isLeft={img.isLeft}
+                      paragraphIndex={pIdx}
+                      totalParagraphs={storyData.paragraphs.length}
+                      topOffset={img.topOffset || 0}
+                      isAnchored={Boolean(img.isAnchored)}
+                      editMode={editMode}
+                      onUpdateWidth={(newW) => updateCanvasImage(img.id, { width: newW })}
+                      onToggleFloat={() => updateCanvasImage(img.id, { isLeft: !img.isLeft })}
+                      onToggleAnchor={() => toggleImageAnchor(img.id)}
+                      onUpdateCaption={(newCap) => updateCanvasImage(img.id, { caption: newCap })}
+                      onMoveToParagraph={(targetIdx) => moveImageToParagraph(img.id, targetIdx)}
+                      onRemove={() => removeCanvasImage(img.id)}
+                    />
+                  ))}
+
+                  {/* Section Heading (Always 100% Full Width & Clears Above Floats) OR Body Paragraph */}
+                  {isHead ? (
+                    <h3
+                      data-para-index={pIdx}
+                      className="story-paragraph"
+                      contentEditable={editMode}
+                      suppressContentEditableWarning={true}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault();
+                          insertParagraphAfter(pIdx);
+                        }
+                      }}
+                      onBlur={(e) => updateParagraph(pIdx, e.currentTarget.innerText.trim())}
+                      onDragOver={(e) => {
+                        if (!editMode) return;
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'copy';
+                        if (dragIndicatorRef.current && storyCanvasRef.current) {
+                          const canvasRect = storyCanvasRef.current.getBoundingClientRect();
+                          const relativeY = Math.max(0, e.clientY - canvasRect.top);
+                          dragIndicatorRef.current.style.display = 'block';
+                          dragIndicatorRef.current.style.top = `${relativeY}px`;
+                        }
+                      }}
+                      onDrop={(e) => {
+                        const loc = getDropLocation(e.clientY);
+                        handleDropAtParagraph(e, pIdx, loc.topOffset);
+                      }}
+                      style={{
+                        clear: 'both',
+                        width: '100%',
+                        fontSize: '1.65rem',
+                        fontWeight: '700',
+                        color: '#0a0a0a',
+                        letterSpacing: '-0.5px',
+                        fontFamily: 'system-ui, -apple-system, sans-serif',
+                        textAlign: 'left',
+                        margin: pIdx === 0 ? '0 0 16px 0' : '48px 0 16px 0',
+                        outline: 'none',
+                        cursor: editMode ? 'text' : 'inherit',
+                        borderRadius: '4px',
+                        transition: 'background 0.2s'
+                      }}
+                    >
+                      {paraText}
+                    </h3>
+                  ) : (
+                    <p
+                      data-para-index={pIdx}
+                      className="story-paragraph"
+                      contentEditable={editMode}
+                      suppressContentEditableWarning={true}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault();
+                          insertParagraphAfter(pIdx);
+                        }
+                      }}
+                      onBlur={(e) => updateParagraph(pIdx, e.currentTarget.innerText.trim())}
+                      onDragOver={(e) => {
+                        if (!editMode) return;
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'copy';
+                        if (dragIndicatorRef.current && storyCanvasRef.current) {
+                          const canvasRect = storyCanvasRef.current.getBoundingClientRect();
+                          const relativeY = Math.max(0, e.clientY - canvasRect.top);
+                          dragIndicatorRef.current.style.display = 'block';
+                          dragIndicatorRef.current.style.top = `${relativeY}px`;
+                        }
+                      }}
+                      onDrop={(e) => {
+                        const loc = getDropLocation(e.clientY);
+                        handleDropAtParagraph(e, pIdx, loc.topOffset);
+                      }}
+                      style={{
                         fontSize: '1.25rem',
                         lineHeight: '1.8',
                         color: '#333',
                         textAlign: 'left',
-                        margin: 0
-                      }}>
-                        {para.trim()}
-                      </p>
-                    ))}
-                  </div>
-                );
-              case 'image-left':
-              case 'image-right':
-                const isLeft = block.type === 'image-left';
-                return (
-                  <div key={index} className="flexible-image-wrap" style={{
-                    display: 'block',
-                    margin: '0'
-                  }}>
-                    <div className="flexible-img-container" style={{
-                      float: isLeft ? 'left' : 'right',
-                      width: block.width || '30%',
-                      minWidth: '200px',
-                      maxWidth: block.maxWidth || '350px',
-                      marginRight: isLeft ? '40px' : '0',
-                      marginLeft: isLeft ? '0' : '40px',
-                      marginBottom: '20px'
-                    }}>
-                      <img src={block.src} alt="Project context" style={{
-                        width: '100%',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-                        display: 'block'
-                      }} />
-                      {block.caption && (
-                        <p style={{
-                          fontSize: '0.8rem',
-                          color: '#666',
-                          textAlign: 'center',
-                          marginTop: '12px',
-                          fontStyle: 'italic',
-                          lineHeight: '1.4'
-                        }}>
-                          {block.caption}
-                        </p>
-                      )}
-                    </div>
-                    <div style={{ display: 'block' }}>
-                      {block.text.split('\n\n').map((para, i) => (
-                        <p key={i} style={{
-                          fontSize: '1.25rem',
-                          lineHeight: '1.8',
-                          color: '#333',
-                          textAlign: 'left',
-                          margin: '0 0 16px 0'
-                        }}>
-                          {para.trim()}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                );
-              case 'image-row':
-                return (
-                  <div key={index} className="flexible-image-row" style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', // Reduced minmax for smaller images
-                    gap: '20px',
-                    margin: '30px 0'
-                  }}>
-                    {block.images.map((src, idx) => (
-                      <div key={idx} style={{
-                        borderRadius: '8px',
-                        overflow: 'hidden',
-                        background: '#f0f0f0',
-                        border: '1px solid #eaeaea',
-                        boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
-                      }}>
-                        <img src={src} alt={`Detail ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                      </div>
-                    ))}
-                  </div>
-                );
-              default:
-                return null;
-            }
-          })}
-        </section>
+                        margin: '0 0 24px 0',
+                        outline: 'none',
+                        cursor: editMode ? 'text' : 'inherit',
+                        borderRadius: '4px',
+                        transition: 'background 0.2s'
+                      }}
+                    >
+                      {paraText}
+                    </p>
+                  )}
 
-        {/* Image Gallery */}
-        {project.images && project.images.length > 0 && (
-          <section style={{
-            maxWidth: '1400px',
-            margin: '60px auto 0',
-            padding: '0 20px'
-          }}>
-            <h2 style={{
-              fontSize: '2rem',
-              color: '#0a0a0a',
-              marginBottom: '50px',
-              textAlign: 'center',
-              fontFamily: 'system-ui, -apple-system, sans-serif',
-              fontWeight: '700'
-            }}>
-              Project Gallery
-            </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-              gap: '30px'
-            }}>
-              {project.images.map((img, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    setCurrentImageIndex(index);
-                    setLightboxOpen(true);
-                  }}
-                  style={{
-                    background: '#f0f0f0',
-                    borderRadius: '12px',
-                    overflow: 'hidden',
-                    border: '1px solid #eaeaea',
-                    aspectRatio: '4/3',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-                    transition: 'transform 0.3s ease',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-5px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                  }}
-                >
-                  {img ? (
-                    (() => {
-                      const src = typeof img === 'string' ? img : img.src;
-                      const isVideo = src.match(/\.(mp4|webm|mov)$/i);
-                      return isVideo ? (
-                        <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <video
-                            src={src}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
-                            muted
-                            playsInline
-                          />
-                          <div style={{
-                            position: 'relative',
-                            zIndex: 10,
-                            backgroundColor: 'rgba(0,0,0,0.6)',
-                            border: '2px solid rgba(255,255,255,0.8)',
-                            borderRadius: '50%',
-                            width: '48px',
-                            height: '48px',
+                  {/* Smooth Between-Paragraph Insertion Divider */}
+                  {editMode && (
+                    <div
+                      onMouseEnter={() => setHoveredDividerIndex(pIdx)}
+                      onMouseLeave={() => setHoveredDividerIndex(null)}
+                      onDragOver={(e) => {
+                        if (!editMode) return;
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'copy';
+                        setHoveredDividerIndex(pIdx);
+                      }}
+                      onDrop={(e) => handleDropAtParagraph(e, pIdx + 1, 0)}
+                      style={{
+                        height: '24px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        position: 'relative',
+                        cursor: 'pointer',
+                        margin: '4px 0',
+                        zIndex: 10
+                      }}
+                      onClick={() => insertParagraphAfter(pIdx)}
+                    >
+                      <div
+                        style={{
+                          width: '100%',
+                          height: '2px',
+                          background: hoveredDividerIndex === pIdx ? '#8B5CF6' : 'transparent',
+                          transition: 'background 0.2s',
+                          position: 'relative'
+                        }}
+                      />
+                      {hoveredDividerIndex === pIdx && (
+                        <div
+                          style={{
+                            position: 'absolute',
+                            background: '#8B5CF6',
+                            color: '#ffffff',
+                            borderRadius: '16px',
+                            padding: '2px 12px',
+                            fontSize: '0.72rem',
+                            fontWeight: '600',
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center',
-                            color: 'white',
-                            fontSize: '22px',
-                            paddingLeft: '4px', // Optical centering for a play triangle
-                            backdropFilter: 'blur(2px)'
-                          }}>
-                            ▶
+                            gap: '4px',
+                            boxShadow: '0 2px 8px rgba(139, 92, 246, 0.4)',
+                            zIndex: 20,
+                            pointerEvents: 'none'
+                          }}
+                        >
+                          <span>+ Add Paragraph (or hit Enter)</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {!editMode && <div style={{ height: '20px' }} />}
+                </React.Fragment>
+              );
+            })}
+
+            {/* Clear floats at end of story flow */}
+            <div style={{ clear: 'both' }} />
+          </div>
+
+          {/* Bottom Add Paragraph Button */}
+          {editMode && (
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
+              <button
+                onClick={() => insertParagraphAfter(storyData.paragraphs.length - 1)}
+                style={{
+                  background: 'rgba(139, 92, 246, 0.1)',
+                  color: '#7c3aed',
+                  border: '1px dashed #8B5CF6',
+                  borderRadius: '24px',
+                  padding: '8px 20px',
+                  fontSize: '0.9rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  transition: 'all 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#8B5CF6';
+                  e.currentTarget.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
+                  e.currentTarget.style.color = '#7c3aed';
+                }}
+              >
+                <span>➕ Add Paragraph</span>
+              </button>
+            </div>
+          )}
+        </section>
+
+        {/* Bottom Image Gallery */}
+        {project.images && project.images.length > 0 && (
+          <section
+            style={{
+              maxWidth: '1200px',
+              margin: '0 auto',
+              padding: '0 20px 60px'
+            }}
+          >
+            <h2
+              style={{
+                fontSize: '1.8rem',
+                marginBottom: '30px',
+                color: '#0a0a0a',
+                borderLeft: '4px solid #8B5CF6',
+                paddingLeft: '20px'
+              }}
+            >
+              Visual Documentation &amp; Gallery
+            </h2>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                gap: '24px'
+              }}
+            >
+              {project.images.map((img, idx) => {
+                const src = typeof img === 'string' ? img : (img?.src || '');
+                const caption = typeof img === 'string' ? '' : (img?.caption || '');
+                const isVid = isMediaVideo(src);
+
+                return (
+                  <div
+                    key={idx}
+                    onClick={() => {
+                      setCurrentImageIndex(idx);
+                      setLightboxOpen(true);
+                    }}
+                    style={{
+                      borderRadius: '10px',
+                      overflow: 'hidden',
+                      background: '#ffffff',
+                      border: '1px solid #eaeaea',
+                      boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s, box-shadow 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-4px)';
+                      e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.05)';
+                    }}
+                  >
+                    <div style={{ width: '100%', height: '200px', overflow: 'hidden', background: '#0a0a0a', position: 'relative' }}>
+                      {isVid ? (
+                        <>
+                          <video
+                            ref={(el) => {
+                              if (el) {
+                                el.defaultMuted = true;
+                                el.muted = true;
+                              }
+                            }}
+                            src={src}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            preload="auto"
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                          <div
+                            style={{
+                              position: 'absolute',
+                              bottom: '8px',
+                              left: '8px',
+                              background: 'rgba(15, 23, 42, 0.85)',
+                              color: '#38bdf8',
+                              fontSize: '0.72rem',
+                              fontWeight: 'bold',
+                              padding: '2px 8px',
+                              borderRadius: '4px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '4px'
+                            }}
+                          >
+                            ▶ VIDEO
                           </div>
+                        </>
+                      ) : (
+                        <>
+                          <img
+                            src={src}
+                            alt={caption || `Gallery ${idx + 1}`}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                          {/* Cover Photo Badge or Set as Cover Button */}
+                          {project.hero === src ? (
+                            <div
+                              style={{
+                                position: 'absolute',
+                                top: '8px',
+                                right: '8px',
+                                background: 'linear-gradient(135deg, #8B5CF6, #6D28D9)',
+                                color: '#ffffff',
+                                fontSize: '0.68rem',
+                                fontWeight: '700',
+                                padding: '3px 8px',
+                                borderRadius: '6px',
+                                boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                zIndex: 5
+                              }}
+                              title="Current project cover photo"
+                            >
+                              ★ Cover Photo
+                            </div>
+                          ) : editMode ? (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                updateCoverPhoto(projectId, src);
+                              }}
+                              title="Set this image as project cover photo"
+                              style={{
+                                position: 'absolute',
+                                top: '8px',
+                                right: '8px',
+                                background: 'rgba(15, 23, 42, 0.85)',
+                                color: '#ffffff',
+                                border: '1px solid rgba(255,255,255,0.25)',
+                                borderRadius: '6px',
+                                padding: '4px 10px',
+                                fontSize: '0.68rem',
+                                fontWeight: '600',
+                                cursor: 'pointer',
+                                boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+                                zIndex: 5
+                              }}
+                              onMouseEnter={(e) => (e.currentTarget.style.background = '#8B5CF6')}
+                              onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(15, 23, 42, 0.85)')}
+                            >
+                              ★ Set as Cover
+                            </button>
+                          ) : null}
+                        </>
+                      )}
+                    </div>
+                    {/* Caption Section */}
+                    <div
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        padding: '12px 14px',
+                        background: editMode ? '#fafafa' : '#ffffff',
+                        borderTop: '1px solid #f1f5f9'
+                      }}
+                    >
+                      {editMode ? (
+                        <div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                            <span style={{ fontSize: '0.68rem', fontWeight: '700', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                              Caption
+                            </span>
+                          </div>
+                          <input
+                            type="text"
+                            key={`cap-${idx}-${caption}`}
+                            defaultValue={caption}
+                            placeholder="Add a caption..."
+                            onBlur={(e) => {
+                              const val = e.target.value.trim();
+                              if (val !== caption) {
+                                updateImageCaption(projectId, idx, val);
+                              }
+                            }}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                e.currentTarget.blur();
+                              }
+                            }}
+                            style={{
+                              width: '100%',
+                              padding: '6px 10px',
+                              fontSize: '0.85rem',
+                              color: '#1e293b',
+                              border: '1px solid #cbd5e1',
+                              borderRadius: '6px',
+                              background: '#ffffff',
+                              outline: 'none',
+                              boxSizing: 'border-box',
+                              fontFamily: 'inherit'
+                            }}
+                            onFocus={(e) => (e.target.style.borderColor = '#8B5CF6')}
+                            onBlurCapture={(e) => (e.target.style.borderColor = '#cbd5e1')}
+                          />
                         </div>
                       ) : (
-                        <img
-                          src={src}
-                          alt={`Gallery ${index + 1}`}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
-                      );
-                    })()
-                  ) : (
-                    <span style={{ color: '#888', fontWeight: '500' }}>[Placeholder {index + 1}]</span>
-                  )}
-                </div>
-              ))}
+                        caption && (
+                          <div style={{ fontSize: '0.85rem', color: '#555', lineHeight: '1.4' }}>
+                            {caption}
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </section>
         )}
+      </div>
 
-        {/* Lightbox Overlay */}
-        {lightboxOpen && project?.images?.length > 0 && (
+      {/* Lightbox Modal */}
+      {lightboxOpen && project.images && project.images[currentImageIndex] && (() => {
+        const curAsset = project.images[currentImageIndex];
+        const curSrc = typeof curAsset === 'string' ? curAsset : (curAsset?.src || '');
+        const curCaption = typeof curAsset === 'string' ? '' : (curAsset?.caption || '');
+        const isVid = isMediaVideo(curSrc);
+
+        return (
           <div
+            onClick={() => setLightboxOpen(false)}
             style={{
               position: 'fixed',
               top: 0,
               left: 0,
               width: '100vw',
               height: '100vh',
-              backgroundColor: 'rgba(0, 0, 0, 0.95)',
-              backdropFilter: 'blur(10px)',
-              zIndex: 99999, // Ensure it's above Navigation (10000)
+              background: 'rgba(0, 0, 0, 0.92)',
+              zIndex: 10000,
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              padding: '40px'
             }}
-            onClick={() => setLightboxOpen(false)}
           >
-            {/* Close Button */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setLightboxOpen(false);
-              }}
+              onClick={() => setLightboxOpen(false)}
               style={{
-                position: 'fixed',
-                top: '30px',
-                right: '40px',
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '50%',
-                width: '50px',
-                height: '50px',
-                padding: '0',
-                margin: '0',
-                color: 'white',
-                fontSize: '1.5rem',
-                lineHeight: '0',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 100000,
-                transition: 'all 0.2s',
-                backdropFilter: 'blur(5px)',
-                mixBlendMode: 'difference'
+                position: 'absolute',
+                top: '20px',
+                right: '30px',
+                background: 'transparent',
+                border: 'none',
+                color: '#ffffff',
+                fontSize: '2.5rem',
+                cursor: 'pointer'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'white';
-                e.currentTarget.style.color = '#1a1a1a';
-                e.currentTarget.style.mixBlendMode = 'normal'; // remove blend mode on hover so button becomes solid white
-                e.currentTarget.style.transform = 'scale(1.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.color = 'white';
-                e.currentTarget.style.mixBlendMode = 'difference'; // restore dynamic contrast
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-              aria-label="Close"
             >
-              ✕
+              &times;
             </button>
 
-            {/* Previous Arrow */}
             <button
-              className="gallery-prev-btn"
               onClick={(e) => {
                 e.stopPropagation();
                 setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
               }}
               style={{
                 position: 'absolute',
-                left: '40px',
-                background: 'transparent',
+                left: '30px',
+                background: 'rgba(255,255,255,0.1)',
                 border: 'none',
-                color: 'white',
-                fontSize: '3rem',
-                fontWeight: '300',
+                color: '#ffffff',
+                fontSize: '2rem',
+                borderRadius: '50%',
+                width: '50px',
+                height: '50px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 100000,
-                transition: 'transform 0.2s, opacity 0.2s',
-                opacity: 0.8,
-                mixBlendMode: 'difference'
+                justifyContent: 'center'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = '1';
-                e.currentTarget.style.transform = 'scale(1.1) translateX(-5px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.opacity = '0.8';
-                e.currentTarget.style.transform = 'scale(1) translateX(0)';
-              }}
-              aria-label="Previous"
             >
-              ‹
+              &#8249;
             </button>
 
-            {/* Displayed Image and Optional Caption Container */}
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              maxWidth: '85vw',
-              zIndex: 10000
-            }}>
-              {(() => {
-                const src = typeof project.images[currentImageIndex] === 'string'
-                  ? project.images[currentImageIndex]
-                  : project.images[currentImageIndex].src;
-                const isVideo = src.match(/\.(mp4|webm|mov)$/i);
-
-                const commonStyle = {
-                  maxWidth: '100%',
-                  maxHeight: 'calc(75vh - 50px)', // Shrink height further for longer mobile captions
-                  objectFit: 'contain',
-                  borderRadius: '8px',
-                  boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
-                  userSelect: 'none'
-                };
-
-                return isVideo ? (
-                  <video
-                    src={src}
-                    style={commonStyle}
-                    controls
-                    autoPlay
-                    playsInline
-                    onClick={(e) => e.stopPropagation()} // Prevent clicking video from closing lightbox
-                  />
-                ) : (
-                  <img
-                    src={src}
-                    alt="Expanded Gallery Image"
-                    style={commonStyle}
-                    onClick={(e) => e.stopPropagation()} // Prevent clicking image from closing lightbox
-                  />
-                );
-              })()}
-              {typeof project.images[currentImageIndex] === 'object' && project.images[currentImageIndex].caption && (
-                <div
-                  className="gallery-caption-text"
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                maxWidth: '85vw',
+                maxHeight: '85vh',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+              }}
+            >
+              {isVid ? (
+                <video
+                  ref={(el) => {
+                    if (el) {
+                      el.play?.().catch(() => {});
+                    }
+                  }}
+                  src={curSrc}
+                  controls
+                  autoPlay
+                  playsInline
+                  preload="auto"
                   style={{
-                    marginTop: '15px',
-                    color: 'rgba(255, 255, 255, 0.9)',
-                    fontSize: '1.05rem',
-                    fontWeight: '400',
-                    textAlign: 'center',
                     maxWidth: '100%',
-                    lineHeight: '1.4',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.8)',
-                    userSelect: 'none',
-                    fontFamily: 'system-ui, -apple-system, sans-serif'
-                  }}>
-                  {project.images[currentImageIndex].caption}
+                    maxHeight: '75vh',
+                    borderRadius: '8px',
+                    boxShadow: '0 20px 50px rgba(0,0,0,0.6)'
+                  }}
+                />
+              ) : (
+                <img
+                  src={curSrc}
+                  alt="Lightbox asset"
+                  style={{
+                    maxWidth: '100%',
+                    maxHeight: '75vh',
+                    objectFit: 'contain',
+                    borderRadius: '8px',
+                    boxShadow: '0 20px 50px rgba(0,0,0,0.6)'
+                  }}
+                />
+              )}
+              {editMode ? (
+                <div
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    marginTop: '16px',
+                    width: '100%',
+                    maxWidth: '650px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  <input
+                    type="text"
+                    key={`lb-${currentImageIndex}-${curCaption}`}
+                    defaultValue={curCaption}
+                    placeholder="Add a caption..."
+                    onBlur={(e) => {
+                      const val = e.target.value.trim();
+                      if (val !== curCaption) {
+                        updateImageCaption(projectId, currentImageIndex, val);
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') e.currentTarget.blur();
+                    }}
+                    style={{
+                      width: '100%',
+                      padding: '8px 14px',
+                      fontSize: '0.92rem',
+                      color: '#ffffff',
+                      background: 'rgba(255, 255, 255, 0.12)',
+                      backdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: '8px',
+                      outline: 'none',
+                      textAlign: 'center',
+                      boxSizing: 'border-box'
+                    }}
+                  />
+                  {!isVid && (
+                    <button
+                      onClick={() => updateCoverPhoto(projectId, curSrc)}
+                      style={{
+                        background: project.hero === curSrc ? '#8B5CF6' : 'rgba(255,255,255,0.18)',
+                        color: '#ffffff',
+                        border: '1px solid rgba(255,255,255,0.25)',
+                        borderRadius: '6px',
+                        padding: '4px 14px',
+                        fontSize: '0.75rem',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (project.hero !== curSrc) e.currentTarget.style.background = '#8B5CF6';
+                      }}
+                      onMouseLeave={(e) => {
+                        if (project.hero !== curSrc) e.currentTarget.style.background = 'rgba(255,255,255,0.18)';
+                      }}
+                    >
+                      {project.hero === curSrc ? '★ Current Cover Photo' : 'Set as Cover Photo'}
+                    </button>
+                  )}
                 </div>
+              ) : (
+                curCaption && (
+                  <p
+                    style={{
+                      color: '#ffffff',
+                      marginTop: '16px',
+                      fontSize: '1rem',
+                      textAlign: 'center',
+                      maxWidth: '700px'
+                    }}
+                  >
+                    {curCaption}
+                  </p>
+                )
               )}
             </div>
 
-            {/* Next Arrow */}
             <button
-              className="gallery-next-btn"
               onClick={(e) => {
                 e.stopPropagation();
                 setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
               }}
               style={{
                 position: 'absolute',
-                right: '40px',
-                background: 'transparent',
+                right: '30px',
+                background: 'rgba(255,255,255,0.1)',
                 border: 'none',
-                color: 'white',
-                fontSize: '3rem',
-                fontWeight: '300',
+                color: '#ffffff',
+                fontSize: '2rem',
+                borderRadius: '50%',
+                width: '50px',
+                height: '50px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 100000,
-                transition: 'transform 0.2s, opacity 0.2s',
-                opacity: 0.8,
-                mixBlendMode: 'difference'
+                justifyContent: 'center'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = '1';
-                e.currentTarget.style.transform = 'scale(1.1) translateX(5px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.opacity = '0.8';
-                e.currentTarget.style.transform = 'scale(1) translateX(0)';
-              }}
-              aria-label="Next"
             >
-              ›
+              &#8250;
             </button>
+          </div>
+        );
+      })()}
 
-            {/* Image Counter */}
-            <div style={{
-              position: 'absolute',
-              bottom: '20px',
-              color: 'white',
-              fontSize: '1.2rem',
-              fontWeight: '500',
+      {/* Cover Photo Picker Modal */}
+      {showCoverPicker && (
+        <div
+          onClick={() => setShowCoverPicker(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.75)',
+            backdropFilter: 'blur(6px)',
+            zIndex: 10000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px'
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: '#ffffff',
+              borderRadius: '16px',
+              maxWidth: '680px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)',
+              padding: '28px',
               fontFamily: 'system-ui, -apple-system, sans-serif'
-            }}>
-              {currentImageIndex + 1} / {project.images.length}
+            }}
+          >
+            {/* Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+              <div>
+                <h3 style={{ margin: 0, fontSize: '1.3rem', fontWeight: '700', color: '#0f172a' }}>
+                  Project Cover Photo
+                </h3>
+                <p style={{ margin: '4px 0 0', fontSize: '0.82rem', color: '#64748b' }}>
+                  Choose an image from the gallery, upload a new photo, or enter a URL.
+                </p>
+              </div>
+              <button
+                onClick={() => setShowCoverPicker(false)}
+                style={{
+                  background: '#f1f5f9',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: '32px',
+                  height: '32px',
+                  cursor: 'pointer',
+                  fontSize: '1.2rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#475569'
+                }}
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Current Cover Preview */}
+            <div style={{ marginBottom: '24px' }}>
+              <div style={{ fontSize: '0.8rem', fontWeight: '600', color: '#475569', marginBottom: '8px' }}>
+                CURRENT COVER:
+              </div>
+              <div
+                style={{
+                  width: '100%',
+                  height: '160px',
+                  borderRadius: '10px',
+                  backgroundImage: `url('${project.hero}')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  border: '2px solid #e2e8f0',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+              >
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '8px',
+                    left: '8px',
+                    background: 'rgba(15, 23, 42, 0.85)',
+                    color: '#ffffff',
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    fontSize: '0.72rem',
+                    fontWeight: '600',
+                    maxWidth: '90%',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
+                  }}
+                >
+                  {project.hero}
+                </div>
+              </div>
+            </div>
+
+            {/* Upload Button */}
+            <div style={{ marginBottom: '24px' }}>
+              <input
+                type="file"
+                ref={coverFileInputRef}
+                accept="image/*"
+                style={{ display: 'none' }}
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  try {
+                    const url = await uploadImage(projectId, file);
+                    updateCoverPhoto(projectId, url);
+                    setShowCoverPicker(false);
+                  } catch (err) {
+                    alert('Upload failed: ' + err.message);
+                  }
+                }}
+              />
+              <button
+                onClick={() => coverFileInputRef.current?.click()}
+                style={{
+                  width: '100%',
+                  padding: '12px',
+                  background: 'linear-gradient(135deg, #8B5CF6, #7C3AED)',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '10px',
+                  fontSize: '0.9rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  boxShadow: '0 4px 12px rgba(124, 58, 237, 0.3)'
+                }}
+              >
+                📤 Upload New Cover Photo from Computer
+              </button>
+            </div>
+
+            {/* Select from existing gallery images */}
+            {project.images && project.images.length > 0 && (
+              <div style={{ marginBottom: '24px' }}>
+                <div style={{ fontSize: '0.8rem', fontWeight: '600', color: '#475569', marginBottom: '10px' }}>
+                  CHOOSE FROM PROJECT MEDIA:
+                </div>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))',
+                    gap: '12px',
+                    maxHeight: '220px',
+                    overflowY: 'auto',
+                    padding: '4px'
+                  }}
+                >
+                  {project.images.map((img, idx) => {
+                    const src = typeof img === 'string' ? img : (img?.src || '');
+                    const isVid = isMediaVideo(src);
+                    if (isVid) return null; // Cover photos must be images
+                    const isSelected = project.hero === src;
+
+                    return (
+                      <div
+                        key={idx}
+                        onClick={() => {
+                          updateCoverPhoto(projectId, src);
+                          setShowCoverPicker(false);
+                        }}
+                        style={{
+                          height: '80px',
+                          borderRadius: '8px',
+                          border: isSelected ? '3px solid #8B5CF6' : '1px solid #cbd5e1',
+                          overflow: 'hidden',
+                          cursor: 'pointer',
+                          position: 'relative',
+                          boxShadow: isSelected ? '0 0 0 2px #c4b5fd' : 'none',
+                          transform: isSelected ? 'scale(1.02)' : 'none',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        <img
+                          src={src}
+                          alt={`Option ${idx + 1}`}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                        {isSelected && (
+                          <div
+                            style={{
+                              position: 'absolute',
+                              top: '4px',
+                              right: '4px',
+                              background: '#8B5CF6',
+                              color: '#fff',
+                              borderRadius: '50%',
+                              width: '18px',
+                              height: '18px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              fontSize: '0.65rem',
+                              fontWeight: 'bold'
+                            }}
+                          >
+                            ✓
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Custom URL Input */}
+            <div>
+              <div style={{ fontSize: '0.8rem', fontWeight: '600', color: '#475569', marginBottom: '8px' }}>
+                OR PASTE IMAGE URL:
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <input
+                  type="text"
+                  placeholder="/images/projects/custom-hero.png or https://..."
+                  value={customCoverUrl}
+                  onChange={(e) => setCustomCoverUrl(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && customCoverUrl.trim()) {
+                      updateCoverPhoto(projectId, customCoverUrl.trim());
+                      setCustomCoverUrl('');
+                      setShowCoverPicker(false);
+                    }
+                  }}
+                  style={{
+                    flex: 1,
+                    padding: '9px 12px',
+                    fontSize: '0.85rem',
+                    border: '1px solid #cbd5e1',
+                    borderRadius: '8px',
+                    outline: 'none'
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    if (customCoverUrl.trim()) {
+                      updateCoverPhoto(projectId, customCoverUrl.trim());
+                      setCustomCoverUrl('');
+                      setShowCoverPicker(false);
+                    }
+                  }}
+                  style={{
+                    padding: '9px 16px',
+                    background: '#0f172a',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    fontSize: '0.85rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Apply
+                </button>
+              </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Responsive Styles Overlay */}
-        <style>{`
-        @media (max-width: 900px) {
-          .process-cards-grid {
-            grid-template-columns: 1fr !important;
-            gap: 20px !important;
-          }
-          .process-arrow {
-            display: none !important;
-          }
-        }
-        @media (max-width: 768px) {
-          .flexible-image-wrap {
-            display: block !important;
-          }
-          .flexible-img-container {
-            float: none !important;
-            width: 80% !important;
-            max-width: 400px !important;
-            margin: 0 auto 20px auto !important;
-          }
-          .flexible-image-wrap p {
-            width: 100% !important;
-          }
-          .gallery-prev-btn {
-            left: 15% !important;
-            bottom: 30px !important;
-            top: auto !important;
-          }
-          .gallery-next-btn {
-            right: 15% !important;
-            bottom: 30px !important;
-            top: auto !important;
-          }
-          .gallery-caption-text {
-            margin-bottom: 20px !important;
-            font-size: 0.9rem !important;
-          }
-        }
-      `}</style>
-      </div>
+      {/* Media Drawer for dragging & adding photos and videos */}
+      {editMode && (
+        <GalleryDrawer
+          projectId={projectId}
+          images={project.images}
+          onInsertAsset={handleInsertAsset}
+        />
+      )}
     </div>
   );
 };

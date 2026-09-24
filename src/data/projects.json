@@ -1,0 +1,622 @@
+{
+  "projectsList": [
+    {
+      "id": "bionic-hand",
+      "title": "7-DOF Bionic Hand",
+      "subtitle": "BioWare 2.0 - Anthropomorphic Tendon-Driven Hand",
+      "color": "#7c3aed",
+      "link": "/projects/bionic-hand",
+      "image": "/images/projects/bionic-hand/hero.svg"
+    },
+    {
+      "id": "smart-lighting",
+      "title": "Unified Smart Lighting Hub",
+      "subtitle": "ESP8266 & Reverse-Engineered 433 MHz RF Controller",
+      "color": "#2563eb",
+      "link": "/projects/smart-lighting",
+      "image": "/images/projects/smart-lighting/hero.svg",
+      "hidden": true
+    },
+    {
+      "id": "room-improvement",
+      "title": "Room Improvement",
+      "subtitle": "Bedroom Improvement (3D Experience)",
+      "color": "#6b8e23",
+      "link": "/projects/room-improvement",
+      "image": "/images/projects/room-improvement/hero.png"
+    },
+    {
+      "id": "mechathon",
+      "title": "Mechathon at HackIllinois",
+      "subtitle": "1st Place John Deere Mechathon",
+      "color": "#2b8f2b",
+      "link": "/projects/mechathon",
+      "image": "/images/projects/mechathon/1.jpg"
+    },
+    {
+      "id": "ftc-robotics",
+      "title": "FTC Robotics",
+      "subtitle": "Biobots #14318",
+      "color": "#9370db",
+      "link": "/projects/ftc-robotics",
+      "image": "/images/projects/ftc-robotics/6.jpg"
+    },
+    {
+      "id": "orthotic-repair",
+      "title": "Orthotic Repair",
+      "subtitle": "Knee-Ankle-Foot Orthotic optimization for improved comfort",
+      "color": "#4682b4",
+      "link": "/projects/orthotic-repair",
+      "image": "/images/projects/orthotic-repair/1.jpg"
+    },
+    {
+      "id": "golf-ball-launcher",
+      "title": "Golf Ball Launcher",
+      "subtitle": "Precision Flywheel System",
+      "color": "#8fbc8f",
+      "link": "/projects/golf-ball-launcher",
+      "image": "/images/projects/golf-ball-launcher/hero.png",
+      "backgroundPosition": "center 25%"
+    },
+    {
+      "id": "small-business-tools",
+      "title": "Small Business Tools",
+      "subtitle": "Kanyalndya",
+      "color": "#cd5c5c",
+      "link": "/projects/small-business-tools",
+      "image": "/images/projects/small-business-tools/1.png"
+    }
+  ],
+  "projectsDetail": {
+    "bionic-hand": {
+      "title": "7-DOF Tendon-Driven Bionic Hand (BioWare 2.0)",
+      "subtitle": "Anthropomorphic tendon-actuated end-effector with kinematic posture control",
+      "date": "Present",
+      "tags": [
+        "Onshape",
+        "TI MSP432",
+        "Python",
+        "Additive Prototyping",
+        "UART Serial",
+        "Mechatronics"
+      ],
+      "hero": "/images/projects/bionic-hand/IMG_5084.jpeg",
+      "processCards": [
+        {
+          "heading": "Challenge",
+          "content": "Design and fabricate an anthropomorphic robotic hand under a strict 450 g payload limit while achieving multi-digit dexterous articulation without joint binding, friction losses, or bulky wrist-mounted motor assemblies."
+        },
+        {
+          "heading": "Solution",
+          "content": "Engineered a 7-DOF tendon-actuated mechanical chassis using snap-fit pin joints, internal 5 mm bend-radius conduit channels, and 0.5 mm braided Dyneema lines counterbalanced by elastomeric return cords."
+        },
+        {
+          "heading": "Results",
+          "content": "Built a responsive mechatronic assembly driven by a TI MSP432 LaunchPad executing 4 preset kinematic grip postures with sub-100 ms response times via a custom Python UART GUI."
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "text",
+          "content": "Context & Core Mechanical Problem\n\nDexterous robotic end-effectors routinely run into a severe engineering tradeoff: maximizing degrees of freedom (DOF) usually adds substantial weight, bulky gearboxes, and steep mechanical complexity. For this project, the objective was to engineer an anthropomorphic bionic hand that preserved organic compliance, held total assembly mass under 450 g, and maintained precise joint clearances using functional FDM 3D printing. Meeting these constraints required an underactuated tendon architecture that concentrated all actuator mass in the forearm/palm while simplifying mechanical assembly using fastener-free joints."
+        },
+        {
+          "type": "image-left",
+          "src": "/images/projects/bionic-hand/1.svg",
+          "caption": "Tendon conduit pathways and 0.25 mm knuckle clearance profile modeled in Onshape.",
+          "width": "35%",
+          "text": "Kinematic Architecture & Mechanical Detailing\n\nThe primary structural challenge centered on routing mechanical power without joint binding. Each finger utilizes snap-fit knuckle pins modeled with 0.25 mm shaft-hole clearances to eliminate axial play while preventing high-friction pin pinch points. To drive digit flexion, 0.5 mm braided Dyneema lines were routed through continuous 2.0 mm internal conduits featuring smooth 5 mm bend radii to minimize friction losses. Instead of double-acting cables, an antagonistic scheme was implemented: elastomeric return cords spring-load the extensor side of every joint, defaulting the hand to an open state when tendon tension is released and halving the required actuator count."
+        },
+        {
+          "type": "text",
+          "content": "Thumb Articulation & Kinematics\n\nReplicating the dexterity of the human thumb required breaking away from standard single-axis hinges. An articulated 3-DOF thumb mechanism was engineered utilizing three dedicated MG90S micro servos. This linkage isolates palmar sweep, planar whole-digit pivoting, and distal flexion into independent axes. By decoupling thumb rotation from finger curling, the assembly reliably forms opposing contact surfaces necessary for fine tool handling and precision pinch grasps without stalling the drive servos under load."
+        },
+        {
+          "type": "image-right",
+          "src": "/images/projects/bionic-hand/2.svg",
+          "caption": "Actuating preset kinematic grip modes over 115200-baud UART serial.",
+          "width": "35%",
+          "text": "Embedded Systems & Firmware Control\n\nThe actuation stack is driven by an ARM Cortex-M4F Texas Instruments MSP432 LaunchPad outputting 7 synchronized 50 Hz PWM channels to control servo travel. A custom desktop GUI developed in Python interfaces with the LaunchPad over an 115200-baud UART serial pipeline, translating manual input commands into synchronized multi-servo trajectory steps. The system cycles between rest and active grip states in under 100 ms. The platform is currently being expanded with analog front-end filtering and thresholding circuitry to interface surface EMG electrodes directly for autonomous, muscle-activated grip transitions."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/projects/bionic-hand/IMG_5084.jpeg",
+          "caption": "The hand in an open position"
+        },
+        {
+          "src": "/images/projects/bionic-hand/Screenshot_2026-09-23_at_9.40.20_AM.png",
+          "caption": "CAD of the thumb linkage"
+        },
+        {
+          "src": "/images/projects/bionic-hand/IMG_5090.mp4",
+          "caption": "Cycling through preset poses"
+        },
+        {
+          "src": "/images/projects/bionic-hand/IMG_5085.mp4",
+          "caption": "A wave animation"
+        },
+        {
+          "src": "/images/projects/bionic-hand/Screenshot_2026-09-24_at_10.12.20_AM.png",
+          "caption": "Finger design in CAD"
+        }
+      ],
+      "story": {
+        "paragraphs": [
+          "Context & Core Mechanical Problem",
+          "Dexterous robotic end-effectors routinely confront a severe engineering tradeoff: maximizing active degrees of freedom (DOF) typically introduces substantial distal weight, bulky transmission gearboxes, and prohibitive mechanical complexity. For this project, the objective was to design and fabricate an anthropomorphic bionic hand that preserved organic compliance, maintained an overall assembly mass strictly under 450 g, and achieved repeatable, sub-millimeter joint clearances utilizing functional FDM 3D printing. Overcoming these coupled spatial and dynamic constraints required developing an underactuated, tendon-driven routing architecture. By consolidating actuator mass proximally within the forearm and palm chassis, the design minimizes distal inertia while relying on fastener-free, print-in-place joints and elastic return channels to dramatically streamline mechanical assembly and ongoing maintenance.",
+          "Kinematic Architecture & Mechanical Detailing",
+          "The primary structural challenge centered on routing mechanical power without joint binding. Each finger utilizes snap-fit knuckle pins modeled with 0.25 mm shaft-hole clearances to eliminate axial play while preventing high-friction pin pinch points. To drive digit flexion, 0.5 mm braided Dyneema lines were routed through continuous 2.0 mm internal conduits featuring smooth 5 mm bend radii to minimize friction losses. Instead of double-acting cables, an antagonistic scheme was implemented: elastomeric return cords spring-load the extensor side of every joint, defaulting the hand to an open state when tendon tension is released and halving the required actuator count.",
+          "Thumb Articulation & Kinematics",
+          "Replicating the dexterity of the human thumb required breaking away from standard single-axis hinges. An articulated 3-DOF thumb mechanism was engineered utilizing three dedicated MG90S micro servos. This linkage isolates palmar sweep, planar whole-digit pivoting, and distal flexion into independent axes. By decoupling thumb rotation from finger curling, the assembly reliably forms opposing contact surfaces necessary for fine tool handling and precision pinch grasps without stalling the drive servos under load.",
+          "Embedded Systems & Firmware Control",
+          "The actuation stack is driven by an ARM Cortex-M4F Texas Instruments MSP432 LaunchPad outputting 7 synchronized 50 Hz PWM channels to control servo travel. A custom desktop GUI developed in Python interfaces with the LaunchPad over an 115200-baud UART serial pipeline, translating manual input commands into synchronized multi-servo trajectory steps. The system cycles between rest and active grip states in under 100 ms. The platform is currently being expanded with analog front-end filtering and thresholding circuitry to interface surface EMG electrodes directly for autonomous, muscle-activated grip transitions."
+        ],
+        "canvasImages": [
+          {
+            "id": "img-1790174129179-2qu1",
+            "src": "/images/projects/bionic-hand/IMG_5084.jpeg",
+            "caption": "The hand in its open position, with all joints at rest",
+            "width": "36%",
+            "isLeft": true,
+            "paragraphIndex": 3,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790174429067-1lxi",
+            "src": "/images/projects/bionic-hand/Screenshot_2026-09-23_at_9.40.20_AM.png",
+            "caption": "Thumb linkage and design in CAD",
+            "width": "34%",
+            "isLeft": false,
+            "paragraphIndex": 5,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790262062932-g4zs",
+            "src": "/images/projects/bionic-hand/IMG_5085.mp4",
+            "caption": "The hand executing a wave animation",
+            "width": "24%",
+            "isLeft": false,
+            "paragraphIndex": 1,
+            "topOffset": 0,
+            "isAnchored": false
+          },
+          {
+            "id": "img-1790262568064-m1pu",
+            "src": "/images/projects/bionic-hand/IMG_5090.mp4",
+            "caption": "Cycling through many preset poses",
+            "width": "21%",
+            "isLeft": true,
+            "paragraphIndex": 7,
+            "topOffset": 0,
+            "isAnchored": false
+          }
+        ]
+      }
+    },
+    "smart-lighting": {
+      "title": "Unified Smart Lighting Controller Hub",
+      "subtitle": "ESP8266 IoT bridge unifying optical IR and reverse-engineered 433 MHz RF lighting",
+      "date": "September 2026",
+      "tags": [
+        "ESP8266",
+        "C++",
+        "Reverse Engineering",
+        "Circuit Design",
+        "Soldering",
+        "IoT"
+      ],
+      "hero": "/images/projects/smart-lighting/hero.svg",
+      "processCards": [
+        {
+          "heading": "Challenge",
+          "content": "Consolidate three disparate lighting fixtures into a single automated hub by eliminating incompatible wireless communication protocols, bulky multi-remote setups, and intermittent battery drainage."
+        },
+        {
+          "heading": "Solution",
+          "content": "Reverse-engineered a proprietary 433 MHz RF remote PCB, modifying its power rail to run off an ESP8266's 3.3V bus, and interfaced GPIO lines through an LM3046 NPN transistor array to simulate button presses."
+        },
+        {
+          "heading": "Results",
+          "content": "Built a reliable, unified controller coordinating sequential multi-protocol IR transmission bursts and 150 ms low-side RF pulses with zero transistor latching or switch bounce."
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "text",
+          "content": "Problem Space & System Isolation\n\nManaging multiple commercial lighting setups typically results in cluttered desk setups, fragmented wireless remotes, and recurring battery swaps. The goal of this build was to eliminate three separate physical remotes by engineering a unified microcontroller hub capable of driving both optical line-of-sight infrared (IR) receivers and non-line-of-sight 433 MHz radio frequency (RF) receivers simultaneously from a single web/serial command architecture."
+        },
+        {
+          "type": "image-left",
+          "src": "/images/projects/smart-lighting/1.svg",
+          "caption": "Low-side switching interface micro-soldered across scraped button matrix traces.",
+          "width": "35%",
+          "text": "Hardware Reverse Engineering & Switching Circuitry\n\nBecause the 433 MHz fixture relied on a proprietary, encrypted wireless rolling code, decoding the transmission through software was impractical. Instead, a physical commercial 5-button remote was disassembled and reverse-engineered. Using a digital multimeter, the button matrix traces were mapped to identify active pull-down junctions. The board was prepped by scraping back solder mask to expose bare copper traces, allowing lead wires to be soldered directly to the pad contacts. To actuate the buttons electronically, GPIO pins from an ESP8266 were routed through an LM3046 NPN transistor array wired as open-collector low-side switches."
+        },
+        {
+          "type": "image-right",
+          "src": "/images/projects/smart-lighting/2.svg",
+          "caption": "Base-drive resistor network preventing floating gates and latching states.",
+          "width": "35%",
+          "text": "Electrical Debugging & Power Integration\n\nInitial bench testing revealed severe circuit instability: floating logic states on the microcontroller pins caused intermittent transistor latching, holding RF transmission buttons down and crashing the remote transmitter. To stabilize the switching thresholds, 1 kΩ series base-limiting resistors were added in line with 10 kΩ pull-down resistors to tie every transistor base firmly to ground during bootup. Additionally, the remote's native 2×AAA battery pack (3.0V nominal) was removed; traces were spliced to feed power directly from the ESP8266's regulated 3.3V rail over a unified ground plane, ensuring permanent operation without battery fatigue."
+        },
+        {
+          "type": "text",
+          "content": "Multi-Protocol Firmware & Synchronized Control\n\nFirmware was written in C++ to coordinate optical and RF transmissions sequentially. The controller modulates a high-output 940 nm IR LED to match both NEC protocol encodings and custom pulse-distance-width timing frames used by auxiliary fixtures. Non-blocking serial command macros coordinate automated lighting states: a single command triggers an optical IR blast followed immediately by a 150 ms low-side pulse across the RF transistor array, achieving clean, flicker-free room transitions across different lighting ecosystems simultaneously."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/projects/smart-lighting/1.svg",
+          "caption": "Low-side switching interface micro-soldered across scraped button matrix traces."
+        },
+        {
+          "src": "/images/projects/smart-lighting/2.svg",
+          "caption": "Base-drive resistor network preventing floating gates and latching states."
+        }
+      ]
+    },
+    "small-business-tools": {
+      "title": "Small Business Tools",
+      "subtitle": "Custom inventory and photography tools for Kanyalndya jewelry business",
+      "date": "January 2025",
+      "tags": [
+        "CAD",
+        "Manufacturing",
+        "AI Integration"
+      ],
+      "hero": "/images/projects/small-business-tools/1.png",
+      "processCards": [
+        {
+          "heading": "Challenge",
+          "content": "Small businesses often struggle with efficient inventory management and consistent product presentation. The manual processes were time-consuming and prone to errors."
+        },
+        {
+          "heading": "Solution",
+          "content": "I developed a set of 3D-printed tools custom-fitted to their products to speed up sizing and sorting. I also designed a magnetic, modular photobox that allows for quick background changes and consistent lighting."
+        },
+        {
+          "heading": "Results",
+          "content": "Inventory processing time was reduced by 40%, and the standardized photography significantly improved the online store aesthetic, leading to increased engagement."
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "image-right",
+          "src": "/images/projects/small-business-tools/2.png",
+          "caption": "Bangle sizing tool",
+          "width": "30%",
+          "text": "I designed and manufactured a comprehensive suite of custom inventory management tools, specifically tailored for the unique challenges faced by the Kanyalndya jewelry business. The primary objective was to drastically streamline day-to-day operations, moving away from inefficient manual processes. Previously, sorting and sizing involved a chaotic, unstructured pile of products, which consistently caused significant delays in order fulfillment and inventory tracking.\n\nBy fabricating specialized 3D-printed tools custom-fitted to their exact product dimensions—including precision sizing gauges and slotted organizational display units—we successfully established a rigid system. This physical infrastructure minimized human error and cognitive load, ultimately speeding up the sizing and sorting workflow by over 40%, directly impacting the business's bottom line."
+        },
+        {
+          "type": "text",
+          "content": "Furthermore, I conceptualized and engineered a highly modular, magnetic photobox system designed to standardize product photography for their e-commerce platform. High-quality, consistent photos are absolutely critical for online jewelry sales to build customer trust. However, setting up the lighting and composition daily was an enormous time sink for the owner.\n\nThe innovative magnetic wall design of the photobox allows for rapid background and texture changes while maintaining perfectly consistent, diffused lighting across entirely different batches of products, ensuring a unified aesthetic across their entire catalog."
+        },
+        {
+          "type": "image-left",
+          "src": "/images/projects/small-business-tools/1.png",
+          "caption": "CAD design of the photobox stand",
+          "width": "30%",
+          "text": "To construct a holistic business transformation, the physical tools were augmented by digital automation. I implemented AI-driven workflows by personally training the business owner on leveraging several Large Language Models (LLMs) to automate their repetitive administrative tasks.\n\nThis digital overhaul included systems for generating standardized barcodes on the fly and creating automated, professional phrasing for client invoicing and communications. By seamlessly combining physical manufacturing solutions with cutting-edge digital AI optimizations, this small business was empowered to substantially scale their throughput and professional appearance without the need to increase their headcount."
+        },
+        {
+          "type": "text",
+          "content": "The magnetic photobox system proved to be an invaluable asset for consistent branding. Prior to its implementation, lighting setups were ad-hoc, leading to varying shadow lengths and color temperatures that degraded the professional appearance of the online storefront."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/projects/small-business-tools/1.png",
+          "caption": "CAD design of the photobox stand"
+        },
+        {
+          "src": "/images/projects/small-business-tools/2.png",
+          "caption": "Bangle sizing tool"
+        },
+        {
+          "src": "/images/projects/small-business-tools/3.png",
+          "caption": "Earing sizing tool"
+        },
+        {
+          "src": "/images/projects/small-business-tools/5.jpg",
+          "caption": "Modular photobox without backgrounds"
+        },
+        {
+          "src": "/images/projects/small-business-tools/6.jpg",
+          "caption": "One example of background without base"
+        },
+        {
+          "src": "/images/projects/small-business-tools/7.jpg",
+          "caption": "Photobox with background and base"
+        }
+      ]
+    },
+    "orthotic-repair": {
+      "title": "Orthotic Repair",
+      "subtitle": "Knee-Ankle-Foot Orthotic optimization for improved comfort",
+      "date": "July 2025",
+      "tags": [
+        "CAD",
+        "Biomechanics",
+        "Prototyping"
+      ],
+      "hero": "/images/projects/orthotic-repair/1.jpg",
+      "processCards": [
+        {
+          "heading": "Challenge",
+          "content": "The user experienced significant discomfort and skin irritation due to pressure points in the original orthotic design, particularly around the ankle and shin. Additionally, a leg length discrepancy caused uneven foot leveling and stance issues."
+        },
+        {
+          "heading": "Solution",
+          "content": "Using photo references and CAD modeling, I designed custom spacers and attachments to create essential relief around the high-pressure areas. I also modeled and 3D printed a flexible TPU insole to perfectly counteract the leg length difference."
+        },
+        {
+          "heading": "Results",
+          "content": "The custom spacers successfully redistributed pressure and eliminated pain points, while the TPU riser restored proper foot leveling. This allowed the user to wear the orthotic for extended periods."
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "text",
+          "content": "Knee-Ankle-Foot Orthotics (KAFOs) are highly critical mobility aids designed to stabilize the lower extremities, but their rigid, unyielding nature often leads to severe discomfort over extended periods of continuous use. In this project, I assessed the root causes of patient discomfort, focusing heavily on both the complex posterior shell geometry enveloping the ankle and calf regions, as well as the patient's stance and gait equilibrium.\n\nThe primary issue identified during the initial evaluation was the presence of distinct, localized pressure points causing restricted blood flow and significant skin irritation, particularly focused on the anterior shin during the dynamic swing phase of the gait cycle."
+        },
+        {
+          "type": "image-left",
+          "src": "/images/projects/orthotic-repair/2.jpg",
+          "caption": "Final attachment to brace in CAD",
+          "width": "30%",
+          "text": "To address these anatomical challenges, I utilized reference images and standard CAD techniques to model the patient's bracing parameters—avoiding the need for complex 3D scanning equipment. From this digitized baseline, I engineered novel geometric solutions specifically aimed at redistributing the mechanical load away from the highly sensitive anterior tissue.\n\nRather than attempting to reinvent the brace shell or carve out complex pressure relief channels, the new design paradigm involved fabricating custom-fitted spacers to create strategic relief in the tightest areas. By systematically adjusting these geometric parameters, we successfully achieved a biomechanically optimal fit that eliminated the acute shin pain points."
+        },
+        {
+          "type": "image-right",
+          "src": "/images/projects/orthotic-repair/1.jpg",
+          "caption": "TPU insole riser for KAFO",
+          "width": "30%",
+          "text": "Beyond the localized pressure points on the shin, the patient also suffered from stance instability due to a noticeable leg length discrepancy. This difference in physical length threw their feet leveling completely off equilibrium, causing painful structural compensation and fatigue higher up in the kinetic chain.\n\nTo resolve this, I carefully calculated the required offset and designed a custom sole to perfectly counteract the height discrepancy. This custom riser was 3D printed using flexible TPU (Thermoplastic Polyurethane), providing not only the exact structural lift needed to perfectly level their feet, but also a highly compliant, shock-absorbing surface for maximum all-day comfort."
+        },
+        {
+          "type": "image-left",
+          "src": "/images/projects/orthotic-repair/3.jpg",
+          "caption": "Riser placed in real brace",
+          "width": "30%",
+          "text": "The physical translation involved fabricating iterative working prototypes to test within the actual user's shoe and brace system. Following each iteration, the user actively tested the orthotic device on a treadmill under controlled conditions, providing detailed subjective comfort scores.\n\nThe final combined solution of rigid calf spacers for pressure relief and the flexible TPU insole for leveling allowed the user to wear the KAFO device for a full, active workday entirely free from the debilitating fatigue they had previously experienced."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/projects/orthotic-repair/1.jpg",
+          "caption": "TPU insole riser for exact leg leveling"
+        },
+        {
+          "src": "/images/projects/orthotic-repair/2.jpg",
+          "caption": "Custom CAD-modeled spacer attachment"
+        },
+        {
+          "src": "/images/projects/orthotic-repair/3.jpg",
+          "caption": "Testing the 3D printed components inside the actual brace"
+        },
+        {
+          "src": "/images/projects/orthotic-repair/4.jpg",
+          "caption": "Thigh band for a child's cerebral palsy brace during my internship in India"
+        },
+        {
+          "src": "/images/projects/orthotic-repair/5.jpg",
+          "caption": "A set of prosthetic legs I assembled during my internship in Montebello, CA"
+        }
+      ]
+    },
+    "golf-ball-launcher": {
+      "title": "Golf Ball Launcher",
+      "subtitle": "Precision flywheel golf ball launching system",
+      "date": "Spring 2024",
+      "tags": [
+        "Mechanical Design",
+        "Mechatronics",
+        "Control Systems"
+      ],
+      "hero": "/images/projects/golf-ball-launcher/hero.png",
+      "processCards": [
+        {
+          "heading": "Challenge",
+          "content": "For a comprehensive school engineering project, we were tasked with designing a device to reliably launch a golf ball to hit an 8-inch target situated 2 meters away and 1 meter high, twice in a row."
+        },
+        {
+          "heading": "Solution",
+          "content": "We engineered a custom dual-flywheel pitching mechanism. To achieve the required precision, we integrated an IMU within our motor controller to actively dial in the launch angle and utilized a CAD-mounted laser sight to calibrate our real-world trajectory."
+        },
+        {
+          "heading": "Results",
+          "content": "The system offered unparalleled repeatability. The motor control code allowed for rapid tuning, resulting in our team hitting the tiny target 25 consecutive times—the only group in the class to achieve such flawless accuracy."
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "image-right",
+          "src": "/images/projects/golf-ball-launcher/5.png",
+          "caption": "CAD of launcher",
+          "width": "30%",
+          "text": "As part of a rigorous academic engineering capstone, our team was presented with a strict mechanical design and controls challenge: engineer a system capable of accurately launching a standard golf ball to repeatedly strike an 8-inch physical target located exactly 2 meters horizontally away and elevated 1 meter off the ground. The strict criteria dictated that the system must hit the target at least twice consecutively, requiring extremely high precision and repeatability over brute force.\n\nTo solve this, we explicitly avoided unpredictable catapults and instead designed a highly tunable, dual-flywheel pitching mechanism. The core advantage of a flywheel system is that the energy transferred to the projectile is dictated entirely by the rotational velocity of the wheels, which can be precisely governed by closed-loop motor control code rather than inconsistent spring tension."
+        },
+        {
+          "type": "image-left",
+          "src": "/images/projects/golf-ball-launcher/1.jpg",
+          "caption": "REV Control hub used to control",
+          "width": "30%",
+          "text": "Achieving the desired velocity was only half the equation; angular precision was paramount. We integrated an Inertial Measurement Unit (IMU) deeply into our custom motor controller architecture. This allowed us to actively monitor and strictly dial in the exact pitch angle of the launcher barrel before every single shot, eliminating human error in setup.\n\nFurthermore, we designed and 3D-printed a specialized mounting bracket to securely attach a continuous laser sight strictly parallel to the launch vector. This allowed us to visually calibrate and anchor our mathematical trajectory models against the physical target in real-world space. Ultimately, this combination of mechanical stability and intelligent mechatronic control resulted in our system hitting the 8-inch target an incredible 25 times in a row, making us the only team in the entire class to achieve such a flawless performance record."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/projects/golf-ball-launcher/1.jpg",
+          "caption": "REV Control hub used to control"
+        },
+        {
+          "src": "/images/projects/golf-ball-launcher/2.jpg",
+          "caption": "Foam feet to improve grip and dampen vibrations"
+        },
+        {
+          "src": "/images/projects/golf-ball-launcher/3.jpg",
+          "caption": "Fully assembled launcher"
+        },
+        {
+          "src": "/images/projects/golf-ball-launcher/4.mp4",
+          "caption": "An example of our launcher hitting the target"
+        },
+        {
+          "src": "/images/projects/golf-ball-launcher/5.png",
+          "caption": "CAD of launcher"
+        },
+        {
+          "src": "/images/projects/golf-ball-launcher/6.png",
+          "caption": "Lazer sight attachment module"
+        }
+      ]
+    },
+    "mechathon": {
+      "title": "Mechathon at HackIllinois",
+      "subtitle": "1st Place Medium Track John Deere Mechathon",
+      "date": "February 2026",
+      "tags": [
+        "Arduino",
+        "CuraSlicer",
+        "LightBurn",
+        "Onshape"
+      ],
+      "hero": "/images/projects/mechathon/1.jpg",
+      "processCards": [
+        {
+          "heading": "Challenge",
+          "content": "Design, fabricate, and program a robot to autonomously traverse and perfectly level a rugged pit of sand within a strict 48-hour deadline for John Deere at HackIllinois."
+        },
+        {
+          "heading": "Solution",
+          "content": "We built a custom servo-actuated four-bar linkage system with laser-cut rakes, paired with a drag-spinning front sweeper to achieve optimal multi-pass leveling."
+        },
+        {
+          "heading": "Results",
+          "content": "Our robot achieved the 3rd most level sand overall across all participants, securing us 1st place in the Medium Track."
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "text",
+          "content": "During the HackIllinois Mechathon, our team was presented with a unique hardware challenge by John Deere: engineer a robot capable of traversing and perfectly leveling a rugged, uneven pit of sand. Given the intense 48-hour time constraint, we had to heavily prioritize rapid ideation and minimum viable product (MVP) design over extensive prototyping.\n\nDrawing inspiration from industrial concrete leveling machinery and Zen sand gardens, we immediately broke down the mechanical requirements. By dividing sub-systems based on our respective strengths, we jumped into CAD (Onshape) and utilized laser cutters and 3D printers to fabricate custom mechanisms, ensuring we could swiftly iterate on our initial paper models."
+        },
+        {
+          "type": "image-left",
+          "src": "/images/projects/mechathon/2.jpg",
+          "caption": "Speaking to the judges during our demo",
+          "width": "30%",
+          "text": "Our final mechanical architecture featured two primary active systems. On the front, we implemented a custom spinning sweeper designed to clear large mounds of sand directly in the path of the treads. On the rear, we engineered a parallelogram four-bar linkage actuated by a precise servo motor.\n\nThis linkage held two laser-cut rakes and allowed us to dynamically control the height of the toolpath. This critical feature enabled the robot to perform alternating high-pass and low-pass sweeps across the terrain, gradually and evenly flattening the sand with each pass rather than getting stuck in deep dunes."
+        },
+        {
+          "type": "image-right",
+          "src": "/images/projects/mechathon/3.jpg",
+          "caption": "Testing the four-bar linkage capabilities in the sand pit",
+          "width": "30%",
+          "text": "The rapid development cycle was fraught with physical challenges. Initially, we discovered that our custom front spinner mechanism was visually interfering with the ultrasonic sensor, leading to erratic pathfinding logic. We quickly pivoted by removing a problematic front roller and upsizing the sweeper to compensate.\n\nAdditionally, the fine sand presented environmental hazards; it began trapping the treads, prompting us to continuously design and implement custom side-guards. Finally, when the Arduino struggled to adequately distribute power to the sweeping motors, we had to breadboard custom circuitry on the fly to bypass the limitations.\n\nThis incredibly grueling, sleepless weekend was a masterclass in working under intense pressure. It exposed inefficiencies in our standard workflows but ultimately taught us how to optimally delegate complex engineering tasks in a high-stakes environment. Through rigorous mechanical design, we successfully achieved the third most level sand overall among all participants, securing us 1st Place in the Medium Track."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/projects/mechathon/1.jpg",
+          "caption": "Our completed John Deere Sand Leveling Robot"
+        },
+        {
+          "src": "/images/projects/mechathon/2.jpg",
+          "caption": "Speaking to the judges during our demo"
+        },
+        {
+          "src": "/images/projects/mechathon/3.jpg",
+          "caption": "Testing the leveling capabilities in the sand pit"
+        },
+        {
+          "src": "/images/projects/mechathon/4.jpg",
+          "caption": "Presenting our final product to the judges"
+        },
+        {
+          "src": "/images/projects/mechathon/5.jpg",
+          "caption": "1st Place Team in the Medium Track!"
+        }
+      ]
+    },
+    "ftc-robotics": {
+      "title": "FTC Robotics",
+      "subtitle": "Biobots #14318 - 6 seasons of competitive robotics",
+      "date": "August 2019 - February 2025",
+      "tags": [
+        "Robotics",
+        "CAD",
+        "Team Leadership"
+      ],
+      "hero": "/images/projects/ftc-robotics/6.jpg",
+      "processCards": [
+        {
+          "heading": "Challenge",
+          "content": "Design and fabricate a new competitive robot annually to meet constantly changing competition objectives."
+        },
+        {
+          "heading": "Solution",
+          "content": "Our robots featured custom-designed drivetrains, intake mechanisms, and lift systems, optimized for reliability and speed during competition matches. As team captain, I managed project timelines and mentored younger members in CAD."
+        },
+        {
+          "heading": "Results",
+          "content": "We consistently reached regional championships and won multiple awards for our engineering documentation and community outreach efforts."
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "image-left",
+          "src": "/images/projects/ftc-robotics/cropped_2_zoomed.jpg",
+          "caption": "Our 2025 Competition Robot",
+          "width": "25%",
+          "maxWidth": "300px",
+          "text": "For six consecutive, highly intensive academic seasons, I proudly served as a core mechanical design engineer and ultimately rose to the position of Hardware Captain and Lead Strategist for FIRST Tech Challenge (FTC) Team #14318, the Biobots.\n\nOur team won the Motivate, Think, Design, Connect (x2), Inspire Awards. We were also NorCal Regional Championship Division Finalists in (2024).\n\nIn this leadership role, I was directly responsible for leading a cross-functional, highly motivated team of seven high school students through the entirety of the grueling, professional-grade engineering design process. This extensive process ranged from the initial, critical analysis of the complex yearly game strategy to the creation of highly detailed full-robot CAD assemblies, and finally culminating in the precise physical manufacturing and assembly of the competition hardware. Due to the nature of FIRST competitions, every single season mandated the conceptualization and execution of a completely new robotic architecture in order to successfully solve the unique physical hurdles and scoring mechanisms presented that year."
+        },
+        {
+          "type": "image-right",
+          "src": "/images/projects/ftc-robotics/7.png",
+          "caption": "Our Full Robot in CAD",
+          "width": "30%",
+          "text": "As Hardware Captain, I was primarily responsible for dictating the overall technical direction and systems architecture. Each competitive season inevitably involved navigating multiple, highly stressful full-system redesigns under extremely tight deadlines. Rather than relying on mere intuition or trial-and-error, I implemented a rigorous, iterative approach to our engineering. This disciplined approach allowed the team to strongly prioritize absolute hardware reliability under the intense, physical constraints of a chaotic 2.5-minute competition match, directly leading to our sustained success on the field."
+        },
+        {
+          "type": "image-left",
+          "src": "/images/projects/ftc-robotics/cropped_5_25.jpg",
+          "caption": "Me acting as a driver coach in a regional match",
+          "width": "30%",
+          "text": "During competitions, I played the role of Player Coach. I was familiar with every detail of the rule book and our driver strategies. I kept a clip board with a blank map of the season's mat and a dry erase marker to be able to work with our alliance members to create efficient pathing in order to maximize scoring output.\n\nThrough my extensive tenure in competitive robotics, I rapidly developed a remarkably robust foundation in advanced 3D CAD modeling (utilizing both Onshape and Fusion360), rapid physical prototyping methodologies, and the crucial principles of Design for Manufacturability (DFM). I heavily utilized and managed modern manufacturing techniques, specifically operating 3D printers and CNC routers for the rapid production of highly customized, lightweight structural components. Furthermore, beyond the strictly technical engineering skills acquired, this experience was instrumental in honing my leadership capabilities. I expertly managed complex team coordination, strategically delegated nuanced tasks across the distinct software and hardware sub-teams, and rigorously ensured that our completed physical robotic hardware flawlessly and reliably integrated with the advanced autonomous control algorithms written by our programming division."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/projects/ftc-robotics/7.png",
+          "caption": "Full CAD assembly of the custom 2025 competition robot"
+        },
+        {
+          "src": "/images/projects/ftc-robotics/2.jpg",
+          "caption": "2025 Competition robot built in real life"
+        },
+        {
+          "src": "/images/projects/ftc-robotics/3.jpg",
+          "caption": "Early prototype of a 2022 robot"
+        },
+        {
+          "src": "/images/projects/ftc-robotics/4.jpg",
+          "caption": "Drivetrain of our 2021 robot"
+        },
+        {
+          "src": "/images/projects/ftc-robotics/5.jpg",
+          "caption": "Acting as a driver coach during the NorCal Regional Championships"
+        },
+        {
+          "src": "/images/projects/ftc-robotics/6.jpg",
+          "caption": "Our 2025 robot in action"
+        }
+      ]
+    }
+  },
+  "featuredProjects": []
+}
