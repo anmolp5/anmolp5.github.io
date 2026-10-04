@@ -3,7 +3,7 @@
     {
       "id": "bionic-hand",
       "title": "7-DOF Bionic Hand",
-      "subtitle": "BioWare 2.0 - Anthropomorphic Tendon-Driven Hand",
+      "subtitle": "Tendon-Driven Robotic Hand",
       "color": "#7c3aed",
       "link": "/projects/bionic-hand",
       "image": "/images/projects/bionic-hand/hero.svg"
@@ -12,7 +12,7 @@
       "id": "smart-lighting",
       "title": "Unified Smart Lighting Hub",
       "subtitle": "ESP32, BLE & Reverse-Engineered 433 MHz RF Controller",
-      "color": "#2563eb",
+      "color": "#7c3aed",
       "link": "/projects/smart-lighting",
       "image": "/images/projects/smart-lighting/IMG_5151.jpeg"
     },
@@ -68,8 +68,8 @@
   ],
   "projectsDetail": {
     "bionic-hand": {
-      "title": "7-DOF Tendon-Driven Bionic Hand (BioWare 2.0)",
-      "subtitle": "Anthropomorphic tendon-actuated end-effector with kinematic posture control",
+      "title": "7-DOF Tendon-Driven Bionic Hand",
+      "subtitle": "Tendon-actuated robotic hand with kinematic posture control",
       "date": "Present",
       "tags": [
         "Onshape",
@@ -83,7 +83,7 @@
       "processCards": [
         {
           "heading": "Challenge",
-          "content": "Design and fabricate an anthropomorphic robotic hand under a strict 450 g payload limit while achieving multi-digit dexterous articulation without joint binding, friction losses, or bulky wrist-mounted motor assemblies."
+          "content": "Design and fabricate a multi-digit robotic hand under a strict 450 g payload limit while achieving dexterous finger articulation without joint binding, friction losses, or bulky wrist-mounted motor assemblies."
         },
         {
           "heading": "Solution",
@@ -97,7 +97,7 @@
       "contentBlocks": [
         {
           "type": "text",
-          "content": "Context & Core Mechanical Problem\n\nDexterous robotic end-effectors routinely run into a severe engineering tradeoff: maximizing degrees of freedom (DOF) usually adds substantial weight, bulky gearboxes, and steep mechanical complexity. For this project, the objective was to engineer an anthropomorphic bionic hand that preserved organic compliance, held total assembly mass under 450 g, and maintained precise joint clearances using functional FDM 3D printing. Meeting these constraints required an underactuated tendon architecture that concentrated all actuator mass in the forearm/palm while simplifying mechanical assembly using fastener-free joints."
+          "content": "Context & Core Mechanical Problem\n\nDexterous robotic end-effectors routinely run into a severe engineering tradeoff: maximizing degrees of freedom (DOF) usually adds substantial weight, bulky gearboxes, and steep mechanical complexity. For this project, the objective was to engineer an bionic hand that preserved organic compliance, held total assembly mass under 450 g, and maintained precise joint clearances using functional FDM 3D printing. Meeting these constraints required an underactuated tendon architecture that concentrated all actuator mass in the forearm/palm while simplifying mechanical assembly using fastener-free joints."
         },
         {
           "type": "image-left",
@@ -143,7 +143,7 @@
       "story": {
         "paragraphs": [
           "Context & Core Mechanical Problem",
-          "Dexterous robotic end-effectors routinely confront a severe engineering tradeoff: maximizing active degrees of freedom (DOF) typically introduces substantial distal weight, bulky transmission gearboxes, and prohibitive mechanical complexity. For this project, the objective was to design and fabricate an anthropomorphic bionic hand that preserved organic compliance, maintained an overall assembly mass strictly under 450 g, and achieved repeatable, sub-millimeter joint clearances utilizing functional FDM 3D printing. Overcoming these coupled spatial and dynamic constraints required developing an underactuated, tendon-driven routing architecture. By consolidating actuator mass proximally within the forearm and palm chassis, the design minimizes distal inertia while relying on fastener-free, print-in-place joints and elastic return channels to dramatically streamline mechanical assembly and ongoing maintenance.",
+          "Dexterous robotic end-effectors routinely confront a severe engineering tradeoff: maximizing active degrees of freedom (DOF) typically introduces substantial distal weight, bulky transmission gearboxes, and prohibitive mechanical complexity. For this project, the objective was to design and fabricate an bionic hand that preserved organic compliance, maintained an overall assembly mass strictly under 450 g, and achieved repeatable, sub-millimeter joint clearances utilizing functional FDM 3D printing. Overcoming these coupled spatial and dynamic constraints required developing an underactuated, tendon-driven routing architecture. By consolidating actuator mass proximally within the forearm and palm chassis, the design minimizes distal inertia while relying on fastener-free, print-in-place joints and elastic return channels to dramatically streamline mechanical assembly and ongoing maintenance.",
           "Kinematic Architecture & Mechanical Detailing",
           "The primary structural challenge centered on routing mechanical power without joint binding. Each finger utilizes snap-fit knuckle pins modeled with 0.25 mm shaft-hole clearances to eliminate axial play while preventing high-friction pin pinch points. To drive digit flexion, 0.5 mm braided Dyneema lines were routed through continuous 2.0 mm internal conduits featuring smooth 5 mm bend radii to minimize friction losses. Instead of double-acting cables, an antagonistic scheme was implemented: elastomeric return cords spring-load the extensor side of every joint, defaulting the hand to an open state when tendon tension is released and halving the required actuator count.",
           "Thumb Articulation & Kinematics",
@@ -431,7 +431,7 @@
           "src": "/images/projects/small-business-tools/2.png",
           "caption": "Bangle sizing tool",
           "width": "30%",
-          "text": "I designed and manufactured a comprehensive suite of custom inventory management tools, specifically tailored for the unique challenges faced by the Kanyalndya jewelry business. The primary objective was to drastically streamline day-to-day operations, moving away from inefficient manual processes. Previously, sorting and sizing involved a chaotic, unstructured pile of products, which consistently caused significant delays in order fulfillment and inventory tracking.\n\nBy fabricating specialized 3D-printed tools custom-fitted to their exact product dimensions—including precision sizing gauges and slotted organizational display units—we successfully established a rigid system. This physical infrastructure minimized human error and cognitive load, ultimately speeding up the sizing and sorting workflow by over 40%, directly impacting the business's bottom line."
+          "text": "I designed and manufactured a comprehensive suite of custom inventory management tools, specifically tailored for the unique challenges faced by the Kanyalndya jewelry business. The primary objective was to drastically streamline day-to-day operations, moving away from inefficient manual processes. Previously, sorting and sizing involved a chaotic, unstructured pile of products, which consistently caused significant delays in order fulfillment and inventory tracking.\n\nBy fabricating specialized 3D-printed tools custom-fitted to their exact product dimensions, including precision sizing gauges and slotted organizational display units, we successfully established a rigid system. This physical infrastructure minimized human error and cognitive load, ultimately speeding up the sizing and sorting workflow by over 40%, directly impacting the business's bottom line."
         },
         {
           "type": "text",
@@ -510,7 +510,7 @@
           "src": "/images/projects/orthotic-repair/2.jpg",
           "caption": "Final attachment to brace in CAD",
           "width": "30%",
-          "text": "To address these anatomical challenges, I utilized reference images and standard CAD techniques to model the patient's bracing parameters—avoiding the need for complex 3D scanning equipment. From this digitized baseline, I engineered novel geometric solutions specifically aimed at redistributing the mechanical load away from the highly sensitive anterior tissue.\n\nRather than attempting to reinvent the brace shell or carve out complex pressure relief channels, the new design paradigm involved fabricating custom-fitted spacers to create strategic relief in the tightest areas. By systematically adjusting these geometric parameters, we successfully achieved a biomechanically optimal fit that eliminated the acute shin pain points."
+          "text": "To address these anatomical challenges, I utilized reference images and standard CAD techniques to model the patient's bracing parameters, avoiding the need for complex 3D scanning equipment. From this digitized baseline, I engineered novel geometric solutions specifically aimed at redistributing the mechanical load away from the highly sensitive anterior tissue.\n\nRather than attempting to reinvent the brace shell or carve out complex pressure relief channels, the new design paradigm involved fabricating custom-fitted spacers to create strategic relief in the tightest areas. By systematically adjusting these geometric parameters, we successfully achieved a biomechanically optimal fit that eliminated the acute shin pain points."
         },
         {
           "type": "image-right",
@@ -571,7 +571,7 @@
         },
         {
           "heading": "Results",
-          "content": "The system offered unparalleled repeatability. The motor control code allowed for rapid tuning, resulting in our team hitting the tiny target 25 consecutive times—the only group in the class to achieve such flawless accuracy."
+          "content": "The system offered unparalleled repeatability. The motor control code allowed for rapid tuning, resulting in our team hitting the tiny target 25 consecutive times, the only group in the class to achieve such flawless accuracy."
         }
       ],
       "contentBlocks": [

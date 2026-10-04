@@ -17,8 +17,7 @@ if (typeof window !== 'undefined') {
 export const AdminProvider = ({ children }) => {
   const adminLocked = true;
   const setAdminLocked = () => {};
-  const isLocalhost = false;
-  const setIsLocalhost = () => {};
+  const [isLocalhost, setIsLocalhost] = useState(true);
   const editMode = false;
   const setEditMode = () => {};
   const [projectsData, setProjectsDataState] = useState(initialProjectsData);
@@ -42,7 +41,8 @@ export const AdminProvider = ({ children }) => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const host = window.location.hostname;
+      const isLocal = host === 'localhost' || host === '127.0.0.1' || host.startsWith('192.168.') || host.startsWith('10.');
       setIsLocalhost(isLocal);
     }
   }, []);

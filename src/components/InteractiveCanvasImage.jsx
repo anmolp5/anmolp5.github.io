@@ -376,25 +376,25 @@ const InteractiveCanvasImage = ({
         }}
       >
         {isVideo ? (
-          <video
-            ref={(el) => {
-              if (el) {
-                el.defaultMuted = true;
-                el.muted = true;
+          <div
+            style={{ width: '100%', height: 'auto' }}
+            ref={(wrapperEl) => {
+              if (!wrapperEl) return;
+              const vid = wrapperEl.querySelector('video');
+              if (vid) {
+                vid.defaultMuted = true;
+                vid.muted = true;
+                const tryPlay = () => {
+                  vid.muted = true;
+                  vid.play().catch(() => {});
+                };
+                vid.addEventListener('loadedmetadata', tryPlay, { once: true });
+                vid.addEventListener('canplay', tryPlay, { once: true });
+                tryPlay();
               }
             }}
-            src={src}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            controls={!editMode}
-            style={{
-              width: '100%',
-              height: 'auto',
-              display: 'block',
-              pointerEvents: editMode ? 'none' : 'auto'
+            dangerouslySetInnerHTML={{
+              __html: `<video src="${src}${src.includes('?') ? '&' : '?'}v=2" autoplay loop muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback style="width:100%;height:auto;display:block;pointer-events:none;"></video>`
             }}
           />
         ) : (

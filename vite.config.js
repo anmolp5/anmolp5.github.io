@@ -282,7 +282,7 @@ export default defineConfig({
     host: '0.0.0.0', // Allow access from network
     port: 5173,
     watch: {
-      ignored: ['**/src/data/**', '**/src/adminConfig.js', '**/public/images/**']
+      ignored: ['**/src/adminConfig.js', '**/public/images/**']
     }
   }
 });

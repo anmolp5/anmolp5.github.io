@@ -119,10 +119,45 @@ button:focus-visible {
   background: #555;
 }
 
-/* Mobile Optimizations for Project Detail Pages */
+/* Enforce standard SDR dynamic range across all media */
+html,
+body,
+img,
+video {
+  dynamic-range-limit: standard;
+}
+
+/* Hide native browser/Safari play button overlays on inline looping videos */
+video::-webkit-media-controls,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1200px) {
+  .detail-gallery-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .detail-gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+}
+
+/* Mobile Optimizations Across All Pages */
 @media (max-width: 768px) {
   .process-cards-grid {
     flex-direction: column !important;
+    gap: 12px !important;
   }
 
   .process-arrow {
@@ -130,25 +165,130 @@ button:focus-visible {
   }
 
   .process-card {
-    padding: 24px 20px !important;
+    padding: 18px 16px !important;
   }
 
-  /* Target the Challenge/Solution/Results heading pill */
-  .process-card>div:first-child {
-    font-size: 0.75rem !important;
-    padding: 4px 10px !important;
-    margin-bottom: 12px !important;
+  /* Target the Challenge/Solution/Results heading */
+  .process-card>h3 {
+    font-size: 1.05rem !important;
+    margin-bottom: 6px !important;
   }
 
   /* Target the text content inside the card */
   .process-card>p {
-    font-size: 0.95rem !important;
+    font-size: 0.86rem !important;
     line-height: 1.5 !important;
+  }
+
+  /* Shrink Project Detail story body text & headings so text wraps cleanly around floated images */
+  p.story-paragraph {
+    font-size: 0.88rem !important;
+    line-height: 1.54 !important;
+    margin-bottom: 12px !important;
+  }
+
+  h3.story-paragraph {
+    font-size: 1.15rem !important;
+    line-height: 1.28 !important;
+    margin: 22px 0 6px 0 !important;
+  }
+
+  h3.story-paragraph[data-para-index="0"] {
+    margin-top: 0 !important;
+  }
+
+  .project-detail-hero {
+    height: auto !important;
+    min-height: 200px !important;
+    padding: 28px 16px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .project-detail-tags {
+    margin-bottom: 20px !important;
+    padding: 0 16px !important;
+    gap: 6px !important;
+  }
+
+  .project-detail-tags span {
+    padding: 5px 11px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .flexible-img-container {
+    min-width: 110px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .flexible-img-container p {
+    font-size: 0.68rem !important;
+    line-height: 1.3 !important;
+    margin-top: 6px !important;
+  }
+
+  .projects-section-pad {
+    padding: 0 18px !important;
+  }
+
+  .contact-hero {
+    height: auto !important;
+    min-height: 18vh !important;
+    padding: 26px 16px !important;
+    margin-bottom: 32px !important;
+  }
+
+  .contact-hero-title {
+    font-size: 2rem !important;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .contact-form-card {
+    padding: 20px 18px !important;
+  }
+
+  .contact-name-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .hero-section {
+    min-height: 24vh !important;
+    height: auto;
+    padding: 26px 16px !important;
+    margin-bottom: 28px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .detail-gallery-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  p.story-paragraph {
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 11px !important;
+  }
+
+  h3.story-paragraph {
+    font-size: 1.08rem !important;
+    margin: 18px 0 5px 0 !important;
+  }
+
+  h3.story-paragraph[data-para-index="0"] {
+    margin-top: 0 !important;
   }
 }
 
 .hero-section {
-  height: 50vh;
+  min-height: 28vh;
   background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url("/images/home/home-hero.jpg");
   background-size: cover;
   background-position: center 67%;
@@ -157,7 +297,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 20px;
+  padding: 28px 20px;
   color: #0a0a0a;
-  margin-bottom: 80px;
+  margin-bottom: 34px;
 }

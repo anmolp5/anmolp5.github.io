@@ -7,8 +7,8 @@ const Navigation = () => {
 
   const navLinks = [
     { path: '/', label: 'HOME' },
-    { path: '/resume', label: 'RESUME' },
     { path: '/projects', label: 'PROJECTS' },
+    { path: '/about', label: 'ABOUT' },
     { path: '/contact', label: 'CONTACT' }
   ];
 
@@ -16,32 +16,37 @@ const Navigation = () => {
     if (path === '/') {
       return location.pathname === '/';
     }
+    if (path === '/about') {
+      return location.pathname.startsWith('/about') || location.pathname.startsWith('/resume');
+    }
     return location.pathname.startsWith(path);
   };
 
   return (
     <>
-      <nav style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        background: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid #e0e0e0',
-        zIndex: 10000,
-        padding: '0 40px',
-        height: '70px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
-      }}>
+      <nav
+        className="main-nav"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          background: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderBottom: '1px solid #e0e0e0',
+          zIndex: 10000,
+          padding: '0 40px',
+          height: '70px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
+        }}>
         {/* Logo */}
         <Link
           to="/"
           style={{
-            fontSize: '18px',
+            fontSize: 'clamp(15px, 4vw, 18px)',
             fontWeight: '800',
             color: '#0a0a0a',
             textDecoration: 'none',
@@ -152,6 +157,9 @@ const Navigation = () => {
 
       <style>{`
         @media (max-width: 768px) {
+          .main-nav {
+            padding: 0 20px !important;
+          }
           .desktop-nav {
             display: none !important;
           }

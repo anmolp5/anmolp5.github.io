@@ -93,6 +93,20 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const playAllVideos = () => {
+      document.querySelectorAll('video').forEach((v) => {
+        v.defaultMuted = true;
+        v.muted = true;
+        v.setAttribute('muted', '');
+        v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
+        const p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      });
+    };
+    playAllVideos();
+    const timer = setTimeout(playAllVideos, 120);
+    return () => clearTimeout(timer);
   }, [projectId]);
 
   // Normalize project narrative into Unified Document Canvas format (paragraphs + canvasImages)
@@ -467,6 +481,7 @@ const ProjectDetail = () => {
               }
             }
           }}
+          className="project-detail-hero"
           style={{
             height: '50vh',
             minHeight: '380px',
@@ -666,6 +681,7 @@ const ProjectDetail = () => {
 
         {/* Tags */}
         <section
+          className="project-detail-tags"
           style={{
             maxWidth: '1000px',
             margin: '0 auto 60px',
@@ -902,7 +918,7 @@ const ProjectDetail = () => {
                         letterSpacing: '-0.5px',
                         fontFamily: 'system-ui, -apple-system, sans-serif',
                         textAlign: 'left',
-                        margin: pIdx === 0 ? '0 0 16px 0' : '48px 0 16px 0',
+                        margin: pIdx === 0 ? '0 0 12px 0' : '40px 0 12px 0',
                         outline: 'none',
                         cursor: editMode ? 'text' : 'inherit',
                         borderRadius: '4px',
@@ -944,7 +960,7 @@ const ProjectDetail = () => {
                         lineHeight: '1.8',
                         color: '#333',
                         textAlign: 'left',
-                        margin: '0 0 24px 0',
+                        margin: '0 0 22px 0',
                         outline: 'none',
                         cursor: editMode ? 'text' : 'inherit',
                         borderRadius: '4px',
@@ -1011,8 +1027,6 @@ const ProjectDetail = () => {
                       )}
                     </div>
                   )}
-
-                  {!editMode && <div style={{ height: '20px' }} />}
                 </React.Fragment>
               );
             })}
@@ -1055,13 +1069,13 @@ const ProjectDetail = () => {
           )}
         </section>
 
-        {/* Bottom Image Gallery */}
+        {/* Bottom Image Gallery (4 Columns at Full Card Size on Desktop) */}
         {project.images && project.images.length > 0 && (
           <section
             style={{
-              maxWidth: '1200px',
+              maxWidth: '1480px',
               margin: '0 auto',
-              padding: '0 20px 60px'
+              padding: '0 24px 60px'
             }}
           >
             <h2
@@ -1076,16 +1090,18 @@ const ProjectDetail = () => {
               Visual Documentation &amp; Gallery
             </h2>
             <div
+              className="detail-gallery-grid"
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: '24px'
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                gap: '28px'
               }}
             >
               {project.images.map((img, idx) => {
                 const src = typeof img === 'string' ? img : (img?.src || '');
                 const caption = typeof img === 'string' ? '' : (img?.caption || '');
                 const isVid = isMediaVideo(src);
+                const vidSrc = isVid ? `${src}${src.includes('?') ? '&' : '?'}v=2` : src;
 
                 return (
                   <div
@@ -1112,43 +1128,29 @@ const ProjectDetail = () => {
                       e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.05)';
                     }}
                   >
-                    <div style={{ width: '100%', height: '200px', overflow: 'hidden', background: '#0a0a0a', position: 'relative' }}>
+                    <div style={{ width: '100%', height: '220px', overflow: 'hidden', background: '#0a0a0a', position: 'relative' }}>
                       {isVid ? (
-                        <>
-                          <video
-                            ref={(el) => {
-                              if (el) {
-                                el.defaultMuted = true;
-                                el.muted = true;
-                              }
-                            }}
-                            src={src}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            preload="auto"
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                          />
-                          <div
-                            style={{
-                              position: 'absolute',
-                              bottom: '8px',
-                              left: '8px',
-                              background: 'rgba(15, 23, 42, 0.85)',
-                              color: '#38bdf8',
-                              fontSize: '0.72rem',
-                              fontWeight: 'bold',
-                              padding: '2px 8px',
-                              borderRadius: '4px',
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '4px'
-                            }}
-                          >
-                            ▶ VIDEO
-                          </div>
-                        </>
+                        <div
+                          style={{ width: '100%', height: '100%' }}
+                          ref={(wrapperEl) => {
+                            if (!wrapperEl) return;
+                            const vid = wrapperEl.querySelector('video');
+                            if (vid) {
+                              vid.defaultMuted = true;
+                              vid.muted = true;
+                              const tryPlay = () => {
+                                vid.muted = true;
+                                vid.play().catch(() => {});
+                              };
+                              vid.addEventListener('loadedmetadata', tryPlay, { once: true });
+                              vid.addEventListener('canplay', tryPlay, { once: true });
+                              tryPlay();
+                            }
+                          }}
+                          dangerouslySetInnerHTML={{
+                            __html: `<video src="${vidSrc}" autoplay loop muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>`
+                          }}
+                        />
                       ) : (
                         <>
                           <img
@@ -1156,30 +1158,8 @@ const ProjectDetail = () => {
                             alt={caption || `Gallery ${idx + 1}`}
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           />
-                          {/* Cover Photo Badge or Set as Cover Button */}
-                          {project.hero === src ? (
-                            <div
-                              style={{
-                                position: 'absolute',
-                                top: '8px',
-                                right: '8px',
-                                background: 'linear-gradient(135deg, #8B5CF6, #6D28D9)',
-                                color: '#ffffff',
-                                fontSize: '0.68rem',
-                                fontWeight: '700',
-                                padding: '3px 8px',
-                                borderRadius: '6px',
-                                boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '4px',
-                                zIndex: 5
-                              }}
-                              title="Current project cover photo"
-                            >
-                              ★ Cover Photo
-                            </div>
-                          ) : editMode ? (
+                          {/* Set as Cover Button (Only visible in Edit Mode) */}
+                          {editMode && project.hero !== src && (
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
@@ -1206,7 +1186,7 @@ const ProjectDetail = () => {
                             >
                               ★ Set as Cover
                             </button>
-                          ) : null}
+                          )}
                         </>
                       )}
                     </div>

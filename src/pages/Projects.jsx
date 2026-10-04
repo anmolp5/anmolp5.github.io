@@ -59,6 +59,7 @@ const Projects = () => {
     <div style={{ paddingBottom: '100px' }}>
       {/* Hero Section */}
       <section
+        className="projects-hero"
         style={{
           height: '40vh',
           background:
@@ -75,6 +76,7 @@ const Projects = () => {
         }}
       >
         <h1
+          className="projects-hero-title"
           style={{
             fontSize: '3rem',
             fontWeight: '800',
@@ -86,10 +88,12 @@ const Projects = () => {
           Project Portfolio
         </h1>
         <p
+          className="projects-hero-sub"
           style={{
             fontSize: '1.2rem',
             color: '#555',
-            maxWidth: '600px'
+            maxWidth: '600px',
+            margin: 0
           }}
         >
           These projects showcase my work as an engineer so far.
@@ -98,37 +102,42 @@ const Projects = () => {
 
       {/* Intro Text */}
       <section
+        className="projects-section-pad projects-intro-sec"
         style={{
           maxWidth: '800px',
-          margin: '60px auto',
+          margin: '50px auto',
           padding: '0 40px',
           textAlign: 'center'
         }}
       >
         <p
+          className="projects-intro-text"
           style={{
             fontSize: '1.1rem',
             lineHeight: '1.6',
-            color: '#444'
+            color: '#444',
+            margin: 0
           }}
         >
           Click on any card to explore the mechanical design, control firmware, and prototyping process.
         </p>
       </section>
 
-      {/* Project Cards Grid */}
+      {/* Project Cards Grid (4 Columns on Desktop at Full Original Card Size) */}
       <section
+        className="projects-section-pad"
         style={{
-          maxWidth: '1200px',
+          maxWidth: '1540px',
           margin: '0 auto',
           padding: '0 40px'
         }}
       >
         <div
+          className="projects-cards-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '40px'
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '32px'
           }}
         >
           {projects.map((project, index) => (
@@ -199,8 +208,6 @@ const Projects = () => {
                 to={project.link}
                 onClick={(e) => {
                   if (editMode) {
-                    // In edit mode, allow navigation if clicking outside of editable text,
-                    // but prevent navigation if user is clicking to edit title
                     if (document.activeElement?.getAttribute('contenteditable') === 'true') {
                       e.preventDefault();
                     }
@@ -241,6 +248,7 @@ const Projects = () => {
                     const coverImage = projectsData?.projectsDetail?.[project.id]?.hero || project.image;
                     return (
                       <div
+                        className="project-card-img"
                         style={{
                           width: '100%',
                           height: '240px',
@@ -302,8 +310,9 @@ const Projects = () => {
                   })()}
 
                   {/* Project Details */}
-                  <div style={{ padding: '25px', flex: '1', display: 'flex', flexDirection: 'column' }}>
+                  <div className="project-card-body" style={{ padding: '25px', flex: '1', display: 'flex', flexDirection: 'column' }}>
                     <h3
+                      className="project-card-title"
                       contentEditable={editMode}
                       suppressContentEditableWarning={true}
                       onClick={(e) => {
@@ -324,6 +333,7 @@ const Projects = () => {
 
                     {project.subtitle && (
                       <p
+                        className="project-card-sub"
                         contentEditable={editMode}
                         suppressContentEditableWarning={true}
                         onClick={(e) => {
@@ -384,6 +394,57 @@ const Projects = () => {
           }
         }}
       />
+
+      <style>{`
+        @media (max-width: 1280px) {
+          .projects-cards-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+        }
+        @media (max-width: 960px) {
+          .projects-cards-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 24px !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .projects-hero {
+            height: auto !important;
+            min-height: 20vh !important;
+            padding: 28px 16px !important;
+          }
+          .projects-hero-title {
+            font-size: 2rem !important;
+          }
+          .projects-hero-sub {
+            font-size: 0.95rem !important;
+          }
+          .projects-intro-sec {
+            margin: 22px auto 26px !important;
+          }
+          .projects-intro-text {
+            font-size: 0.9rem !important;
+          }
+          .project-card-img {
+            height: 200px !important;
+          }
+          .project-card-body {
+            padding: 18px !important;
+          }
+          .project-card-title {
+            font-size: 1.12rem !important;
+          }
+          .project-card-sub {
+            font-size: 0.86rem !important;
+          }
+        }
+        @media (max-width: 580px) {
+          .projects-cards-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

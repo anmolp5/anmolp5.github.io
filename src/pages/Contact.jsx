@@ -25,34 +25,43 @@ const Contact = () => {
   return (
     <div style={{ paddingBottom: '100px' }}>
       {/* Hero Section */}
-      <section style={{
-        height: '40vh',
-        background: 'linear-gradient(rgba(139, 92, 246, 0.9), rgba(139, 92, 246, 0.7)), url("https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&q=80")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#0a0a0a',
-        marginBottom: '80px'
-      }}>
-        <h1 style={{
-          fontSize: '3.5rem',
-          fontWeight: '800',
-          fontFamily: 'system-ui, -apple-system, sans-serif',
-          margin: 0,
-          letterSpacing: '-1px'
-        }}>
+      <section
+        className="contact-hero"
+        style={{
+          height: '40vh',
+          background: 'linear-gradient(rgba(139, 92, 246, 0.9), rgba(139, 92, 246, 0.7)), url("https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#0a0a0a',
+          marginBottom: '80px'
+        }}
+      >
+        <h1
+          className="contact-hero-title"
+          style={{
+            fontSize: '3.5rem',
+            fontWeight: '800',
+            fontFamily: 'system-ui, -apple-system, sans-serif',
+            margin: 0,
+            letterSpacing: '-1px'
+          }}
+        >
           Contact me!
         </h1>
       </section>
 
       {/* Contact Content */}
-      <section style={{
-        maxWidth: '1100px',
-        margin: '0 auto',
-        padding: '0 40px'
-      }}>
+      <section
+        className="projects-section-pad"
+        style={{
+          maxWidth: '1100px',
+          margin: '0 auto',
+          padding: '0 40px'
+        }}
+      >
         <div className="contact-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1.5fr',
@@ -83,7 +92,7 @@ const Contact = () => {
                   fontSize: '1rem',
                   transition: 'color 0.2s'
                 }}
-                onMouseEnter={(e) => e.target.style.color = '#ffb703'}
+                onMouseEnter={(e) => e.target.style.color = '#8B5CF6'}
                 onMouseLeave={(e) => e.target.style.color = '#555'}
               >
                 anmolp5@illinois.edu
@@ -127,7 +136,7 @@ const Contact = () => {
                   letterSpacing: '0.5px'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = '#0077b5';
+                  e.target.style.background = '#8B5CF6';
                   e.target.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
@@ -141,13 +150,16 @@ const Contact = () => {
           </div>
 
           {/* Right Column - Contact Form */}
-          <div style={{
-            background: 'white',
-            padding: '40px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
-            border: '1px solid #eee'
-          }}>
+          <div
+            className="contact-form-card"
+            style={{
+              background: 'white',
+              padding: '40px',
+              borderRadius: '8px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+              border: '1px solid #eee'
+            }}
+          >
             <p style={{
               fontSize: '0.9rem',
               color: '#888',
@@ -175,7 +187,7 @@ const Contact = () => {
                 }}>
                   NAME *
                 </label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div className="contact-name-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                   <input
                     type="text"
                     name="firstName"
@@ -195,7 +207,7 @@ const Contact = () => {
                       borderRadius: '4px',
                       transition: 'border-color 0.2s'
                     }}
-                    onFocus={(e) => e.target.style.borderColor = '#ffb703'}
+                    onFocus={(e) => e.target.style.borderColor = '#8B5CF6'}
                     onBlur={(e) => e.target.style.borderColor = '#ddd'}
                   />
                   <input
@@ -217,7 +229,7 @@ const Contact = () => {
                       borderRadius: '4px',
                       transition: 'border-color 0.2s'
                     }}
-                    onFocus={(e) => e.target.style.borderColor = '#ffb703'}
+                    onFocus={(e) => e.target.style.borderColor = '#8B5CF6'}
                     onBlur={(e) => e.target.style.borderColor = '#ddd'}
                   />
                 </div>
@@ -254,7 +266,7 @@ const Contact = () => {
                     borderRadius: '4px',
                     transition: 'border-color 0.2s'
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#ffb703'}
+                  onFocus={(e) => e.target.style.borderColor = '#8B5CF6'}
                   onBlur={(e) => e.target.style.borderColor = '#ddd'}
                 />
               </div>

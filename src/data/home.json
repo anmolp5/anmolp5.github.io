@@ -9,22 +9,72 @@
   },
   "about": {
     "paragraphs": [
-      "I build mechanical systems at the boundary where hardware interacts directly with the physical world and the human body. As a Bioengineering student with an Electrical Engineering minor, my focus is bridging mechanical kinematics with embedded control—from routing tendon channels and designing snap-fit linkages to reverse-engineering RF circuits and packaging wearable biosensors. I prioritize functional engineering: validating tight clearances in CAD, eliminating mechanism binding, and iterating prototypes to build responsive, reliable hardware."
+      "I build mechanical systems at the boundary where hardware interacts directly with the physical world and the human body. My focus is bridging my engineering skills with a biological frame of thinking to solve human problems. Through hands-on prototyping and electromechanical integration, I have been building functional robotic projects and experimenting with physiological technologies, such as EMG and EEG biosignals, as intuitive control systems."
     ],
     "image": "/images/home/profile.jpg"
+  },
+  "flagshipProjects": [
+    {
+      "id": "bionic-hand",
+      "title": "7-DOF Tendon-Driven Bionic Hand",
+      "subtitle": "Robotic Hand with Kinematic Posture Control",
+      "link": "/projects/bionic-hand",
+      "accentColor": "#7c3aed",
+      "image": "/images/projects/bionic-hand/IMG_5084.jpeg",
+      "video": "/images/projects/bionic-hand/IMG_5085.mp4",
+      "description": "A custom 3D-printed robotic hand designed to replicate natural finger motions and grip postures in real time. Built with snap-fit pin joints and internal channels for routed Dyneema tendons, it is driven by micro servos and a TI MSP432 microcontroller to execute smooth pinches, fists, and gestures."
+    },
+    {
+      "id": "smart-lighting",
+      "title": "Unified Smart Lighting Hub",
+      "subtitle": "ESP32, BLE & 433 MHz RF Remote Integration",
+      "link": "/projects/smart-lighting",
+      "accentColor": "#7c3aed",
+      "image": "/images/projects/smart-lighting/IMG_5151.jpeg",
+      "video": "/images/projects/smart-lighting/IMG_5100.mp4",
+      "description": "A centralized smart controller that connects multiple incompatible room and desk lights into one unified web dashboard. Built on an ESP32 web server, it bridges reverse-engineered Bluetooth signals and cloned 433 MHz RF remote frequencies with Cloudflare integration for control from anywhere."
+    }
+  ],
+  "aboutBio": {
+    "school": "University of Illinois Urbana-Champaign",
+    "degree": "B.S. in Bioengineering | Minor in Electrical Engineering",
+    "graduation": "Expected Graduation: May 2028",
+    "paragraphs": [
+      "I am a Bioengineering student with an Electrical Engineering minor at the University of Illinois Urbana-Champaign, focusing on designing physical hardware that interfaces directly with human movement and physiology. My technical interests span biomechatronics, wearable neural and muscular control interfaces (EEG and EMG), custom prosthetics and orthotics, and rapid electromechanical prototyping.",
+      "On campus, I work on hardware development with the Attune Neurofeedback EEG team, where I design modular headset mechanics and low-noise sensor housings. I also lead technical workshops for the Biomedical Engineering Society (BMES), teaching fellow students parametric CAD modeling, tolerance design, and 3D printing for functional hardware."
+    ],
+    "interests": [
+      "Biomechatronics & Robotics",
+      "EMG & EEG Control Interfaces",
+      "Wearable Biosensors",
+      "Prosthetics & Orthotics",
+      "Embedded Systems & PCB Design",
+      "Rapid Prototyping (DFM)"
+    ],
+    "coursework": [
+      "ECE 110: Introduction to Electronics",
+      "SE 101: Engineering Graphics & Design (CAD)",
+      "TAM 211: Statics",
+      "BIOE 210: Linear Algebra for Biomedical Data",
+      "BIOE 206: Cellular Bioengineering",
+      "CS 101: Intro Computing for Engineering & Science",
+      "PHYS 212: Electricity & Magnetism",
+      "MATH 285: Differential Equations",
+      "MATH 241: Multivariable Calculus"
+    ]
   },
   "experiences": [
     {
       "id": "attune",
       "company": "Attune Neurofeedback EEG Hardware Team",
       "role": "Hardware Engineer",
-      "period": "Sep 2025 – Present",
+      "period": "Sep 2025 - Present",
       "location": "Champaign, IL",
       "bullets": [
-        "Engineered modular EEG headset housings in Onshape using ISO shaft-basis interference fits (sub-0.03 mm clearances) and integrated friction detents with 0.4 mm engagement ribs, securing modular electrode cartridges against 3.5 N extraction loads without mechanical fasteners.",
-        "Routed internal 1.8 mm conduit pathways across 7 FDM iterations to prevent wire fatigue failure and reduced overall enclosure packaging volume by 25%.",
-        "Designed an adjustable compliant headband strap mechanism with 60 mm of travel, sustaining 1.5–2.0 N normal scalp contact pressure across head circumferences from 52 cm to 62 cm.",
-        "Evaluated analog front-end schematics and multi-pin cartridge interconnects to minimize contact impedance (<50 mΩ) and isolate microvolt biosignals (0.5–100 µV) from external electromagnetic interference (EMI)."
+        "Designed modular EEG headset enclosures in Onshape with snap-fit retention, allowing electrode cartridges to be swapped quickly without tools while staying secure during head movement.",
+        "Engineered internal wire routing channels across multiple CAD iterations to eliminate sharp bends, prevent wire wear, and shrink the overall housing footprint.",
+        "Developed an adjustable compliant headband mechanism that maintains comfortable, even contact pressure across different head sizes to reduce motion artifacts.",
+        "Collaborated with the electrical team to refine sensor interconnects and shield low-voltage neural signals from ambient electrical interference."
       ]
     },
     {
@@ -34,9 +84,10 @@
       "period": "Jul 2024",
       "location": "Montebello, CA",
       "bullets": [
-        "Fabricated 13 custom-molded carbon fiber and polycarbonate orthotic inserts utilizing 25 in-Hg vacuum bagging and heated press lamination cycles (160°C–180°C).",
-        "Post-processed composite and thermoplastic blanks on a high-speed rotary grinder at 3,400 RPM, blending edge radii to sub-millimeter profiles to match strict internal shoe welt boundaries.",
-        "Digitized patient foot morphology with millimeter-level arch accuracy using flatbed optical surface scanners, and facilitated clinical delivery consultations via real-time Spanish translation for 20+ patients."
+        "Fabricated custom carbon-fiber and thermoplastic orthotic shoe inserts using vacuum forming and heated press lamination tailored to individual patient biomechanics.",
+        "Shaped and finished composite orthotic shells on rotary grinding machinery to fit smoothly inside patient footwear while preserving structural arch support.",
+        "Scanned patient foot morphology with optical 3D surface scanners and mapped pressure points to build targeted cushioning zones for diabetic care.",
+        "Communicated directly with Spanish-speaking patients during clinical visits and fittings to verify symptom relief and fine-tune final insert comfort."
       ]
     },
     {
@@ -46,20 +97,34 @@
       "period": "Jun 2024",
       "location": "Gurugram, India",
       "bullets": [
-        "Assembled 8 adult and pediatric Knee-Ankle-Foot Orthoses (KAFOs) and cerebral palsy braces, mechanically aligning bilateral aluminum side-rails within 1° of the anatomical sagittal knee axis.",
-        "Calibrated drop-lock knee hinges to lock at 0° full extension, ensuring structural joint stability under 500+ N cyclic stance loads without binding.",
-        "Formed positive plaster limb casts to mold 3–4 mm rigid polycarbonate shells, and adjusted coronal and sagittal alignment angles across 10-meter patient walk tests to eliminate hyperextension hot spots."
+        "Assembled custom adult and pediatric Knee-Ankle-Foot Orthoses (KAFOs) and lower-limb braces, aligning structural aluminum uprights with the patient's natural joint axes.",
+        "Calibrated mechanical drop-lock knee hinges to provide stable support while standing and smooth unlocking when sitting.",
+        "Created positive plaster limb casts from patient measurements to vacuum-form rigid polycarbonate brace shells contoured to complex anatomy.",
+        "Observed patient walking trials to identify pressure spots and adjust brace alignment for a more natural, balanced gait."
+      ]
+    },
+    {
+      "id": "ftc",
+      "company": "FTC Biobots #14318",
+      "role": "Lead Mechanical Engineer & Team Captain",
+      "period": "Aug 2019 - Feb 2025",
+      "location": "Competitive Robotics",
+      "bullets": [
+        "Led the mechanical design and full CAD modeling of 6 competition robots in Onshape within strict tournament size constraints.",
+        "Prototyped and built high-speed game element intakes, multi-stage linear lift slides, and custom belted mecanum drivetrains for agile field navigation.",
+        "Manufactured custom robot parts in-house using 3D printers and manual shop tools alongside waterjet-cut aluminum structural plates.",
+        "Guided a 7-member team through design and build cycles across 6 seasons, earning multiple engineering design awards and advancing to the Regional Championship Finals."
       ]
     }
   ],
   "skills": [
     {
       "title": "Technical Design",
-      "skills": "Fusion 360, Onshape, SolidWorks, Python (Pandas/NumPy), FDM 3D Printing, Rapid Prototyping"
+      "skills": "Onshape, SolidWorks, Fusion 360, Tolerance & DFM Analysis, Python (NumPy/Pandas/PySerial), C/C++ Embedded Firmware, KiCad Schematics"
     },
     {
-      "title": "Fabrication",
-      "skills": "CNC Machining, Bandsaw, Rotary Grinder, Surface Planer, Carbon Fiber Layups, Circuit Assembly"
+      "title": "Fabrication & Hardware",
+      "skills": "FDM 3D Printing, Carbon Fiber Vacuum Layups, Thermoforming, CNC & Waterjet Prep, Rotary Grinding, PCB Prototyping & Soldering, Oscilloscope/RF Debugging"
     },
     {
       "title": "Languages",
