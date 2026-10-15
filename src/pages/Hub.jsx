@@ -2,79 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { APPS } from '../data/apps';
 
-function AppIcon({ icon, color = '#8b5cf6' }) {
-  const props = {
-    width: '24',
-    height: '24',
-    viewBox: '0 0 24 24',
-    fill: 'none',
-    stroke: color,
-    strokeWidth: '2',
-    strokeLinecap: 'round',
-    strokeLinejoin: 'round'
-  };
-
-  switch (icon) {
-    case 'dumbbell':
-      return (
-        <svg {...props}>
-          <path d="m6.5 6.5 11 11" />
-          <path d="m21 21-1-1a3 3 0 0 0-4.24 0l-1.42 1.42a3 3 0 0 0 0 4.24l1 1" />
-          <path d="m18 15 3-3" />
-          <path d="m3 3 1 1a3 3 0 0 0 4.24 0L9.66 2.58a3 3 0 0 0 0-4.24l-1-1" />
-          <path d="m6 9-3 3" />
-        </svg>
-      );
-    case 'cube':
-      return (
-        <svg {...props}>
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-          <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-          <line x1="12" y1="22.08" x2="12" y2="12" />
-        </svg>
-      );
-    case 'remote':
-      return (
-        <svg {...props}>
-          <rect width="10" height="20" x="7" y="2" rx="2" />
-          <path d="M11 6h2" />
-          <path d="M11 10h2" />
-          <circle cx="12" cy="15" r="1" fill={color} />
-        </svg>
-      );
-    case 'printer':
-      return (
-        <svg {...props}>
-          <polyline points="6 9 6 2 18 2 18 9" />
-          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-          <rect width="12" height="8" x="6" y="14" />
-        </svg>
-      );
-    case 'hexagon':
-      return (
-        <svg {...props}>
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-          <circle cx="12" cy="12" r="3" />
-        </svg>
-      );
-    case 'plus':
-      return (
-        <svg {...props}>
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <line x1="5" y1="12" x2="19" y2="12" />
-        </svg>
-      );
-    default:
-      return (
-        <svg {...props}>
-          <circle cx="12" cy="12" r="10" />
-          <line x1="2" y1="12" x2="22" y2="12" />
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-        </svg>
-      );
-  }
-}
-
 export default function Hub() {
   const [hoveredCard, setHoveredCard] = useState(null);
 
@@ -148,7 +75,7 @@ export default function Hub() {
                   '--accent': app.accent || '#8b5cf6',
                   borderColor: isHovered ? app.accent : 'rgba(255, 255, 255, 0.08)',
                   boxShadow: isHovered
-                    ? `0 12px 36px -8px ${app.accent}33, 0 0 0 1px ${app.accent}44`
+                    ? `0 14px 40px -8px ${app.accent}33, 0 0 0 1px ${app.accent}55`
                     : '0 4px 20px rgba(0, 0, 0, 0.3)'
                 }}
               >
@@ -156,21 +83,25 @@ export default function Hub() {
                 <div
                   className="card-glow"
                   style={{
-                    opacity: isHovered ? 0.15 : 0,
+                    opacity: isHovered ? 0.16 : 0,
                     background: `radial-gradient(circle at 50% 0%, ${app.accent}, transparent 70%)`
                   }}
                 />
 
-                {/* Card Header (Icon & Badge) */}
+                {/* Card Header (Logo & Badge) */}
                 <div className="card-header">
                   <div
-                    className="card-icon-box"
+                    className="card-logo-box"
                     style={{
-                      background: `${app.accent}18`,
-                      borderColor: `${app.accent}30`
+                      boxShadow: isHovered ? `0 6px 20px -2px ${app.accent}40` : '0 2px 10px rgba(0,0,0,0.3)'
                     }}
                   >
-                    <AppIcon icon={app.icon} color={app.accent} />
+                    <img
+                      src={app.logo}
+                      alt={`${app.title} logo`}
+                      className="card-logo-img"
+                      loading="lazy"
+                    />
                   </div>
                   {app.badge && (
                     <span
@@ -193,20 +124,9 @@ export default function Hub() {
                 {/* Card Content */}
                 <div className="card-body">
                   <h2 className="card-title">{app.title}</h2>
-                  {app.subtitle && <p className="card-subtitle">{app.subtitle}</p>}
+                  {app.subtitle && <p className="card-subtitle" style={{ color: app.accent }}>{app.subtitle}</p>}
                   <p className="card-description">{app.description}</p>
                 </div>
-
-                {/* Tags */}
-                {app.tags && app.tags.length > 0 && (
-                  <div className="card-tags">
-                    {app.tags.map((tag) => (
-                      <span key={tag} className="tag-chip">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
 
                 {/* Card Footer / Action */}
                 <div className="card-action">
@@ -237,8 +157,11 @@ export default function Hub() {
           {/* New Project / Building Placeholder Card */}
           <div className="app-card placeholder-card">
             <div className="card-header">
-              <div className="card-icon-box placeholder-icon-box">
-                <AppIcon icon="plus" color="#71717a" />
+              <div className="card-logo-box placeholder-logo-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
               </div>
               <span className="card-badge placeholder-badge">
                 Next Up
@@ -246,7 +169,7 @@ export default function Hub() {
             </div>
             <div className="card-body">
               <h2 className="card-title placeholder-title">More in Development</h2>
-              <p className="card-subtitle">Hardware & Web Tools</p>
+              <p className="card-subtitle" style={{ color: '#71717a' }}>Hardware & Web Tools</p>
               <p className="card-description">
                 Currently building new robotic interfaces, embedded controllers, and generative tools. Check back for new deployments!
               </p>
@@ -503,22 +426,33 @@ export default function Hub() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 20px;
+          margin-bottom: 22px;
         }
 
-        .card-icon-box {
+        /* Logo Box */
+        .card-logo-box {
+          width: 56px;
+          height: 56px;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          overflow: hidden;
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 48px;
-          height: 48px;
-          border-radius: 12px;
-          border: 1px solid;
-          transition: transform 0.25s ease;
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          flex-shrink: 0;
         }
 
-        .app-card:hover .card-icon-box {
-          transform: scale(1.05);
+        .app-card:hover .card-logo-box {
+          transform: scale(1.06);
+        }
+
+        .card-logo-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
         }
 
         .card-badge {
@@ -542,7 +476,7 @@ export default function Hub() {
 
         .card-body {
           flex: 1;
-          margin-bottom: 20px;
+          margin-bottom: 24px;
         }
 
         .card-title {
@@ -555,9 +489,9 @@ export default function Hub() {
 
         .card-subtitle {
           font-size: 13px;
-          font-weight: 500;
-          color: #8b5cf6;
+          font-weight: 600;
           margin: 0 0 12px;
+          letter-spacing: 0.2px;
         }
 
         .card-description {
@@ -567,31 +501,12 @@ export default function Hub() {
           margin: 0;
         }
 
-        /* Tags */
-        .card-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
-          margin-bottom: 22px;
-        }
-
-        .tag-chip {
-          padding: 3px 9px;
-          border-radius: 6px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          font-size: 11px;
-          font-weight: 500;
-          color: #a1a1aa;
-          letter-spacing: 0.2px;
-        }
-
         /* Action */
         .card-action {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding-top: 16px;
+          padding-top: 18px;
           border-top: 1px solid rgba(255, 255, 255, 0.06);
           color: #e4e4e7;
           font-size: 13px;
@@ -616,9 +531,8 @@ export default function Hub() {
           border-color: rgba(255, 255, 255, 0.12);
         }
 
-        .placeholder-icon-box {
-          background: rgba(255, 255, 255, 0.03);
-          border-color: rgba(255, 255, 255, 0.08);
+        .placeholder-logo-box {
+          border: 1px dashed rgba(255, 255, 255, 0.12);
         }
 
         .placeholder-badge {
@@ -686,6 +600,11 @@ export default function Hub() {
 
           .app-card {
             padding: 22px;
+          }
+
+          .card-logo-box {
+            width: 48px;
+            height: 48px;
           }
         }
       `}</style>
