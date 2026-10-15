@@ -4559,7 +4559,7 @@ Here are each of the different components I designed on this desk.`,position:new
             gap: 50px !important;
           }
         }
-      `})]})};const SE=[{id:`partial-plus`,title:`Partial+`,subtitle:`Workout Tracking PWA`,description:`Progressive Web App for tracking progressive overload, routine customization, and multi-year training volume.`,url:`https://anmolprabhakar.com/partial-plus/`,tags:[`PWA`,`Fitness`,`Mobile-First`],badge:`Live`,icon:`dumbbell`,accent:`#f59e0b`,external:!0},{id:`portfolio`,title:`Engineering Portfolio`,subtitle:`3D Interactive Workspace`,description:`Interactive 3D maker portfolio showcasing mechanical CAD, embedded robotics, firmware, and software engineering builds.`,url:`/`,tags:[`3D WebGL`,`Three.js`,`Hardware`],badge:`Active`,icon:`cube`,accent:`#8b5cf6`,external:!1},{id:`universal-remote`,title:`Universal Remote`,subtitle:`IoT Hardware Controller`,description:`Cloud and web interface for ESP32 & IR automation, smart home touch lamp control, and connected IoT triggers.`,url:`https://anmolprabhakar.com/universal-remote/`,tags:[`IoT`,`ESP32`,`Firmware`],badge:`Live`,icon:`remote`,accent:`#06b6d4`,external:!0},{id:`printerqueue`,title:`Printer Queue`,subtitle:`3D Print Dispatch Manager`,description:`Static Next.js queue management system for scheduling, tracking, and prioritizing 3D print jobs across machines.`,url:`https://anmolprabhakar.com/printerqueue/`,tags:[`Next.js`,`3D Printing`,`Productivity`],badge:`Live`,icon:`printer`,accent:`#10b981`,external:!0},{id:`catangen`,title:`CatanGen`,subtitle:`Board Generator & Analytics`,description:`Algorithmic map and resource distribution generator for the Settlers of Catan board game.`,url:`https://anmolprabhakar.com/catangen/`,tags:[`Game Dev`,`Algorithms`,`Web Tool`],badge:`Live`,icon:`hexagon`,accent:`#f43f5e`,external:!0}];function CE({icon:e,color:t=`#8b5cf6`}){let n={width:`24`,height:`24`,viewBox:`0 0 24 24`,fill:`none`,stroke:t,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`};switch(e){case`dumbbell`:return(0,z.jsxs)(`svg`,{...n,children:[(0,z.jsx)(`path`,{d:`m6.5 6.5 11 11`}),(0,z.jsx)(`path`,{d:`m21 21-1-1a3 3 0 0 0-4.24 0l-1.42 1.42a3 3 0 0 0 0 4.24l1 1`}),(0,z.jsx)(`path`,{d:`m18 15 3-3`}),(0,z.jsx)(`path`,{d:`m3 3 1 1a3 3 0 0 0 4.24 0L9.66 2.58a3 3 0 0 0 0-4.24l-1-1`}),(0,z.jsx)(`path`,{d:`m6 9-3 3`})]});case`cube`:return(0,z.jsxs)(`svg`,{...n,children:[(0,z.jsx)(`path`,{d:`M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z`}),(0,z.jsx)(`polyline`,{points:`3.27 6.96 12 12.01 20.73 6.96`}),(0,z.jsx)(`line`,{x1:`12`,y1:`22.08`,x2:`12`,y2:`12`})]});case`remote`:return(0,z.jsxs)(`svg`,{...n,children:[(0,z.jsx)(`rect`,{width:`10`,height:`20`,x:`7`,y:`2`,rx:`2`}),(0,z.jsx)(`path`,{d:`M11 6h2`}),(0,z.jsx)(`path`,{d:`M11 10h2`}),(0,z.jsx)(`circle`,{cx:`12`,cy:`15`,r:`1`,fill:t})]});case`printer`:return(0,z.jsxs)(`svg`,{...n,children:[(0,z.jsx)(`polyline`,{points:`6 9 6 2 18 2 18 9`}),(0,z.jsx)(`path`,{d:`M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2`}),(0,z.jsx)(`rect`,{width:`12`,height:`8`,x:`6`,y:`14`})]});case`hexagon`:return(0,z.jsxs)(`svg`,{...n,children:[(0,z.jsx)(`path`,{d:`M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z`}),(0,z.jsx)(`circle`,{cx:`12`,cy:`12`,r:`3`})]});case`plus`:return(0,z.jsxs)(`svg`,{...n,children:[(0,z.jsx)(`line`,{x1:`12`,y1:`5`,x2:`12`,y2:`19`}),(0,z.jsx)(`line`,{x1:`5`,y1:`12`,x2:`19`,y2:`12`})]});default:return(0,z.jsxs)(`svg`,{...n,children:[(0,z.jsx)(`circle`,{cx:`12`,cy:`12`,r:`10`}),(0,z.jsx)(`line`,{x1:`2`,y1:`12`,x2:`22`,y2:`12`}),(0,z.jsx)(`path`,{d:`M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z`})]})}}function wE(){let[e,t]=(0,v.useState)(null);return(0,z.jsxs)(`div`,{className:`hub-page`,children:[(0,z.jsx)(`div`,{className:`ambient-glow glow-1`}),(0,z.jsx)(`div`,{className:`ambient-glow glow-2`}),(0,z.jsx)(`div`,{className:`ambient-grid-overlay`}),(0,z.jsxs)(`header`,{className:`hub-topbar`,children:[(0,z.jsxs)(gn,{to:`/`,className:`topbar-brand`,children:[(0,z.jsx)(`span`,{className:`brand-dot`}),(0,z.jsx)(`span`,{className:`brand-text`,children:`ANMOL PRABHAKAR`}),(0,z.jsx)(`span`,{className:`brand-separator`,children:`/`}),(0,z.jsx)(`span`,{className:`brand-label`,children:`LAUNCHPAD`})]}),(0,z.jsxs)(`div`,{className:`topbar-actions`,children:[(0,z.jsxs)(gn,{to:`/`,className:`portfolio-link-btn`,children:[(0,z.jsxs)(`svg`,{width:`14`,height:`14`,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`,children:[(0,z.jsx)(`line`,{x1:`19`,y1:`12`,x2:`5`,y2:`12`}),(0,z.jsx)(`polyline`,{points:`12 19 5 12 12 5`})]}),`Portfolio`]}),(0,z.jsx)(`a`,{href:`https://github.com/anmolp5`,target:`_blank`,rel:`noopener noreferrer`,className:`github-link-btn`,"aria-label":`GitHub Profile`,children:(0,z.jsx)(`svg`,{width:`18`,height:`18`,viewBox:`0 0 24 24`,fill:`currentColor`,children:(0,z.jsx)(`path`,{fillRule:`evenodd`,clipRule:`evenodd`,d:`M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z`})})})]})]}),(0,z.jsxs)(`main`,{className:`hub-container`,children:[(0,z.jsxs)(`section`,{className:`hub-hero`,children:[(0,z.jsxs)(`div`,{className:`hero-pill`,children:[(0,z.jsx)(`span`,{className:`hero-pill-indicator`}),(0,z.jsx)(`span`,{children:`PORTAL & ECOSYSTEM`})]}),(0,z.jsx)(`h1`,{className:`hero-title`,children:`Web Applications & Tools`}),(0,z.jsx)(`p`,{className:`hero-description`,children:`A unified launchpad for all live applications, IoT interfaces, and productivity tools built by Anmol Prabhakar.`})]}),(0,z.jsxs)(`section`,{className:`apps-grid`,"aria-label":`Web Applications`,children:[SE.map(n=>{let r=e===n.id;return(0,z.jsxs)(`a`,{...n.external?{href:n.url,target:`_blank`,rel:`noopener noreferrer`}:{href:n.url},className:`app-card`,onMouseEnter:()=>t(n.id),onMouseLeave:()=>t(null),style:{"--accent":n.accent||`#8b5cf6`,borderColor:r?n.accent:`rgba(255, 255, 255, 0.08)`,boxShadow:r?`0 12px 36px -8px ${n.accent}33, 0 0 0 1px ${n.accent}44`:`0 4px 20px rgba(0, 0, 0, 0.3)`},children:[(0,z.jsx)(`div`,{className:`card-glow`,style:{opacity:r?.15:0,background:`radial-gradient(circle at 50% 0%, ${n.accent}, transparent 70%)`}}),(0,z.jsxs)(`div`,{className:`card-header`,children:[(0,z.jsx)(`div`,{className:`card-icon-box`,style:{background:`${n.accent}18`,borderColor:`${n.accent}30`},children:(0,z.jsx)(CE,{icon:n.icon,color:n.accent})}),n.badge&&(0,z.jsxs)(`span`,{className:`card-badge`,style:{background:`${n.accent}14`,color:n.accent,borderColor:`${n.accent}33`},children:[(0,z.jsx)(`span`,{className:`badge-dot`,style:{background:n.accent}}),n.badge]})]}),(0,z.jsxs)(`div`,{className:`card-body`,children:[(0,z.jsx)(`h2`,{className:`card-title`,children:n.title}),n.subtitle&&(0,z.jsx)(`p`,{className:`card-subtitle`,children:n.subtitle}),(0,z.jsx)(`p`,{className:`card-description`,children:n.description})]}),n.tags&&n.tags.length>0&&(0,z.jsx)(`div`,{className:`card-tags`,children:n.tags.map(e=>(0,z.jsx)(`span`,{className:`tag-chip`,children:e},e))}),(0,z.jsxs)(`div`,{className:`card-action`,children:[(0,z.jsx)(`span`,{className:`action-text`,children:`Launch App`}),(0,z.jsxs)(`svg`,{className:`action-icon`,width:`16`,height:`16`,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2.5`,strokeLinecap:`round`,strokeLinejoin:`round`,style:{transform:r?`translate(2px, -2px)`:`none`,transition:`transform 0.2s ease`},children:[(0,z.jsx)(`line`,{x1:`7`,y1:`17`,x2:`17`,y2:`7`}),(0,z.jsx)(`polyline`,{points:`7 7 17 7 17 17`})]})]})]},n.id)}),(0,z.jsxs)(`div`,{className:`app-card placeholder-card`,children:[(0,z.jsxs)(`div`,{className:`card-header`,children:[(0,z.jsx)(`div`,{className:`card-icon-box placeholder-icon-box`,children:(0,z.jsx)(CE,{icon:`plus`,color:`#71717a`})}),(0,z.jsx)(`span`,{className:`card-badge placeholder-badge`,children:`Next Up`})]}),(0,z.jsxs)(`div`,{className:`card-body`,children:[(0,z.jsx)(`h2`,{className:`card-title placeholder-title`,children:`More in Development`}),(0,z.jsx)(`p`,{className:`card-subtitle`,children:`Hardware & Web Tools`}),(0,z.jsx)(`p`,{className:`card-description`,children:`Currently building new robotic interfaces, embedded controllers, and generative tools. Check back for new deployments!`})]}),(0,z.jsx)(`div`,{className:`card-action placeholder-action`,children:(0,z.jsx)(`span`,{className:`action-text`,children:`Stay Tuned`})})]})]})]}),(0,z.jsxs)(`footer`,{className:`hub-footer`,children:[(0,z.jsxs)(`p`,{children:[`Designed & Developed by `,(0,z.jsx)(`strong`,{children:`Anmol Prabhakar`})]}),(0,z.jsxs)(`p`,{className:`footer-subtext`,children:[`Hosted on `,(0,z.jsx)(`code`,{children:`anmolprabhakar.com`})]})]}),(0,z.jsx)(`style`,{children:`
+      `})]})};const SE=[{id:`partial-plus`,title:`Partial+`,subtitle:`Workout Tracking PWA`,description:`Progressive Web App for tracking progressive overload, routine customization, and multi-year training volume.`,url:`https://anmolprabhakar.com/partial-plus/`,badge:`Live`,logo:`/logos/partial-plus.png`,accent:`#a855f7`,external:!0},{id:`portfolio`,title:`Engineering Portfolio`,subtitle:`3D Interactive Workspace`,description:`Interactive 3D maker portfolio showcasing mechanical CAD, embedded robotics, firmware, and software engineering builds.`,url:`/`,badge:`Active`,logo:`/logos/portfolio.png`,accent:`#8b5cf6`,external:!1},{id:`universal-remote`,title:`Universal Remote`,subtitle:`IoT Hardware Controller`,description:`Cloud and web interface for ESP32 & IR automation, smart home touch lamp control, and connected IoT triggers.`,url:`https://anmolprabhakar.com/universal-remote/`,badge:`Live`,logo:`/logos/universal-remote.svg`,accent:`#06b6d4`,external:!0},{id:`printerqueue`,title:`Printer Queue`,subtitle:`3D Print Dispatch Manager`,description:`Static Next.js queue management system for scheduling, tracking, and prioritizing 3D print jobs across machines.`,url:`https://anmolprabhakar.com/printerqueue/`,badge:`Live`,logo:`/logos/printer-queue.svg`,accent:`#ff5f05`,external:!0},{id:`catangen`,title:`CatanGen`,subtitle:`Board Generator & Analytics`,description:`Algorithmic map and resource distribution generator for the Settlers of Catan board game.`,url:`https://anmolprabhakar.com/catangen/`,badge:`Live`,logo:`/logos/catangen.svg`,accent:`#f59e0b`,external:!0}];function CE(){let[e,t]=(0,v.useState)(null);return(0,z.jsxs)(`div`,{className:`hub-page`,children:[(0,z.jsx)(`div`,{className:`ambient-glow glow-1`}),(0,z.jsx)(`div`,{className:`ambient-glow glow-2`}),(0,z.jsx)(`div`,{className:`ambient-grid-overlay`}),(0,z.jsxs)(`header`,{className:`hub-topbar`,children:[(0,z.jsxs)(gn,{to:`/`,className:`topbar-brand`,children:[(0,z.jsx)(`span`,{className:`brand-dot`}),(0,z.jsx)(`span`,{className:`brand-text`,children:`ANMOL PRABHAKAR`}),(0,z.jsx)(`span`,{className:`brand-separator`,children:`/`}),(0,z.jsx)(`span`,{className:`brand-label`,children:`LAUNCHPAD`})]}),(0,z.jsxs)(`div`,{className:`topbar-actions`,children:[(0,z.jsxs)(gn,{to:`/`,className:`portfolio-link-btn`,children:[(0,z.jsxs)(`svg`,{width:`14`,height:`14`,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`,children:[(0,z.jsx)(`line`,{x1:`19`,y1:`12`,x2:`5`,y2:`12`}),(0,z.jsx)(`polyline`,{points:`12 19 5 12 12 5`})]}),`Portfolio`]}),(0,z.jsx)(`a`,{href:`https://github.com/anmolp5`,target:`_blank`,rel:`noopener noreferrer`,className:`github-link-btn`,"aria-label":`GitHub Profile`,children:(0,z.jsx)(`svg`,{width:`18`,height:`18`,viewBox:`0 0 24 24`,fill:`currentColor`,children:(0,z.jsx)(`path`,{fillRule:`evenodd`,clipRule:`evenodd`,d:`M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z`})})})]})]}),(0,z.jsxs)(`main`,{className:`hub-container`,children:[(0,z.jsxs)(`section`,{className:`hub-hero`,children:[(0,z.jsxs)(`div`,{className:`hero-pill`,children:[(0,z.jsx)(`span`,{className:`hero-pill-indicator`}),(0,z.jsx)(`span`,{children:`PORTAL & ECOSYSTEM`})]}),(0,z.jsx)(`h1`,{className:`hero-title`,children:`Web Applications & Tools`}),(0,z.jsx)(`p`,{className:`hero-description`,children:`A unified launchpad for all live applications, IoT interfaces, and productivity tools built by Anmol Prabhakar.`})]}),(0,z.jsxs)(`section`,{className:`apps-grid`,"aria-label":`Web Applications`,children:[SE.map(n=>{let r=e===n.id;return(0,z.jsxs)(`a`,{...n.external?{href:n.url,target:`_blank`,rel:`noopener noreferrer`}:{href:n.url},className:`app-card`,onMouseEnter:()=>t(n.id),onMouseLeave:()=>t(null),style:{"--accent":n.accent||`#8b5cf6`,borderColor:r?n.accent:`rgba(255, 255, 255, 0.08)`,boxShadow:r?`0 14px 40px -8px ${n.accent}33, 0 0 0 1px ${n.accent}55`:`0 4px 20px rgba(0, 0, 0, 0.3)`},children:[(0,z.jsx)(`div`,{className:`card-glow`,style:{opacity:r?.16:0,background:`radial-gradient(circle at 50% 0%, ${n.accent}, transparent 70%)`}}),(0,z.jsxs)(`div`,{className:`card-header`,children:[(0,z.jsx)(`div`,{className:`card-logo-box`,style:{boxShadow:r?`0 6px 20px -2px ${n.accent}40`:`0 2px 10px rgba(0,0,0,0.3)`},children:(0,z.jsx)(`img`,{src:n.logo,alt:`${n.title} logo`,className:`card-logo-img`,loading:`lazy`})}),n.badge&&(0,z.jsxs)(`span`,{className:`card-badge`,style:{background:`${n.accent}14`,color:n.accent,borderColor:`${n.accent}33`},children:[(0,z.jsx)(`span`,{className:`badge-dot`,style:{background:n.accent}}),n.badge]})]}),(0,z.jsxs)(`div`,{className:`card-body`,children:[(0,z.jsx)(`h2`,{className:`card-title`,children:n.title}),n.subtitle&&(0,z.jsx)(`p`,{className:`card-subtitle`,style:{color:n.accent},children:n.subtitle}),(0,z.jsx)(`p`,{className:`card-description`,children:n.description})]}),(0,z.jsxs)(`div`,{className:`card-action`,children:[(0,z.jsx)(`span`,{className:`action-text`,children:`Launch App`}),(0,z.jsxs)(`svg`,{className:`action-icon`,width:`16`,height:`16`,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2.5`,strokeLinecap:`round`,strokeLinejoin:`round`,style:{transform:r?`translate(2px, -2px)`:`none`,transition:`transform 0.2s ease`},children:[(0,z.jsx)(`line`,{x1:`7`,y1:`17`,x2:`17`,y2:`7`}),(0,z.jsx)(`polyline`,{points:`7 7 17 7 17 17`})]})]})]},n.id)}),(0,z.jsxs)(`div`,{className:`app-card placeholder-card`,children:[(0,z.jsxs)(`div`,{className:`card-header`,children:[(0,z.jsx)(`div`,{className:`card-logo-box placeholder-logo-box`,children:(0,z.jsxs)(`svg`,{width:`24`,height:`24`,viewBox:`0 0 24 24`,fill:`none`,stroke:`#71717a`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`,children:[(0,z.jsx)(`line`,{x1:`12`,y1:`5`,x2:`12`,y2:`19`}),(0,z.jsx)(`line`,{x1:`5`,y1:`12`,x2:`19`,y2:`12`})]})}),(0,z.jsx)(`span`,{className:`card-badge placeholder-badge`,children:`Next Up`})]}),(0,z.jsxs)(`div`,{className:`card-body`,children:[(0,z.jsx)(`h2`,{className:`card-title placeholder-title`,children:`More in Development`}),(0,z.jsx)(`p`,{className:`card-subtitle`,style:{color:`#71717a`},children:`Hardware & Web Tools`}),(0,z.jsx)(`p`,{className:`card-description`,children:`Currently building new robotic interfaces, embedded controllers, and generative tools. Check back for new deployments!`})]}),(0,z.jsx)(`div`,{className:`card-action placeholder-action`,children:(0,z.jsx)(`span`,{className:`action-text`,children:`Stay Tuned`})})]})]})]}),(0,z.jsxs)(`footer`,{className:`hub-footer`,children:[(0,z.jsxs)(`p`,{children:[`Designed & Developed by `,(0,z.jsx)(`strong`,{children:`Anmol Prabhakar`})]}),(0,z.jsxs)(`p`,{className:`footer-subtext`,children:[`Hosted on `,(0,z.jsx)(`code`,{children:`anmolprabhakar.com`})]})]}),(0,z.jsx)(`style`,{children:`
         .hub-page {
           min-height: 100vh;
           background: #090a0f;
@@ -4797,22 +4797,33 @@ Here are each of the different components I designed on this desk.`,position:new
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 20px;
+          margin-bottom: 22px;
         }
 
-        .card-icon-box {
+        /* Logo Box */
+        .card-logo-box {
+          width: 56px;
+          height: 56px;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          overflow: hidden;
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 48px;
-          height: 48px;
-          border-radius: 12px;
-          border: 1px solid;
-          transition: transform 0.25s ease;
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          flex-shrink: 0;
         }
 
-        .app-card:hover .card-icon-box {
-          transform: scale(1.05);
+        .app-card:hover .card-logo-box {
+          transform: scale(1.06);
+        }
+
+        .card-logo-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
         }
 
         .card-badge {
@@ -4836,7 +4847,7 @@ Here are each of the different components I designed on this desk.`,position:new
 
         .card-body {
           flex: 1;
-          margin-bottom: 20px;
+          margin-bottom: 24px;
         }
 
         .card-title {
@@ -4849,9 +4860,9 @@ Here are each of the different components I designed on this desk.`,position:new
 
         .card-subtitle {
           font-size: 13px;
-          font-weight: 500;
-          color: #8b5cf6;
+          font-weight: 600;
           margin: 0 0 12px;
+          letter-spacing: 0.2px;
         }
 
         .card-description {
@@ -4861,31 +4872,12 @@ Here are each of the different components I designed on this desk.`,position:new
           margin: 0;
         }
 
-        /* Tags */
-        .card-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
-          margin-bottom: 22px;
-        }
-
-        .tag-chip {
-          padding: 3px 9px;
-          border-radius: 6px;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          font-size: 11px;
-          font-weight: 500;
-          color: #a1a1aa;
-          letter-spacing: 0.2px;
-        }
-
         /* Action */
         .card-action {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding-top: 16px;
+          padding-top: 18px;
           border-top: 1px solid rgba(255, 255, 255, 0.06);
           color: #e4e4e7;
           font-size: 13px;
@@ -4910,9 +4902,8 @@ Here are each of the different components I designed on this desk.`,position:new
           border-color: rgba(255, 255, 255, 0.12);
         }
 
-        .placeholder-icon-box {
-          background: rgba(255, 255, 255, 0.03);
-          border-color: rgba(255, 255, 255, 0.08);
+        .placeholder-logo-box {
+          border: 1px dashed rgba(255, 255, 255, 0.12);
         }
 
         .placeholder-badge {
@@ -4981,5 +4972,10 @@ Here are each of the different components I designed on this desk.`,position:new
           .app-card {
             padding: 22px;
           }
+
+          .card-logo-box {
+            width: 48px;
+            height: 48px;
+          }
         }
-      `})]})}var TE=()=>null,EE=class extends v.Component{constructor(e){super(e),this.state={hasError:!1,error:null}}static getDerivedStateFromError(e){return{hasError:!0,error:e}}componentDidCatch(e,t){console.error(`Portfolio ErrorBoundary caught an error:`,e,t)}render(){return this.state.hasError?(0,z.jsxs)(`div`,{style:{padding:`40px 20px`,textAlign:`center`,maxWidth:`600px`,margin:`80px auto`,background:`rgba(255, 255, 255, 0.95)`,borderRadius:`16px`,boxShadow:`0 20px 40px rgba(0,0,0,0.12)`,fontFamily:`system-ui, -apple-system, sans-serif`},children:[(0,z.jsx)(`div`,{style:{fontSize:`2.5rem`,marginBottom:`12px`},children:`⚠️`}),(0,z.jsx)(`h2`,{style:{color:`#1e293b`,margin:`0 0 10px 0`,fontSize:`1.4rem`},children:`Something interrupted rendering`}),(0,z.jsx)(`p`,{style:{color:`#64748b`,fontSize:`0.95rem`,margin:`0 0 24px 0`,lineHeight:`1.5`},children:this.state.error?.message||`A transient layout error occurred during editing.`}),(0,z.jsx)(`button`,{onClick:()=>{this.setState({hasError:!1,error:null}),window.location.reload()},style:{background:`#8B5CF6`,color:`#ffffff`,border:`none`,padding:`10px 24px`,borderRadius:`8px`,fontSize:`0.9rem`,fontWeight:`600`,cursor:`pointer`},children:`Reload Page`})]}):this.props.children}};function DE({children:e}){return(0,z.jsxs)(z.Fragment,{children:[(0,z.jsx)(Fn,{}),(0,z.jsx)(`div`,{style:{paddingTop:`70px`},children:e})]})}function OE(){return(0,z.jsx)(EE,{children:(0,z.jsx)(zn,{children:(0,z.jsx)(pn,{children:(0,z.jsxs)(`div`,{style:{minHeight:`100vh`},children:[(0,z.jsxs)(Et,{children:[(0,z.jsx)(wt,{path:`/projects/room-improvement`,element:(0,z.jsx)(vE,{})}),(0,z.jsx)(wt,{path:`/hub`,element:(0,z.jsx)(wE,{})}),(0,z.jsx)(wt,{path:`/apps`,element:(0,z.jsx)(wE,{})}),(0,z.jsx)(wt,{path:`/`,element:(0,z.jsx)(DE,{children:(0,z.jsx)(Vn,{})})}),(0,z.jsx)(wt,{path:`/projects`,element:(0,z.jsx)(DE,{children:(0,z.jsx)(Hn,{})})}),(0,z.jsx)(wt,{path:`/projects/:projectId`,element:(0,z.jsx)(DE,{children:(0,z.jsx)(Kn,{})})}),(0,z.jsx)(wt,{path:`/about`,element:(0,z.jsx)(DE,{children:(0,z.jsx)(bE,{})})}),(0,z.jsx)(wt,{path:`/resume`,element:(0,z.jsx)(DE,{children:(0,z.jsx)(bE,{})})}),(0,z.jsx)(wt,{path:`/contact`,element:(0,z.jsx)(DE,{children:(0,z.jsx)(xE,{})})})]}),(0,z.jsx)(TE,{})]})})})})}(0,_.createRoot)(document.getElementById(`root`)).render((0,z.jsx)(v.StrictMode,{children:(0,z.jsx)(OE,{})}));
+      `})]})}var wE=()=>null,TE=class extends v.Component{constructor(e){super(e),this.state={hasError:!1,error:null}}static getDerivedStateFromError(e){return{hasError:!0,error:e}}componentDidCatch(e,t){console.error(`Portfolio ErrorBoundary caught an error:`,e,t)}render(){return this.state.hasError?(0,z.jsxs)(`div`,{style:{padding:`40px 20px`,textAlign:`center`,maxWidth:`600px`,margin:`80px auto`,background:`rgba(255, 255, 255, 0.95)`,borderRadius:`16px`,boxShadow:`0 20px 40px rgba(0,0,0,0.12)`,fontFamily:`system-ui, -apple-system, sans-serif`},children:[(0,z.jsx)(`div`,{style:{fontSize:`2.5rem`,marginBottom:`12px`},children:`⚠️`}),(0,z.jsx)(`h2`,{style:{color:`#1e293b`,margin:`0 0 10px 0`,fontSize:`1.4rem`},children:`Something interrupted rendering`}),(0,z.jsx)(`p`,{style:{color:`#64748b`,fontSize:`0.95rem`,margin:`0 0 24px 0`,lineHeight:`1.5`},children:this.state.error?.message||`A transient layout error occurred during editing.`}),(0,z.jsx)(`button`,{onClick:()=>{this.setState({hasError:!1,error:null}),window.location.reload()},style:{background:`#8B5CF6`,color:`#ffffff`,border:`none`,padding:`10px 24px`,borderRadius:`8px`,fontSize:`0.9rem`,fontWeight:`600`,cursor:`pointer`},children:`Reload Page`})]}):this.props.children}};function EE({children:e}){return(0,z.jsxs)(z.Fragment,{children:[(0,z.jsx)(Fn,{}),(0,z.jsx)(`div`,{style:{paddingTop:`70px`},children:e})]})}function DE(){return(0,z.jsx)(TE,{children:(0,z.jsx)(zn,{children:(0,z.jsx)(pn,{children:(0,z.jsxs)(`div`,{style:{minHeight:`100vh`},children:[(0,z.jsxs)(Et,{children:[(0,z.jsx)(wt,{path:`/projects/room-improvement`,element:(0,z.jsx)(vE,{})}),(0,z.jsx)(wt,{path:`/hub`,element:(0,z.jsx)(CE,{})}),(0,z.jsx)(wt,{path:`/apps`,element:(0,z.jsx)(CE,{})}),(0,z.jsx)(wt,{path:`/`,element:(0,z.jsx)(EE,{children:(0,z.jsx)(Vn,{})})}),(0,z.jsx)(wt,{path:`/projects`,element:(0,z.jsx)(EE,{children:(0,z.jsx)(Hn,{})})}),(0,z.jsx)(wt,{path:`/projects/:projectId`,element:(0,z.jsx)(EE,{children:(0,z.jsx)(Kn,{})})}),(0,z.jsx)(wt,{path:`/about`,element:(0,z.jsx)(EE,{children:(0,z.jsx)(bE,{})})}),(0,z.jsx)(wt,{path:`/resume`,element:(0,z.jsx)(EE,{children:(0,z.jsx)(bE,{})})}),(0,z.jsx)(wt,{path:`/contact`,element:(0,z.jsx)(EE,{children:(0,z.jsx)(xE,{})})})]}),(0,z.jsx)(wE,{})]})})})})}(0,_.createRoot)(document.getElementById(`root`)).render((0,z.jsx)(v.StrictMode,{children:(0,z.jsx)(DE,{})}));
