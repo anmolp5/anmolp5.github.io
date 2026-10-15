@@ -7,6 +7,7 @@ import ProjectDetail from './pages/Projectdetail';
 import Room3D from './pages/Room3D';
 import Resume from './pages/Resume';
 import Contact from './pages/Contact';
+import Hub from './pages/Hub';
 import { AdminProvider } from './context/AdminContext';
 import AdminBar from './components/AdminBar';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -29,8 +30,10 @@ function App() {
         <Router>
         <div style={{ minHeight: '100vh' }}>
           <Routes>
-            {/* Room3D gets full screen without navigation */}
+            {/* Full screen routes without standard white navigation */}
             <Route path="/projects/room-improvement" element={<Room3D />} />
+            <Route path="/hub" element={<Hub />} />
+            <Route path="/apps" element={<Hub />} />
 
             {/* All other routes get navigation */}
             <Route path="/" element={<Layout><Home /></Layout>} />
